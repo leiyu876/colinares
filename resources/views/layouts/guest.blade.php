@@ -36,11 +36,11 @@
 			<div class="navbar-collapse collapse">							
 				<div class="menu">
 					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation"  class="active"><a href="{{ url('/') }}">Home</a></li>
-						<li role="presentation"><a href="{{ url('ourstory') }}">Our Story</a></li>
-						<li role="presentation"><a href="{{ url('events') }}">Events</a></li>
-						<li role="presentation"><a href="{{ url('gallery') }}">Gallery</a></li>
-						<li role="presentation"><a href="{{ url('contact') }}">Contact</a></li>						
+						<li role="presentation" class="{{ Request::is('/') ? 'active' : ''}}"><a href="{{ url('/') }}">Home</a></li>
+						<li role="presentation" class="{{ Request::is('ourstory') ? 'active' : ''}}"><a href="{{ url('ourstory') }}">Our Story</a></li>
+						<li role="presentation" class="{{ Request::is('events') ? 'active' : ''}}"><a href="{{ url('events') }}">Events</a></li>
+						<li role="presentation" class="{{ Request::is('gallery') ? 'active' : ''}}"><a href="{{ url('gallery') }}">Gallery</a></li>
+						<li role="presentation" class="{{ Request::is('contact') ? 'active' : ''}}"><a href="{{ url('contact') }}">Contact</a></li>						
 					</ul>
 				</div>
 			</div>			
