@@ -8,7 +8,7 @@
 	<div class="ourstory">
 		<div class="container">
 			<div class="col-md-10 col-md-offset-1" >
-				<img src="{{ asset('guest/img/9.jpg') }}" alt="" class="img-responsive" />	
+				<img src="{{ asset('guest/img/orange/c8.jpg') }}" alt="" class="img-responsive" />	
 				<p>
 				praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
 				excepturi sint Voluptatem accusantium doloremque laudantium sprea totam rem aperiam
@@ -37,10 +37,10 @@
 	<hr>
 	<div class="container">
 		<div class="col-md-4" >				
-			<img src="{{ asset('guest/img/1.jpg') }}" alt="" class="img-responsive" />					
+			<img src="{{ asset('guest/img/orange/c9.jpg') }}" alt="" class="img-responsive" />					
 		</div>
 		<div class="col-md-8" >	
-			<h2>Jessa</h2>
+			<h2>Rheva</h2>
 			<p>
 			praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
 			excepturi sint Voluptatem accusantium doloremque laudantium sprea totam rem aperiam
@@ -56,7 +56,7 @@
 	<hr>
 	<div class="container">
 		<div class="col-md-8" >	
-			<h2>Jessica</h2>
+			<h2>beloy</h2>
 			<p>
 			praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
 			excepturi sint Voluptatem accusantium doloremque laudantium sprea totam rem aperiam
@@ -69,13 +69,13 @@
 			</p>				
 		</div>
 		<div class="col-md-4" >	
-			<img src="{{ asset('guest/img/2.jpg') }}" alt="" class="img-responsive" />				
+			<img src="{{ asset('guest/img/orange/c10.jpg') }}" alt="" class="img-responsive" />				
 		</div>
 	</div>
 	<hr>
 	<div class="container">
 		<div class="col-md-4" >				
-			<img src="{{ asset('guest/img/3.jpg') }}" alt="" class="img-responsive" />					
+			<img src="{{ asset('guest/img/orange/c11.png') }}" alt="" class="img-responsive" />					
 		</div>
 		<div class="col-md-8" >	
 			<h2>Scott</h2>
