@@ -1,95 +1,134 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.guest')
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Colinares Family
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+@section('content')
+	<div class="slider">
+		<div class="img-responsive">
+			<ul class="bxslider">				
+				<li><img src="{{ asset('guest/img/8.jpg') }}" alt=""/></li>								
+				<li><img src="{{ asset('guest/img/9.jpg') }}" alt=""/></li>	
+				<li><img src="{{ asset('guest/img/7.jpg') }}" alt=""/></li>			
+			</ul>
+		</div>	
+    </div>
+	
+	<div class="jumbotron">
+		<h1>My Family</h1>
+		<p>
+		praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
+		excepturi sint <br>
+		Voluptatem accusantium doloremque laudantium sprea totam rem aperiam
+		</p>
+	</div>
+	
+	<div class="container">
+		<div class="col-md-6" >
+			<img src="{{ asset('guest/img/12.jpg') }}" alt="" class="img-responsive" />
+		</div>
+		<div class="col-md-6" >
+			<img src="{{ asset('guest/img/11.jpg') }}" alt="" class="img-responsive" />
+		</div>
+	</div>
+	<section class="box">
+		<div class="container">
+			<div class="row">				
+				<div class="col-md-4">
+					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.4s">
+						<div class="services">											
+							<div class="icons">
+								<i class="fa fa-heart-o fa-3x"></i>
+							</div>
+							<h4>Events</h4>	
+							<p>
+							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
+							excepturi sint occaecati cupiditate non provident
+							</p>
+						</div>
+					</div>
+					<hr>
+				</div>
+				
+				<div class="col-md-4">
+					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
+						<div class="services">											
+							<div class="icons">
+								<i class="fa fa-desktop fa-3x"></i>
+							</div>
+							<h4>Fresh</h4>
+							<p>
+							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
+							excepturi sint occaecati cupiditate non provident
+							</p>							
+						</div>
+					</div>
+					<hr>
+				</div>
+				
+				<div class="col-md-4">
+					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="1.2s">
+						<div class="services">												
+							<div class="icons">
+								<i class="fa fa-thumbs-o-up fa-3x"></i>
+							</div>
+							<h4>likes</h4>
+							<p>
+							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
+							excepturi sint occaecati cupiditate non provident
+							</p>							
+						</div>
+					</div>
+					<hr>
+				</div>
+				<div class="col-md-4">
+					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.4s">
+						<div class="services">											
+							<div class="icons">
+								<i class="fa fa-leaf fa-3x"></i>
+							</div>
+							<h4>Business Family</h4>	
+							<p>
+							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
+							excepturi sint occaecati cupiditate non provident
+							</p>
+						</div>						
+					</div>
+					<hr>
+				</div>
+				<div class="col-md-4">
+					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
+						<div class="services">											
+							<div class="icons">
+								<i class="fa fa-laptop fa-3x"></i>
+							</div>
+							<h4>Free Support</h4>
+							<p>
+							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
+							excepturi sint occaecati cupiditate non provident
+							</p>							
+						</div>
+					</div>
+					<hr>
+				</div>
+				<div class="col-md-4">
+					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="1.2s">
+						<div class="services">												
+							<div class="icons">
+								<i class="fa fa-camera fa-3x"></i>
+							</div>
+							<h4>Photography</h4>
+							<p>
+							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
+							excepturi sint occaecati cupiditate non provident
+							</p>							
+						</div>
+					</div>
+					<hr>
+				</div>					
+			</div>
+		</div>
+	</section>
+	
+	<div class="gallery">
+		<img src="{{ asset('guest/img/9.jpg') }}" alt="" class="img-responsive" />		
+	</div>
+@endsection
+	
