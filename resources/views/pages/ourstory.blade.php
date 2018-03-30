@@ -95,7 +95,7 @@
 	<div class="profile">
 		<div class="container">
 			<div class="col-md-8" >	
-				<h2>James</h2>
+				<h2>Giel</h2>
 				<p>
 				praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
 				excepturi sint Voluptatem accusantium doloremque laudantium sprea totam rem aperiam
@@ -108,7 +108,7 @@
 				</p>				
 			</div>
 			<div class="col-md-4" >	
-				<img src="{{ asset('guest/img/4.jpg') }}" alt="" class="img-responsive" />				
+				<img src="{{ asset('guest/img/orange/c12.jpg') }}" alt="" class="img-responsive" />				
 			</div>
 		</div>
 	</div>
