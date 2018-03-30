@@ -4,9 +4,9 @@
 	<div class="slider">
 		<div class="img-responsive">
 			<ul class="bxslider">				
-				<li><img src="{{ asset('guest/img/8.jpg') }}" alt=""/></li>								
-				<li><img src="{{ asset('guest/img/9.jpg') }}" alt=""/></li>	
-				<li><img src="{{ asset('guest/img/7.jpg') }}" alt=""/></li>			
+				<li><img src="{{ asset('guest/img/orange/c1.jpg') }}" alt=""/></li>								
+				<li><img src="{{ asset('guest/img/orange/c2.jpg') }}" alt=""/></li>	
+				<li><img src="{{ asset('guest/img/orange/c3.jpg') }}" alt=""/></li>			
 			</ul>
 		</div>	
     </div>
@@ -22,10 +22,10 @@
 	
 	<div class="container">
 		<div class="col-md-6" >
-			<img src="{{ asset('guest/img/12.jpg') }}" alt="" class="img-responsive" />
+			<img src="{{ asset('guest/img/orange/c5.jpg') }}" alt="" class="img-responsive" />
 		</div>
 		<div class="col-md-6" >
-			<img src="{{ asset('guest/img/11.jpg') }}" alt="" class="img-responsive" />
+			<img src="{{ asset('guest/img/orange/c6.jpg') }}" alt="" class="img-responsive" />
 		</div>
 	</div>
 	<section class="box">
@@ -128,7 +128,7 @@
 	</section>
 	
 	<div class="gallery">
-		<img src="{{ asset('guest/img/9.jpg') }}" alt="" class="img-responsive" />		
+		<img src="{{ asset('guest/img/orange/c4.jpg') }}" alt="" class="img-responsive" />		
 	</div>
 @endsection
 	
