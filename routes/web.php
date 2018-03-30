@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('ourstory', 'PagesController@ourstory');
+Route::get('events', 'PagesController@events');
+Route::get('gallery', 'PagesController@gallery');
+Route::get('contact', 'PagesController@contact');
 
 Auth::routes();
 
