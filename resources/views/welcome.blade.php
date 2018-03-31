@@ -14,9 +14,9 @@
 	<div class="jumbotron">
 		<h1>My Family</h1>
 		<p>
-		praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
-		excepturi sint <br>
-		Voluptatem accusantium doloremque laudantium sprea totam rem aperiam
+		Having someone to go is home.<br> 
+		Having someone to love is family. <br>
+		Having both is a blessing.
 		</p>
 	</div>
 	

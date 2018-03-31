@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Me & Family Bootstrap Template</title>
+    <title>Me & Family</title>
 
     <!-- Bootstrap -->
     <link href="{{ asset('guest/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -31,7 +31,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html"><span>Colinares Family</span></a>
+				<a class="navbar-brand" href="{{ url('/') }}"><span>Colinares Family</span></a>
 			</div>
 			<div class="navbar-collapse collapse">							
 				<div class="menu">
@@ -55,25 +55,28 @@
 				<div class="row">
 					<div class="col-md-4 f-about">
 						<a href="index.html"><h1>Me & Family</h1></a>
-						<p>We possess within us two minds. So far I have written only of the conscious mind. I would now like to introduce you to your second mind, the hidden and mysterious subconscious. Our subconscious mind contains such power.</p>
+						<p>
+							Family isn’t always blood. It’s the people in your life who want you in theirs; the ones who accept you for who you are. 
+							The ones who would do anything to see you smile & who love you no matter what.
+						</p>
 						
 					</div>
 					<div class="col-md-4 l-posts">
 						<h3 class="widgetheading">Latest Posts</h3>
 						<ul>
-							<li><a href="#">This is awesome post title</a></li>
-							<li><a href="#">Awesome features are awesome</a></li>
-							<li><a href="#">Create your own awesome website</a></li>
-							<li><a href="#">Wow, this is fourth post title</a></li>
+							<li><a href="#">Coming soon.</a></li>
+							<li><a href="#">Coming soon.</a></li>
+							<li><a href="#">Coming soon.</a></li>
+							<li><a href="#">Coming soon.</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4 f-contact">
 						<h3 class="widgetheading">Stay in touch</h3>
-						<a href="#"><p><i class="fa fa-envelope"></i> example@gmail.com</p></a>
-						<p><i class="fa fa-phone"></i>  +345 578 59 45 416</p>
-						<p><i class="fa fa-home"></i> Me & Family inc  |  PO Box 23456 
-							Little Lonsdale St, New York <br>
-							Victoria 8011 USA</p>
+						<a href="#"><p><i class="fa fa-envelope"></i> support@virneza.com</p></a>
+						<p><i class="fa fa-phone"></i>  +966593326104</p>
+						<p><i class="fa fa-home"></i> Sacred Heart Village, <br>
+							Corazon Catmon <br>
+							Cebu Philippines</p>
 					</div>
 				</div>
 			</div>
@@ -83,7 +86,7 @@
 			<div class="container">
 				<div class="row">					
 					<div class="copyright">
-						© 2014 Me & Family Multi-purpose theme | <a href="http://bootstraptaste.com">Bootstraptaste</a>
+						© 2018 Me & Family | <a href="http://virneza.com">VirNeza</a>
 					</div>	
                     <!-- 
                         All links in the footer should remain intact. 
