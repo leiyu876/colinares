@@ -25,22 +25,7 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
-      <li><a href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-users"></i> <span>Fatora</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="{{ url('invoices') }}"><i class="fa fa-circle-o"></i> Fatora List</a></li>
-          <li><a href="{{ url('invoices/create') }}"><i class="fa fa-circle-o"></i> Create Fatora</a></li>
-          <li><a href="{{ url('invoices/unfinish') }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
-          <li><a href="{{ url('invoices/finish') }}"><i class="fa fa-circle-o"></i> Salesman Finish ( Kalas )</a></li>
-          <li><a href="{{ url('invoices/return') }}"><i class="fa fa-circle-o"></i> Salesman Return ( Radja )</a></li>
-        </ul>
-      </li>
+      <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li class="treeview">
         <a href="#">
           <i class="fa fa-users"></i> <span>Users</span>
@@ -51,18 +36,6 @@
         <ul class="treeview-menu">
           <li><a href="{{ url('users') }}"><i class="fa fa-circle-o"></i> Users List</a></li>
           <li><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-users"></i> <span>Fatora Actions</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="{{ url('actions') }}"><i class="fa fa-circle-o"></i> Action List</a></li>
-          <li><a href="{{ url('actions/create') }}"><i class="fa fa-circle-o"></i> Create Action</a></li>
         </ul>
       </li>
     </ul>
