@@ -166,4 +166,45 @@ class UsersController extends Controller
     {
         //
     }
+
+    public function change_pass($id)
+    {
+        $data['page_title'] = 'Change Password';
+
+        $data['user'] = User::find($id);
+
+        return view('users.change_pass', $data);
+    }
+
+    public function change_pass_save(Request $request, $id)
+    {
+        $password_current = $request->input('password_current');
+
+        $user   = User::find($id);
+        
+        $hasher = app('hash');
+        
+        if (!$hasher->check($password_current, $user->password)) {
+
+            Session::flash('error', 'Incorrect current password.');
+
+            return redirect('users/change_pass/'.$id);
+        }
+
+        $password              = $request->input('password');
+        $password_confirmation = $request->input('password_confirmation');
+
+        if($password != $password_confirmation) {
+
+            Session::flash('error', 'New password did not match.');
+
+            return redirect('users/change_pass/'.$id);
+        }
+
+        $user->password = Hash::make($password);
+
+        $user->save();
+
+        return redirect('/users')->with('success', 'User password successfully change.');
+    }
 }
