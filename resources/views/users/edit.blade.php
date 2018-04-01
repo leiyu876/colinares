@@ -1,5 +1,9 @@
 @extends('layouts.auth')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('auth/bower_components/select2/dist/css/select2.min.css') }}">
+@endsection
+
 @section('content')
 
   <div class="row">
@@ -82,8 +86,7 @@
             </div>
             <div class="form-group">
                 {{ Form::label('married_to', 'Married To') }}
-                
-                    {{ Form::text('married_to', $user->married_to, ['class'=>'form-control', 'id'=>'married_to']) }}
+                {{ Form::select('married_to', $users->prepend('None', 0), $user->married_to, ['class'=>'form-control select2', 'id'=>'married_to']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('married_date', 'Married Date') }}
@@ -142,3 +145,12 @@
   </div>
 
   @endsection()
+
+  @section('js')
+    <script src="{{ asset('auth/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.select2').select2()
+        })
+    </script>
+  @endsection

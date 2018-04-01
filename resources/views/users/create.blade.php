@@ -77,9 +77,8 @@
                 		{{ Form::text('degree', null, ['class'=>'form-control', 'id'=>'degree']) }}
               	</div>
             	<div class="form-group">
-              		{{ Form::label('married_to', 'Married To') }}
-              		
-                		{{ Form::text('married_to', null, ['class'=>'form-control', 'id'=>'married_to']) }}
+                    {{ Form::label('married_to', 'Married To') }}
+              		{{ Form::select('married_to', $users->prepend('All', 0), null, ['class'=>'form-control', 'id'=>'married_to']) }}
               	</div>
             	<div class="form-group">
               		{{ Form::label('married_date', 'Married Date') }}

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Session;
+use DB;
 
 class UsersController extends Controller
 {
@@ -32,6 +33,11 @@ class UsersController extends Controller
     {
         $data['page_title'] = 'Create User';
 
+        $data['users'] = User::select(
+            DB::raw("CONCAT(last_name,', ',first_name) AS name"), 'id')
+            ->orderBy('name')
+            ->pluck('name', 'id');
+        
         return view('users.create', $data);
     }
 
@@ -102,9 +108,14 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $data['page_title'] = 'Update User';
-
         $data['user'] = User::find($id);
+
+        $data['users'] = User::select(
+            DB::raw("CONCAT(last_name,', ',first_name) AS name"), 'id')
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        $data['page_title'] = 'Update User';
 
         return view('users.edit', $data);
     }
@@ -152,6 +163,15 @@ class UsersController extends Controller
         $user->company_phone = $request->input('company_phone');
 
         $user->save();
+
+        $user_partner = User::find($user->married_to);
+
+        if($user_partner) {
+            $user_partner->married_to = $id;
+            $user_partner->save();
+        }
+
+
 
         return redirect('/users')->with('success', 'User Updated');
     }
