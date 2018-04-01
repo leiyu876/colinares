@@ -1,5 +1,9 @@
 @extends('layouts.auth')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('auth/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+@endsection
+
 @section('content')
 
     <div class="row">   
@@ -56,25 +60,31 @@
   @endsection()
 
 @section('js')
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(document).on('click', 'a.jquery-postback', function(e) {
+    <script src="{{ asset('auth/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('auth/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+        })
 
-        e.preventDefault(); // does not go through with the link.
-        
-        var ask = window.confirm("Are you sure you want to delete this user?");
-        
-        if (ask) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).on('click', 'a.jquery-postback', function(e) {
+
+            e.preventDefault(); // does not go through with the link.
             
-            var $this = $(this);
+            var ask = window.confirm("Are you sure you want to delete this user?");
+            
+            if (ask) {
+                
+                var $this = $(this);
 
-            $( "#name"+$this.attr('value') ).click();
+                $( "#name"+$this.attr('value') ).click();
 
-        }         
-    });
-</script>
+            }         
+        });
+    </script>
 @endsection()
