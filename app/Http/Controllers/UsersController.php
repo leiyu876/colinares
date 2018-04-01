@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use Session;
 use DB;
+use Image;
 
 class UsersController extends Controller
 {
@@ -57,6 +58,7 @@ class UsersController extends Controller
             'gender' => 'min:1|max:1',
             'marital_status' => 'min:1|max:1',
             'password' => 'required|confirmed',
+            'photo' => 'sometimes|image'
         ]);
 
         $user = new User;
@@ -84,6 +86,16 @@ class UsersController extends Controller
         $user->company_phone = $request->input('company_phone');
         $user->password = Hash::make($request->input('password'));
 
+        if($request->hasFile('photo')) {
+            
+            $image = $request->file('photo');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $location = public_path('images/primary/'.$filename);
+            Image::make($image)->save($location);
+
+            $user->photo = $filename;
+        }
+        
         $user->save();
 
         return redirect('/users')->with('success', 'User Created');

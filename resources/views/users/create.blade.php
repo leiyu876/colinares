@@ -12,7 +12,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form method="POST" action="{{ route('users.store') }}" role="form">
+        <form method="POST" action="{{ route('users.store') }}" role="form" enctype="multipart/form-data">
         {{ csrf_field() }}
           
          	<div class="box-body">
@@ -117,18 +117,19 @@
               	</div>
             	<div class="form-group">
               		{{ Form::label('company_phone', 'Company Phone') }}
-              		
-                		{{ Form::text('company_phone', null, ['class'=>'form-control', 'id'=>'company_phone']) }}
+              		{{ Form::text('company_phone', null, ['class'=>'form-control', 'id'=>'company_phone']) }}
               	</div>
+                <div class="form-group">
+                    {{ Form::label('photo', 'Photo') }}
+                    {{ Form::file('photo', ['class'=>'form-control', 'id'=>'photo']) }}
+                </div>
             	<div class="form-group">
               		{{ Form::label('password', 'Password') }}
-              		
-                		{{ Form::password('password', ['class'=>'form-control', 'id'=>'password']) }}
+              		{{ Form::password('password', ['class'=>'form-control', 'id'=>'password']) }}
               	</div>
             	<div class="form-group">
               		{{ Form::label('password_confirmation', 'Confirm Password') }}
-              		
-                		{{ Form::password('password_confirmation', ['class'=>'form-control', 'id'=>'password_confirmation']) }}
+              		{{ Form::password('password_confirmation', ['class'=>'form-control', 'id'=>'password_confirmation']) }}
               	</div>
           	</div>
 

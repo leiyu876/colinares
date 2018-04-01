@@ -20,6 +20,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th>Photo</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Action</th>
@@ -28,6 +29,7 @@
                         <tbody>
                             @foreach($users as $user)
                                 <tr>
+                                    <td><img src="{{ asset('images/primary/'.($user->photo ? $user->photo : 'noimage.png')) }}" width="100" height="100"></td>
                                     <td>{{ $user->last_name.', '.$user->first_name.' '.substr($user->middle_name, 0,1).'.' }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
