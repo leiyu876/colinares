@@ -8,6 +8,7 @@ use App\User;
 use Session;
 use DB;
 use Image;
+use Storage;
 
 class UsersController extends Controller
 {
@@ -150,6 +151,7 @@ class UsersController extends Controller
             'birthday' => 'required',
             'gender' => 'min:1|max:1',
             'marital_status' => 'min:1|max:1',
+            'photo' => 'sometimes|image'
         ]);
 
         $user->email = $request->input('email');
@@ -174,6 +176,20 @@ class UsersController extends Controller
         $user->company_address = $request->input('company_address');
         $user->company_phone = $request->input('company_phone');
 
+        if($request->hasFile('photo')) {
+            
+            $image = $request->file('photo');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $location = public_path('images/primary/'.$filename);
+            Image::make($image)->save($location);
+
+            if($user->photo) {
+                Storage::delete('primary/'.$user->photo);
+            }
+            
+            $user->photo = $filename;
+        }
+
         $user->save();
 
         $user_partner = User::find($user->married_to);
@@ -182,8 +198,6 @@ class UsersController extends Controller
             $user_partner->married_to = $id;
             $user_partner->save();
         }
-
-
 
         return redirect('/users')->with('success', 'User Updated');
     }
@@ -197,7 +211,13 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+
+        if($user->photo) {
+            Storage::delete('primary/'.$user->photo);
+        }
+
         $user->delete();
+        
         return redirect('/users')->with('success', 'User Removed');
     }
 
