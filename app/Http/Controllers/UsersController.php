@@ -124,6 +124,8 @@ class UsersController extends Controller
 
         $data['page_title'] = 'Profile';
 
+        $data['siblings'] = $data['user']->siblings();
+        
         return view('users.profile', $data);
     }
 

@@ -130,7 +130,49 @@
               </div>
               
               <div class="tab-pane" id="siblings">
-                siblings
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">List of Siblings ({{ count($siblings) ? count($siblings)-1 : 0 }})</h3>
+                        <div class="pull-right">
+                            <a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Add Child</a>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Birthday</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($user->siblings() as $child)
+                                    @if($child->id == $user->id)
+                                        @continue
+                                    @endif
+                                    <tr>
+                                        <td><img src="{{ asset('images/primary/'.($child->photo ? $child->photo : 'noimage.png')) }}" width="100" height="100"></td>
+                                        <td>{{ $child->last_name.', '.$child->first_name.' '.substr($child->middle_name, 0,1).'.' }}</td>
+                                        <td>{{ $child->age }}</td>
+                                        <td>{{ $child->birthday }}</td>
+                                        <td>  
+                                            <a href="{{ route('users.show', ['id' => $child->id])}}" class="btn btn-primary">
+                                                Profile
+                                            </a> 
+                                             <a href="{{ route('users.remove_child', ['id' => $user->parent_id, 'child_id' => $child->id])}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove him/her as his/her sibling?')">
+                                                Remove
+                                            </a> 
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                         </table>
+                    </div>
+                </div>
               </div>
 
               <div class="tab-pane" id="parents">

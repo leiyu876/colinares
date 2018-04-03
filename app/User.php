@@ -37,6 +37,18 @@ class User extends Authenticatable
         return $this->where('parent_id', $this->id)->orderBy('birthday', 'asc')->get();
     }
 
+    public function siblings() {
+
+        $parent = $this->find($this->parent_id);
+        
+        if(!$parent) {
+            
+            return array();
+        }
+
+        return $parent->children();
+    }
+
     /**
      * Accessor for Age.
      */
