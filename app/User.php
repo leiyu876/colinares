@@ -42,11 +42,23 @@ class User extends Authenticatable
         $parent = $this->find($this->parent_id);
         
         if(!$parent) {
-            
+
             return array();
         }
 
         return $parent->children();
+    }
+
+    public function parents() {
+
+        $parent = $this->find($this->parent_id);
+
+        $parents = array(
+            'one' => $parent,
+            'two' => $parent->partner()
+        );
+
+        return $parents;
     }
 
     /**

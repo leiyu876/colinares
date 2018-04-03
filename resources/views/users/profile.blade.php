@@ -134,7 +134,7 @@
                     <div class="box-header">
                         <h3 class="box-title">List of Siblings ({{ count($siblings) ? count($siblings)-1 : 0 }})</h3>
                         <div class="pull-right">
-                            <a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Add Child</a>
+                            <a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Add Sibling(error)</a>
                         </div>
                     </div>
                     <!-- /.box-header -->
@@ -163,7 +163,7 @@
                                             <a href="{{ route('users.show', ['id' => $child->id])}}" class="btn btn-primary">
                                                 Profile
                                             </a> 
-                                             <a href="{{ route('users.remove_child', ['id' => $user->parent_id, 'child_id' => $child->id])}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove him/her as his/her sibling?')">
+                                             <a href="{{ route('users.remove_child', ['id' => $user->parent_id, 'child_id' => $child->id, 'selected_id' => $user->id])}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove him/her as his/her sibling?')">
                                                 Remove
                                             </a> 
                                         </td>
@@ -176,7 +176,34 @@
               </div>
 
               <div class="tab-pane" id="parents">
-                parents
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Parents</h3>
+                        <div class="pull-right">
+                            <a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Add Parent(error)</a>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <? $parents = $user->parents(); ?>
+                            @if($parents['one'])
+                                <div class="col-md-6">
+                                    <img id="child_photo" class="img-circle" src="{{ asset('images/primary/'.($parents['one']->photo ? $parents['one']->photo : 'noimage.png')) }}" alt="Child profile picture" width="225" height="225">
+                                    <h3 id="child_name">{{ $parents['one']->last_name.', '.$parents['one']->first_name.' '.substr($parents['one']->middle_name, 0,1).'.' }}</h3>
+                                    <p id="child_occupation">{{ $parents['one']->occupation }}</p>
+                                </div>
+                            @endif
+                            @if($parents['two'])
+                                <div class="col-md-6">
+                                    <img id="child_photo" class="img-circle" src="{{ asset('images/primary/'.($parents['two']->photo ? $parents['two']->photo : 'noimage.png')) }}" alt="Child profile picture" width="225" height="225">
+                                    <h3 id="child_name">{{ $parents['two']->last_name.', '.$parents['two']->first_name.' '.substr($parents['two']->middle_name, 0,1).'.' }}</h3>
+                                    <p id="child_occupation">{{ $parents['two']->occupation }}</p>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
               </div>
             
             </div>

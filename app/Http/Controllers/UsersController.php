@@ -296,7 +296,7 @@ class UsersController extends Controller
         return redirect('/users/'.$id)->with('success', 'New child added!');
     }
 
-    public function remove_child($id, $child_id) {
+    public function remove_child($id, $child_id, $selected_id = null) {
 
         $user = User::find($child_id);
 
@@ -304,6 +304,8 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect('/users/'.$id)->with('success', 'Child removed!');
+        if($selected_id) $id = $selected_id;
+
+        return redirect('/users/'.$id)->with('success', 'Successfully removed!');
     }
 }

@@ -25,7 +25,8 @@ Route::get('users/change_pass/{id}', 'UsersController@change_pass');
 Route::put('users/change_pass_save/{id}', 'UsersController@change_pass_save')->name('users.change_pass_save');
 Route::get('users/getUserById/{id}', 'UsersController@getUserById');
 Route::post('users/store_child', 'UsersController@store_child')->name('users.store_child');
-Route::get('users/remove_child/{id}/{child_id}', 'UsersController@remove_child')->name('users.remove_child');
+//id = parent_id, child_id = child id to be remove, selected_id for the view in profile optional
+Route::get('users/remove_child/{id}/{child_id}/{selected_id?}', 'UsersController@remove_child')->name('users.remove_child');
 
 Auth::routes();
 
