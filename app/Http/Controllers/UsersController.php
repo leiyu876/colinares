@@ -12,6 +12,11 @@ use Storage;
 
 class UsersController extends Controller
 {
+    public function __construct() {
+
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +24,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $data['page_title'] = 'User Lists';
+       $data['page_title'] = 'User Lists';
 
         $data['users'] = User::all();
 
@@ -110,7 +115,16 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['user'] = User::find($id);
+
+        $data['users'] = User::select(
+            DB::raw("CONCAT(last_name,', ',first_name) AS name"), 'id')
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        $data['page_title'] = 'Profile';
+
+        return view('users.profile', $data);
     }
 
     /**
@@ -260,5 +274,34 @@ class UsersController extends Controller
         $user->save();
 
         return redirect('/users')->with('success', 'User password successfully change.');
+    }
+
+    public function getUserById($id) {
+
+        $user = User::find($id);
+    
+        echo json_encode($user);
+    }
+
+    public function store_child(Request $request) {
+
+        $user = User::find($request->input('child_id'));
+
+        $user->parent_id = $id = $request->input('id');
+
+        $user->save();
+
+        return redirect('/users/'.$id)->with('success', 'New child added!');
+    }
+
+    public function remove_child($id, $child_id) {
+
+        $user = User::find($child_id);
+
+        $user->parent_id = null;
+
+        $user->save();
+
+        return redirect('/users/'.$id)->with('success', 'Child removed!');
     }
 }

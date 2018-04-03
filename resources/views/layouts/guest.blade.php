@@ -40,7 +40,8 @@
 						<li role="presentation" class="{{ Request::is('ourstory') ? 'active' : ''}}"><a href="{{ url('ourstory') }}">Our Story</a></li>
 						<li role="presentation" class="{{ Request::is('events') ? 'active' : ''}}"><a href="{{ url('events') }}">Events</a></li>
 						<li role="presentation" class="{{ Request::is('gallery') ? 'active' : ''}}"><a href="{{ url('gallery') }}">Gallery</a></li>
-						<li role="presentation" class="{{ Request::is('contact') ? 'active' : ''}}"><a href="{{ url('contact') }}">Contact</a></li>						
+						<li role="presentation" class="{{ Request::is('contact') ? 'active' : ''}}"><a href="{{ url('contact') }}">Contact</a></li>	
+						<li role="presentation" class="{{ Request::is('tree') ? 'active' : ''}}"><a href="{{ url('tree') }}">Tree</a></li>						
 						<li role="presentation" class="{{ Request::is('contact') ? 'active' : ''}}"><a href="{{ route('login') }}">Login</a></li>						
 					</ul>
 				</div>

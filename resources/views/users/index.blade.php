@@ -33,6 +33,9 @@
                                     <td>{{ $user->last_name.', '.$user->first_name.' '.substr($user->middle_name, 0,1).'.' }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
+                                        <a href="{{ route('users.show', ['id' => $user->id])}}">
+                                            <i class="fa fa-fw fa-eye" data-toggle="tooltip" title="Profile"></i>
+                                        </a>
                                         <a href="{{ route('users.edit', ['id' => $user->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
                                         </a>
@@ -55,7 +58,7 @@
                         </tbody>
                      </table>
                 </div>
-             </div>
+            </div>
         </div>
     </div>     
 

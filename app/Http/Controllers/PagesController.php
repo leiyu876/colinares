@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class PagesController extends Controller
 {
@@ -17,5 +18,12 @@ class PagesController extends Controller
     }
     public function contact() {
     	return view('pages.contact');
+    }
+
+    public function tree() {
+
+        $data['root'] = User::whereEmail('espring@yahoo.com')->first();
+
+        return view('pages.tree', $data);
     }
 }

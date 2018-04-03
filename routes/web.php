@@ -19,9 +19,13 @@ Route::get('ourstory', 'PagesController@ourstory');
 Route::get('events', 'PagesController@events');
 Route::get('gallery', 'PagesController@gallery');
 Route::get('contact', 'PagesController@contact');
+Route::get('tree', 'PagesController@tree');
 
 Route::get('users/change_pass/{id}', 'UsersController@change_pass');
 Route::put('users/change_pass_save/{id}', 'UsersController@change_pass_save')->name('users.change_pass_save');
+Route::get('users/getUserById/{id}', 'UsersController@getUserById');
+Route::post('users/store_child', 'UsersController@store_child')->name('users.store_child');
+Route::get('users/remove_child/{id}/{child_id}', 'UsersController@remove_child')->name('users.remove_child');
 
 Auth::routes();
 
