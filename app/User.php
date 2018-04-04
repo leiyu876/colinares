@@ -51,6 +51,10 @@ class User extends Authenticatable
 
     public function parents() {
 
+        if(!$this->parent_id) {
+            return array('one'=>[],'two'=>[]);
+        }
+
         $parent = $this->find($this->parent_id);
 
         $parents = array(

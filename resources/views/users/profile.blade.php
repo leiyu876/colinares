@@ -82,6 +82,7 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#children" data-toggle="tab">Children</a></li>
+              <li><a href="#partner" data-toggle="tab">Partner</a></li>
               <li><a href="#siblings" data-toggle="tab">Siblings</a></li>
               <li><a href="#parents" data-toggle="tab">Parents</a></li>
             </ul>
@@ -129,6 +130,27 @@
                 </div>
               </div>
               
+              <div class="tab-pane" id="partner">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Partner</h3>
+                        
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            @if($user->partner())
+                                <div class="col-md-6">
+                                    <img id="child_photo" class="img-circle" src="{{ asset('images/primary/'.($user->partner()->photo ? $user->partner()->photo : 'noimage.png')) }}" alt="Child profile picture" width="225" height="225">
+                                    <h3 id="child_name">{{ $user->partner()->last_name.', '.$user->partner()->first_name.' '.substr($user->partner()->middle_name, 0,1).'.' }}</h3>
+                                    <p id="child_occupation">{{ $user->partner()->occupation }}</p>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+              </div>
+
               <div class="tab-pane" id="siblings">
                 <div class="box">
                     <div class="box-header">
@@ -179,9 +201,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Parents</h3>
-                        <div class="pull-right">
-                            <a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Add Parent(error)</a>
-                        </div>
+                        
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
