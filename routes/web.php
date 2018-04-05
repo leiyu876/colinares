@@ -28,6 +28,8 @@ Route::post('users/store_child', 'UsersController@store_child')->name('users.sto
 //id = parent_id, child_id = child id to be remove, selected_id for the view in profile optional
 Route::get('users/remove_child/{id}/{child_id}/{selected_id?}', 'UsersController@remove_child')->name('users.remove_child');
 
+Route::get('pages/tree/{email?}', 'PagesController@tree')->name('pages.tree');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

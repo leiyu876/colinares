@@ -65,11 +65,38 @@ class User extends Authenticatable
         return $parents;
     }
 
+    public function tree_breadcrumbs() {
+
+        $id = '';
+
+        $ids = $this->compose_crumbs_id($id, $this); 
+
+        $ids = explode(',', $ids);       
+    
+        $persons = array();
+
+        foreach ($ids as $id) {
+            $persons[] = $this->find($id);
+        }
+
+        return $persons;
+    }
+
     /**
      * Accessor for Age.
      */
     public function getAgeAttribute()
     {
         return Carbon::parse($this->attributes['birthday'])->age;
+    }
+
+    private function compose_crumbs_id($id, $user) {
+
+        if (!$user->parent_id) { // our base case
+            return $user->id.$id;
+        } else {
+            $parent = $this->find($user->parent_id);            
+            return $this->compose_crumbs_id($id, $parent).$id.','. $user->id; // <--calling itself.
+        }
     }
 }

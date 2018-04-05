@@ -20,10 +20,16 @@ class PagesController extends Controller
     	return view('pages.contact');
     }
 
-    public function tree() {
+    public function tree($email = 'espring@yahoo.com') {
 
-        $data['root'] = User::whereEmail('espring@yahoo.com')->first();
+        $data['root'] = User::whereEmail($email)->first();
 
+        if(!$data['root']) {
+            return redirect('pages/tree');
+        }
+
+        $data['breadcrumbs'] = $data['root']->tree_breadcrumbs();
+        
         return view('pages.tree', $data);
     }
 }
