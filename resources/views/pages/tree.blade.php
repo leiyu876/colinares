@@ -15,38 +15,31 @@
 				@endforeach
 			</div>
 			<div class="row">
-				<div class="col-md-3" style="margin-bottom: 20px; text-align: right;">
-					<div style="height: 281.7px;">
-						<p><strong> {{ $root->first_name }}</strong> : Name</p>
-						<p><strong> {{ $root->age }}</strong> : Age</p>
-						<p><strong> {{ dateDBtoHuman($root->birthday) }}</strong> : Birthdate</p>
-						<p><strong> {{ $root->occupation }}</strong> : Work</p>
-					</div>
-					<div style="height: 281.7px;">
-						<p>{{ $root->partner() ? $root->partner()->first_name : ''}}</p>
-						<p>12/12/2018</p>
-					</div>
-				</div>
+				<div class="col-md-3"></div>
 				<div class="col-md-3" style="margin-bottom: 20px">
 					<img src="{{ asset('images/primary/'.( $root->photo ? $root->photo : 'noimage.png' )) }}" style="width: 100%; height: 262.5px; margin-bottom: 19.2px">
+					<p>Name : <strong> {{ $root->first_name.' '.$root->last_name }}</strong></p>
+					<p>Age : <strong> {{ $root->age }}</strong></p>
+					<p>Birthdate : <strong> {{ dateDBtoHuman($root->birthday) }}</strong></p>
+					<p>Work : <strong> {{ $root->occupation }}</strong></p>
 					<img src="{{ asset('images/primary/'.( $root->partner() ? ( $root->partner()->photo ? $root->partner()->photo : 'noimage.png' ) : 'noimage.png' )) }}" style="width: 100%; height: 262.5px; margin-bottom: 19.2px">
+					<div style="height: 281.7px;">
+						<p>Name : <strong> {{ $root->partner()->first_name.' '.$root->partner()->last_name }}</strong></p>
+						<p>Age : <strong> {{ $root->partner()->age }}</strong></p>
+						<p>Birthdate : <strong> {{ dateDBtoHuman($root->partner()->birthday) }}</strong></p>
+						<p>Work : <strong> {{ $root->partner()->occupation }}</strong></p>
+					</div>
 				</div>	
 				<div class="col-md-3" style="margin-bottom: 20px">
 					@foreach($root->children() as $child)
 						<img src="{{ asset('images/primary/'.( $child->photo ? $child->photo : 'noimage.png' )) }}" style="width: 100%; height: 262.5px; margin-bottom: 19.2px">
-					@endforeach
-				</div>	
-				<div class="col-md-3" style="margin-bottom: 20px">
-					@foreach($root->children() as $child)
-						<div style="height: 281.7px;">
-							<p> Name : <strong>{{ $child->first_name.' '.$child->last_name }}</strong></p>
-							<p> Age : <strong>{{ $child->age }}</strong></p>
-							<p> Birthdate : <strong>{{ dateDBtoHuman($child->birthday) }}</strong></p>
-							<p> Work : <strong>{{ $child->occupation }}</strong></p>
-							<a href="{{ route('pages.tree', ['email' => $child->email])}}" class="btn  btn-default">
-                            	About Me
-                        	</a>
-						</div>
+						<span> Name : <strong>{{ $child->first_name.' '.$child->last_name }}</strong> </span>
+						<a href="{{ route('pages.tree', ['email' => $child->email])}}" class="btn  btn-default">
+                        	About Me
+                    	</a>
+						<p> Age : <strong>{{ $child->age }}</strong></p>
+						<p> Birthdate : <strong>{{ dateDBtoHuman($child->birthday) }}</strong></p>
+						<p> Work : <strong>{{ $child->occupation }}</strong></p>
 					@endforeach
 				</div>	
 			</div>
