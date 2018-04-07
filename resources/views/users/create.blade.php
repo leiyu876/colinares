@@ -38,18 +38,19 @@
               	</div>
             	<div class="form-group">
               		{{ Form::label('nick_name', 'Nick Name') }}
-              		
-                		{{ Form::text('nick_name', null, ['class'=>'form-control', 'id'=>'nick_name']) }}
+              		{{ Form::text('nick_name', null, ['class'=>'form-control', 'id'=>'nick_name']) }}
               	</div>
             	<div class="form-group">
               		{{ Form::label('birthday', 'Birthday') }}
-              		
-                		{{ Form::date('birthday', null, ['class'=>'form-control', 'id'=>'birthday']) }}
+              		{{ Form::date('birthday', null, ['class'=>'form-control', 'id'=>'birthday']) }}
               	</div>
+                <div class="form-group">
+                    {{ Form::label('lastday', 'Date Died') }}
+                    {{ Form::date('lastday', null, ['class'=>'form-control', 'id'=>'lastday']) }}
+                </div>
             	<div class="form-group">
               		{{ Form::label('gender', 'Gender') }}
-              		
-                		{{ Form::text('gender', null, ['class'=>'form-control', 'id'=>'gender']) }}
+              		{{ Form::text('gender', null, ['class'=>'form-control', 'id'=>'gender']) }}
               	</div>
             	<div class="form-group">
               		{{ Form::label('marital_status', 'Marital Status') }}

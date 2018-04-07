@@ -50,6 +50,10 @@
                 {{ Form::date('birthday', $user->birthday, ['class'=>'form-control', 'id'=>'birthday']) }}
             </div>
             <div class="form-group">
+                {{ Form::label('lastday', 'Date Died') }}
+                {{ Form::date('lastday', $user->lastday, ['class'=>'form-control', 'id'=>'lastday']) }}
+            </div>
+            <div class="form-group">
                 {{ Form::label('gender', 'Gender') }}
                 {{ Form::text('gender', $user->gender, ['class'=>'form-control', 'id'=>'gender']) }}
             </div>

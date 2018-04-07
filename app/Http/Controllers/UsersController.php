@@ -75,6 +75,7 @@ class UsersController extends Controller
         $user->middle_name = $request->input('middle_name');
         $user->nick_name = $request->input('nick_name');
         $user->birthday = $request->input('birthday');
+        $user->lastday = $request->input('lastday');
         $user->gender = $request->input('gender');
         $user->marital_status = $request->input('marital_status');
         $user->nationality = $request->input('nationality');
@@ -176,6 +177,7 @@ class UsersController extends Controller
         $user->middle_name = $request->input('middle_name');
         $user->nick_name = $request->input('nick_name');
         $user->birthday = $request->input('birthday');
+        $user->lastday = $request->input('lastday');
         $user->gender = $request->input('gender');
         $user->marital_status = $request->input('marital_status');
         $user->nationality = $request->input('nationality');

@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="{{ asset('guest/css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('guest/css/jquery.bxslider.css') }}">
 	<link href="{{ asset('guest/css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/custom_leo.css') }}" rel="stylesheet">
     <!-- HTML5 shim and Respond.js') }} for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js') }} doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
