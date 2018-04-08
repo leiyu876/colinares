@@ -26,14 +26,16 @@
 					@else
 						<p>Work : <strong> {{ $root->occupation }}</strong></p>
 					@endif
-					<img src="{{ asset('images/primary/'.( $root->partner() ? ( $root->partner()->photo ? $root->partner()->photo : 'noimage.png' ) : 'noimage.png' )) }}" style="width: 100%; height: 262.5px; margin-bottom: 19.2px" class="{{ $root->partner()->lastday ? 'died' : '' }}">
-					<p>Name : <strong> {{ $root->partner() ? $root->partner()->first_name.' '.$root->partner()->last_name : '' }}</strong></p>
-					<p>Age : <strong> {{ $root->partner() ? $root->partner()->age : '' }}</strong></p>
-					<p>Birthdate : <strong> {{ $root->partner() ? dateDBtoHuman($root->partner()->birthday) : "" }}</strong></p>
-					@if($root->partner()->lastday)
-						<p>Date Died : <strong> {{ $root->partner() ? $root->partner()->lastday : '' }}</strong></p>
-					@else
-						<p>Work : <strong> {{ $root->partner() ? $root->partner()->occupation : '' }}</strong></p>
+					@if($root->partner())
+						<img src="{{ asset('images/primary/'.( $root->partner() ? ( $root->partner()->photo ? $root->partner()->photo : 'noimage.png' ) : 'noimage.png' )) }}" style="width: 100%; height: 262.5px; margin-bottom: 19.2px" class="{{ $root->partner() ? ($root->partner()->lastday ? 'died' : '') : '' }}">
+						<p>Name : <strong> {{ $root->partner() ? $root->partner()->first_name.' '.$root->partner()->last_name : '' }}</strong></p>
+						<p>Age : <strong> {{ $root->partner() ? $root->partner()->age : '' }}</strong></p>
+						<p>Birthdate : <strong> {{ $root->partner() ? dateDBtoHuman($root->partner()->birthday) : "" }}</strong></p>
+						@if($root->partner() && $root->partner()->lastday)
+							<p>Date Died : <strong> {{ $root->partner() ? $root->partner()->lastday : '' }}</strong></p>
+						@else
+							<p>Work : <strong> {{ $root->partner() ? $root->partner()->occupation : '' }}</strong></p>
+						@endif
 					@endif
 				</div>	
 				<div class="col-md-3" style="margin-bottom: 20px">
