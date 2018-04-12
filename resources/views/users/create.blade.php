@@ -50,8 +50,9 @@
                 </div>
             	<div class="form-group">
               		{{ Form::label('gender', 'Gender') }}
-              		{{ Form::text('gender', null, ['class'=>'form-control', 'id'=>'gender']) }}
+              		{{ Form::select('gender', $genders, null, ['class'=>'form-control', 'id'=>'gender']) }}
               	</div>
+
             	<div class="form-group">
               		{{ Form::label('marital_status', 'Marital Status') }}
               		

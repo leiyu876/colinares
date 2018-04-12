@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Gender;
 use Session;
 use DB;
 use Image;
 use Storage;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -44,6 +46,8 @@ class UsersController extends Controller
             DB::raw("CONCAT(last_name,', ',first_name) AS name"), 'id')
             ->orderBy('name')
             ->pluck('name', 'id');
+        
+        $data['genders'] = Gender::pluck('description', 'code');    
         
         return view('users.create', $data);
     }
@@ -151,6 +155,8 @@ class UsersController extends Controller
             ->orderBy('name')
             ->pluck('name', 'id');
 
+        $data['genders'] = Gender::pluck('description', 'code');  
+        
         $data['page_title'] = 'Update User';
 
         return view('users.edit', $data);

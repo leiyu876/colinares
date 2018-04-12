@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 {{ Form::label('gender', 'Gender') }}
-                {{ Form::text('gender', $user->gender, ['class'=>'form-control', 'id'=>'gender']) }}
+                {{ Form::select('gender', $genders, $user->gender, ['class'=>'form-control select2', 'id'=>'gender']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('marital_status', 'Marital Status') }}

@@ -28,6 +28,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function genders() {
+        return $this->belongsTo('App\Gender', 'gender', 'code');
+    }
+
     public function partner() {
         return $this->find($this->married_to);
     }
