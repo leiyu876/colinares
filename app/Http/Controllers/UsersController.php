@@ -63,9 +63,15 @@ class UsersController extends Controller
             'birthday' => 'required',
             'gender' => 'min:1|max:1',
             'marital_status' => 'min:1|max:1',
-            'password' => 'required|confirmed',
+            //'password' => 'required|confirmed',
             'photo' => 'sometimes|image'
         ]);
+
+        if($request->input('auto_generate')) {
+            $password = randomPassword();   
+        } else {
+            $password = Hash::make($request->input('password'));
+        }
 
         $user = new User;
 
@@ -91,7 +97,7 @@ class UsersController extends Controller
         $user->company_name = $request->input('company_name');
         $user->company_address = $request->input('company_address');
         $user->company_phone = $request->input('company_phone');
-        $user->password = Hash::make($request->input('password'));
+        $user->password = $password;
 
         if($request->hasFile('photo')) {
             

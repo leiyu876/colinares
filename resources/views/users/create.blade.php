@@ -128,10 +128,17 @@
               		{{ Form::label('password', 'Password') }}
               		{{ Form::password('password', ['class'=>'form-control', 'id'=>'password']) }}
               	</div>
-            	<div class="form-group">
-              		{{ Form::label('password_confirmation', 'Confirm Password') }}
-              		{{ Form::password('password_confirmation', ['class'=>'form-control', 'id'=>'password_confirmation']) }}
-              	</div>
+            	{{-- <div class="form-group">
+            		{{ Form::label('password_confirmation', 'Confirm Password') }}
+            		{{ Form::password('password_confirmation', ['class'=>'form-control', 'id'=>'password_confirmation']) }}
+            	</div> --}}
+              <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="auto_generate" id="auto_generate" checked="true"> Auto Generate Password
+                    </label>
+                  </div>
+              </div>
           	</div>
 
 	        <div class="box-footer">
@@ -140,11 +147,28 @@
 	        </div>
         </form>
       </div>
-      <!-- /.box -->
-
-
     </div>
-    
   </div>
 
-  @endsection()
+@endsection()
+
+@section('js')
+  <script type="text/javascript">
+    $(document).ready(function() {
+      
+        $("#password").hide();
+        $('#auto_generate').click(function () {
+            if ($(this).is(":checked")) {
+                $("#password").hide();
+                console.log('check');  
+            } else {
+                $("#password").show();
+              console.log('not check');
+            }
+         });
+    });
+    
+      
+  </script>>
+  
+@endsection
