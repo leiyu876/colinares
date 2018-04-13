@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Gender;
+use App\Maritalstatus;
+use App\Nationality;
+use App\Religion;
 use Session;
 use DB;
 use Image;
@@ -48,6 +51,9 @@ class UsersController extends Controller
             ->pluck('name', 'id');
         
         $data['genders'] = Gender::pluck('description', 'code');    
+        $data['maritalstatuses'] = Maritalstatus::pluck('description', 'code'); 
+        $data['nationalities'] = Nationality::pluck('description', 'code');
+        $data['religions'] = Religion::pluck('description', 'code');          
         
         return view('users.create', $data);
     }
@@ -156,6 +162,9 @@ class UsersController extends Controller
             ->pluck('name', 'id');
 
         $data['genders'] = Gender::pluck('description', 'code');  
+        $data['maritalstatuses'] = Maritalstatus::pluck('description', 'code'); 
+        $data['nationalities'] = Nationality::pluck('description', 'code');
+        $data['religions'] = Religion::pluck('description', 'code');    
         
         $data['page_title'] = 'Update User';
 

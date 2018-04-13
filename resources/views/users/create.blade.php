@@ -1,5 +1,9 @@
 @extends('layouts.auth')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('auth/bower_components/select2/dist/css/select2.min.css') }}">
+@endsection
+
 @section('content')
 
   <div class="row">
@@ -50,23 +54,20 @@
                 </div>
             	<div class="form-group">
               		{{ Form::label('gender', 'Gender') }}
-              		{{ Form::select('gender', $genders, null, ['class'=>'form-control', 'id'=>'gender']) }}
+              		{{ Form::select('gender', $genders, null, ['class'=>'form-control select2', 'id'=>'gender']) }}
               	</div>
 
             	<div class="form-group">
               		{{ Form::label('marital_status', 'Marital Status') }}
-              		
-                		{{ Form::text('marital_status', null, ['class'=>'form-control', 'id'=>'marital_status']) }}
+              		{{ Form::select('marital_status', $maritalstatuses, null, ['class'=>'form-control select2', 'id'=>'marital_status']) }}
               	</div>
             	<div class="form-group">
               		{{ Form::label('nationality', 'Nationality') }}
-              		
-                		{{ Form::text('nationality', null, ['class'=>'form-control', 'id'=>'nationality']) }}
-              	</div>
+              		{{ Form::select('nationality', $nationalities, null, ['class'=>'form-control select2', 'id'=>'nationality']) }}
+                </div>
             	<div class="form-group">
               		{{ Form::label('religion', 'Religion') }}
-              		
-                		{{ Form::text('religion', null, ['class'=>'form-control', 'id'=>'religion']) }}
+              		{{ Form::select('religion', $religions, null, ['class'=>'form-control select2', 'id'=>'religion']) }}
               	</div>
             	<div class="form-group">
               		{{ Form::label('phone', 'Contact Number') }}
@@ -80,7 +81,7 @@
               	</div>
             	<div class="form-group">
                     {{ Form::label('married_to', 'Married To') }}
-              		{{ Form::select('married_to', $users->prepend('All', 0), null, ['class'=>'form-control', 'id'=>'married_to']) }}
+              		{{ Form::select('married_to', $users->prepend('All', 0), null, ['class'=>'form-control select2', 'id'=>'married_to']) }}
               	</div>
             	<div class="form-group">
               		{{ Form::label('married_date', 'Married Date') }}
@@ -154,9 +155,10 @@
 @endsection()
 
 @section('js')
+  <script src="{{ asset('auth/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      
+        $('.select2').select2()
         $("#password").hide();
         $('#auto_generate').click(function () {
             if ($(this).is(":checked")) {
@@ -170,6 +172,6 @@
     });
     
       
-  </script>>
+  </script>
   
 @endsection

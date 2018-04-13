@@ -32,6 +32,18 @@ class User extends Authenticatable
         return $this->belongsTo('App\Gender', 'gender', 'code');
     }
 
+    public function maritalstatus() {
+        return $this->belongsTo('App\Maritalstatus', 'marital_status', 'code');
+    }
+
+    public function nationalities() {
+        return $this->belongsTo('App\Nationality', 'nationality', 'code');
+    }
+
+    public function religions() {
+        return $this->belongsTo('App\Religion', 'religion', 'code');
+    }
+
     public function partner() {
         return $this->find($this->married_to);
     }

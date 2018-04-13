@@ -59,15 +59,15 @@
             </div>
             <div class="form-group">
                 {{ Form::label('marital_status', 'Marital Status') }}
-                {{ Form::text('marital_status', $user->marital_status, ['class'=>'form-control', 'id'=>'marital_status']) }}
+                {{ Form::select('marital_status', $maritalstatuses, $user->marital_status, ['class'=>'form-control select2', 'id'=>'marital_status']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('nationality', 'Nationality') }}
-                {{ Form::text('nationality', $user->nationality, ['class'=>'form-control', 'id'=>'nationality']) }}
+                {{ Form::select('nationality', $nationalities, $user->nationality, ['class'=>'form-control select2', 'id'=>'nationality']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('religion', 'Religion') }}
-                {{ Form::text('religion', $user->religion, ['class'=>'form-control', 'id'=>'religion']) }}
+                {{ Form::select('religion', $religions, $user->religion, ['class'=>'form-control select2', 'id'=>'religion']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('phone', 'Contact Number') }}
