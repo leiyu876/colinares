@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Me & Family</title>
+    <title>Martin & Ignacia Colinares Family</title>
 
     <!-- Bootstrap -->
     <link href="{{ asset('guest/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -32,7 +32,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{{ url('/') }}"><span>Colinares Family</span></a>
+				<a class="navbar-brand" href="{{ url('/') }}"><span>Martin Ignacia Colinares</span></a>
 			</div>
 			<div class="navbar-collapse collapse">							
 				<div class="menu">
@@ -57,7 +57,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 f-about">
-						<a href="index.html"><h1>Me & Family</h1></a>
+						<a href="index.html"><h1>Martin & Ignacia Family</h1></a>
 						<p>
 							Family isn’t always blood. It’s the people in your life who want you in theirs; the ones who accept you for who you are. 
 							The ones who would do anything to see you smile & who love you no matter what.
@@ -89,7 +89,7 @@
 			<div class="container">
 				<div class="row">					
 					<div class="copyright">
-						© 2018 Me & Family | <a href="http://virneza.com">VirNeza</a>
+						© 2018 Martin & Ignacia Family | <a href="http://virneza.com">VirNeza</a>
 					</div>	
                     <!-- 
                         All links in the footer should remain intact. 
@@ -99,11 +99,11 @@
 				
 		
 					<ul class="social-network">
-						<li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
-						<li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter fa-1x"></i></a></li>
-						<li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin fa-1x"></i></a></li>
-						<li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest fa-1x"></i></a></li>
-						<li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus fa-1x"></i></a></li>
+						<li><a href="#" data-placement="top" title="Facebook"><i class="fab fa-facebook-f fa-1x"></i></a></li>
+						<li><a href="#" data-placement="top" title="Twitter"><i class="fab fa-twitter fa-1x"></i></a></li>
+						<li><a href="#" data-placement="top" title="Linkedin"><i class="fab fa-linkedin-in fa-1x"></i></a></li>
+						<li><a href="#" data-placement="top" title="Pinterest"><i class="fab fa-pinterest-p fa-1x"></i></a></li>
+						<li><a href="#" data-placement="top" title="Google plus"><i class="fab fa-google-plus-g fa-1x"></i></a></li>
 					</ul>
 				</div>
 			</div>

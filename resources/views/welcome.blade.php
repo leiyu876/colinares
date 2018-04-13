@@ -35,9 +35,9 @@
 					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.4s">
 						<div class="services">											
 							<div class="icons">
-								<i class="fa fa-heart-o fa-3x"></i>
+								<i class="fas fa-birthday-cake fa-3x"></i>
 							</div>
-							<h4>Events</h4>	
+							<h4>Birthdays</h4>	
 							<p>
 							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
 							excepturi sint occaecati cupiditate non provident
@@ -51,9 +51,9 @@
 					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
 						<div class="services">											
 							<div class="icons">
-								<i class="fa fa-desktop fa-3x"></i>
+								<i class="fas fa-calendar-alt fa-3x"></i>
 							</div>
-							<h4>Fresh</h4>
+							<h4>Events</h4>
 							<p>
 							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
 							excepturi sint occaecati cupiditate non provident
@@ -67,9 +67,9 @@
 					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="1.2s">
 						<div class="services">												
 							<div class="icons">
-								<i class="fa fa-thumbs-o-up fa-3x"></i>
+								<i class="fa fa-newspaper fa-3x"></i>
 							</div>
-							<h4>likes</h4>
+							<h4>News</h4>
 							<p>
 							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
 							excepturi sint occaecati cupiditate non provident
@@ -77,52 +77,7 @@
 						</div>
 					</div>
 					<hr>
-				</div>
-				<div class="col-md-4">
-					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.4s">
-						<div class="services">											
-							<div class="icons">
-								<i class="fa fa-leaf fa-3x"></i>
-							</div>
-							<h4>Business Family</h4>	
-							<p>
-							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
-							excepturi sint occaecati cupiditate non provident
-							</p>
-						</div>						
-					</div>
-					<hr>
-				</div>
-				<div class="col-md-4">
-					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
-						<div class="services">											
-							<div class="icons">
-								<i class="fa fa-laptop fa-3x"></i>
-							</div>
-							<h4>Free Support</h4>
-							<p>
-							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
-							excepturi sint occaecati cupiditate non provident
-							</p>							
-						</div>
-					</div>
-					<hr>
-				</div>
-				<div class="col-md-4">
-					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="1.2s">
-						<div class="services">												
-							<div class="icons">
-								<i class="fa fa-camera fa-3x"></i>
-							</div>
-							<h4>Photography</h4>
-							<p>
-							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
-							excepturi sint occaecati cupiditate non provident
-							</p>							
-						</div>
-					</div>
-					<hr>
-				</div>					
+				</div>									
 			</div>
 		</div>
 	</section>
