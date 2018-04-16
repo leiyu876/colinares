@@ -23,6 +23,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,6 +32,22 @@
                                     <td>{{ $applicant->id }}</td>
                                     <td>{{ $applicant->name }}</td>
                                     <td>{{ $applicant->email }}</td>
+                                    <td>
+                                        <a href="{{ route('applicants.edit', ['id' => $applicant->id])}}">
+                                            <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
+                                        </a>
+
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                        <a href="#" data-method="delete" class="jquery-postback" value="{{ $applicant->id }}">
+                                            <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
+                                        </a>
+
+                                        {!! Form::open(['action'=> ['ApplicantsController@destroy', $applicant->id], 'method'=>'POST']) !!}
+                                            {{ Form::hidden('_method', 'DELETE') }}
+                                            {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$applicant->id, 'style'=>'display:none']) }}
+                                        {!! Form::close() !!}
+
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -49,5 +66,20 @@
         $(function () {
             $('#example1').DataTable()
         })
+
+        $(document).on('click', 'a.jquery-postback', function(e) {
+
+            e.preventDefault(); // does not go through with the link.
+            
+            var ask = window.confirm("Are you sure you want to delete this applicant?");
+            
+            if (ask) {
+                
+                var $this = $(this);
+
+                $( "#name"+$this.attr('value') ).click();
+
+            }         
+        });
     </script>
 @endsection()

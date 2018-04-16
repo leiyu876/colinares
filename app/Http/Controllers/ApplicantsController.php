@@ -99,6 +99,8 @@ class ApplicantsController extends Controller
      */
     public function destroy(Applicant $applicant)
     {
-        //
+        $applicant->delete();
+        
+        return redirect('/applicants')->with('success', 'Applicant Removed');
     }
 }
