@@ -76,7 +76,11 @@ class ApplicantsController extends Controller
      */
     public function edit(Applicant $applicant)
     {
-        //
+        $data['applicant'] = $applicant;
+
+        $data['page_title'] = 'Update Applicant';
+
+        return view('applicants.edit', $data);
     }
 
     /**
@@ -88,7 +92,17 @@ class ApplicantsController extends Controller
      */
     public function update(Request $request, Applicant $applicant)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:applicants,email,'.$applicant->id,
+        ]);
+
+        $applicant->email = $request->input('email');
+        $applicant->name = $request->input('name');
+
+        $applicant->save();
+
+        return redirect('/applicants')->with('success', 'Applicant Updated');
     }
 
     /**
