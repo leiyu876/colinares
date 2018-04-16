@@ -38,6 +38,18 @@
           <li><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
         </ul>
       </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-users"></i> <span>OFW</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ route('agencies.index') }}"><i class="fa fa-circle-o"></i> Agencies</a></li>
+          <li><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Applicants</a></li>
+        </ul>
+      </li>
     </ul>
   </section>
   <!-- /.sidebar -->
