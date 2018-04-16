@@ -18,8 +18,8 @@ class CreateApplicantsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('status');
-            $table->dateTime('send_start');
-            $table->dateTime('send_end');
+            $table->dateTime('send_start')->nullable();
+            $table->dateTime('send_end')->nullable();
             $table->timestamps();
         });
     }

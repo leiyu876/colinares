@@ -12,7 +12,7 @@
                 <div class="box-header">
                     <h3 class="box-title">{{ $page_title }}</h3>
                     <div class="pull-right">
-                        <a href="{{ route('agencies.create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Generate Latest Agencies</a>
+                        <a href="{{ url('applicants/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add Applicant</a>
                     </div>
                 </div>
                 <!-- /.box-header -->

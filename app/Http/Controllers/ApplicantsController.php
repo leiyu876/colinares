@@ -28,7 +28,9 @@ class ApplicantsController extends Controller
      */
     public function create()
     {
-        //
+        $data['page_title'] = 'Create Applicant';
+
+        return view('applicants.create', $data);
     }
 
     /**
@@ -39,7 +41,20 @@ class ApplicantsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|string|email|max:255|unique:applicants',
+        ]);
+
+        $applicant = new Applicant;
+
+        $applicant->name = $request->input('name');
+        $applicant->email = $request->input('email');
+        $applicant->status = 'close';
+        
+        $applicant->save();
+
+        return redirect('/applicants')->with('success', 'Applicant Created');
     }
 
     /**
