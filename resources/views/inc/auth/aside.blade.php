@@ -47,7 +47,7 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="{{ route('agencies.index') }}"><i class="fa fa-circle-o"></i> Agencies</a></li>
-          <li><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Applicants</a></li>
+          <li><a href="{{ route('applicants.index') }}"><i class="fa fa-circle-o"></i> Applicants</a></li>
         </ul>
       </li>
     </ul>
