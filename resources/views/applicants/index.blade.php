@@ -33,6 +33,10 @@
                                     <td>{{ $applicant->name }}</td>
                                     <td>{{ $applicant->email }}</td>
                                     <td>
+                                        <a href="{{ route('applicants.send', ['id' => $applicant->id])}}">
+                                            <i class="fa fa-fw fa-send" data-toggle="tooltip" title="Send email to agencies"></i>
+                                        </a>
+
                                         <a href="{{ route('applicants.edit', ['id' => $applicant->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
                                         </a>

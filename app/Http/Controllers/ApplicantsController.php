@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Applicant;
 use Illuminate\Http\Request;
+use Mail;
 
 class ApplicantsController extends Controller
 {
@@ -116,5 +117,30 @@ class ApplicantsController extends Controller
         $applicant->delete();
         
         return redirect('/applicants')->with('success', 'Applicant Removed');
+    }
+
+    public function send(Applicant $applicant)
+    {
+        $data = array(
+            'name'=>$applicant->name,
+            'email'=>'support@virneza.com',
+            'subject'=>'subject sample test',
+            'bodymessage'=>'bodymessage sample test',
+        );
+
+        $data['emails'] = array('leiyu876@yahoo.com', 'leiyu876@gmail.com', 'daloygwapo@gmail.com');
+        
+        //use laravel queue to send email in the background
+        ini_set('max_execution_time', 300);
+
+        Mail::send('email.resume.01', $data, function($message) use ($data) {    
+            $message->from($data['email'], $data['name']);
+            $message->bcc($data['emails']);
+            $message->subject($data['subject']);  
+        });
+        
+        $data['page_title'] = 'User Lists';
+
+        return redirect('/applicants')->with('success', 'Applicant send successfully');
     }
 }

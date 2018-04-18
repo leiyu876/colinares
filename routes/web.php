@@ -42,6 +42,8 @@ Route::resources([
     'users' => 'UsersController',
 ]);
 
+
+Route::get('applicants/{applicant}/send', 'ApplicantsController@send')->name('applicants.send');
 Route::resources([
     'applicants' => 'ApplicantsController',
 ]);
