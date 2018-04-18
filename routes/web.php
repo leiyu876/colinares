@@ -47,3 +47,7 @@ Route::get('applicants/{applicant}/send', 'ApplicantsController@send')->name('ap
 Route::resources([
     'applicants' => 'ApplicantsController',
 ]);
+
+
+// all here are just example sending emails
+Route::get('leomailables', 'LeoemailwaysController@index');
