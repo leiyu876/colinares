@@ -50,5 +50,8 @@ Route::resources([
 
 
 // all here are just example sending emails
+Route::get('leoemailbefore', 'LeoemailwaysController@leo_do_email_before');
 Route::get('leomailables', 'LeoemailwaysController@leo_do_mailable');
 Route::get('leonotifications', 'LeoemailwaysController@leo_do_notifications');
+Route::get('leoondemandnotifications', 'LeoemailwaysController@leo_do_ondemandnotifications');
+

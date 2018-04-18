@@ -121,6 +121,8 @@ class ApplicantsController extends Controller
 
     public function send(Applicant $applicant)
     {
+        dd('not yet done, this will send all agencies in one click')
+
         $data = array(
             'name'=>$applicant->name,
             'email'=>'support@virneza.com',
