@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Mail\LeoMailable;
 use Mail;
 use Auth;
 use App\Agency;
 use App\Notifications\LeoNotification;
 use App\Notifications\LeoOnDemandNotification;
 use Notification;
+use App\Jobs\SendEmailViaMailable;
 
 class LeoemailwaysController extends Controller
 {
@@ -37,9 +37,15 @@ class LeoemailwaysController extends Controller
 	}
 
     public function leo_do_mailable()
-    {
-    	Mail::to('leiyu876@yahoo.com')->send(new LeoMailable());
-    	dd('done sending email using mailables in laravel 5.3!');
+    {   
+        //this call the jobs and run but not using queue yet
+    	//SendEmailViaMailable::dispatch();
+
+        SendEmailViaMailable::dispatch()
+                ->delay(now()->addSeconds(5));
+                //->delay(now()->addMinutes(10));
+
+       dd('done sending email using mailables in laravel 5.3!');
     }
 
     public function leo_do_notifications()
