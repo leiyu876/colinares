@@ -13,6 +13,11 @@ use App\Jobs\SendEmailViaMailable;
 
 class LeoemailwaysController extends Controller
 {
+    public function __construct() {
+
+        $this->middleware('auth');
+    }
+    
 	public function leo_do_email_before()
 	{
 		$data = array(
