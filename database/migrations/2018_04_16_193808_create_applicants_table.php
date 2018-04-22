@@ -13,7 +13,7 @@ class CreateApplicantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Applicants', function (Blueprint $table) {
+        Schema::create('applicants', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
@@ -31,6 +31,6 @@ class CreateApplicantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Applicants');
+        Schema::dropIfExists('applicants');
     }
 }
