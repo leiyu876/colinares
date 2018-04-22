@@ -1,5 +1,4 @@
 <?php
-
 /*
 	database datetime to human friendly view 
 */
@@ -23,4 +22,18 @@ function randomPassword() {
         $pass[] = $alphabet[$n];
     }
     return implode($pass); //turn the array into a string
+}
+
+function displayImage($image) {
+    return $image ? $image : 'images/primary/noimage.png';
+}
+
+function addMinutesToDateTime($datetime_start, $minutes) {
+
+    if(!$datetime_start) return '';
+    
+    $time = new DateTime($datetime_start);
+    $time->add(new DateInterval('PT' . $minutes . 'M'));
+
+    return $time->format('Y-m-d H:i:s');
 }

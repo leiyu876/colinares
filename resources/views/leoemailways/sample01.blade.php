@@ -1,5 +1,5 @@
 @component('mail::message')
-# Introduction
+# {{ $time }}
 
 I _send_ this email using 5.3 **mailable** ways
 

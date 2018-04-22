@@ -7,7 +7,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Create User</h3>
             </div>
-            <form method="POST" action="{{ route('applicants.store') }}" role="form">
+            <form method="POST" action="{{ route('applicants.store') }}" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="box-body">
                     <div class="form-group">
@@ -18,6 +18,10 @@
                   		{{ Form::label('email', 'Email') }}
               			{{ Form::email('email', null, ['class'=>'form-control', 'id'=>'email']) }}
               		</div>
+                  <div class="form-group">
+                    {{ Form::label('resume', 'Resume / CV') }}
+                    {{ Form::file('resume', ['class'=>'form-control', 'id'=>'resume']) }}
+                  </div>
                 </div>
                 <div class="box-footer">
     	        	<a href="{{ url('applicants') }}" class="btn btn-default">Cancel</a>

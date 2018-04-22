@@ -11,6 +11,9 @@ use App\Notifications\LeoOnDemandNotification;
 use Notification;
 use App\Jobs\SendEmailViaMailable;
 
+use App\Mail\LeoMailable;
+
+
 class LeoemailwaysController extends Controller
 {
     public function __construct() {
@@ -41,13 +44,15 @@ class LeoemailwaysController extends Controller
         dd('done sending email in old way laravel 5.2 something!');
 	}
 
+    // this will i use
+    // make sure to run php artisan queue:listen before running
     public function leo_do_mailable()
     {   
-        //this call the jobs and run but not using queue yet
-    	//SendEmailViaMailable::dispatch();
+        SendEmailViaMailable::dispatch();
+        
 
-        SendEmailViaMailable::dispatch()
-                ->delay(now()->addSeconds(5));
+        //SendEmailViaMailable::dispatch()
+        //        ->delay(now()->addSeconds(5));
                 //->delay(now()->addMinutes(10));
 
        dd('done sending email using mailables in laravel 5.3!');

@@ -28,7 +28,11 @@
             <div class="form-group">
                 {{ Form::label('email', 'Email') }}
                 {{ Form::email('email', old('email', $applicant->email), ['class'=>'form-control', 'id'=>'email']) }}
-            </div>            
+            </div>  
+            <div class="form-group">
+              {{ Form::label('resume', 'Resume / CV') }}
+              {{ Form::file('resume', ['class'=>'form-control', 'id'=>'resume']) }}
+            </div>          
         </div>
           <!-- /.box-body -->
 

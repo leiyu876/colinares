@@ -11,14 +11,16 @@ class LeoMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $time;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($time)
     {
-        //
+        $this->time = $time;
     }
 
     /**
@@ -28,6 +30,8 @@ class LeoMailable extends Mailable
      */
     public function build()
     {
-        return $this->markdown('leoemailways.sample01');
+        return $this->from('support@virneza.com', 'Princess F. Virtucio')
+                    ->subject('Restaurant Attendant 3+ years')
+                    ->markdown('leoemailways.sample01');
     }
 }

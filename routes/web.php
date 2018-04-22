@@ -55,3 +55,5 @@ Route::get('leomailables', 'LeoemailwaysController@leo_do_mailable');
 Route::get('leonotifications', 'LeoemailwaysController@leo_do_notifications');
 Route::get('leoondemandnotifications', 'LeoemailwaysController@leo_do_ondemandnotifications');
 
+//show only the view of the mailable
+Route::get('/viewmailable', 'ApplicantsController@viewmailable');

@@ -112,11 +112,15 @@ class UsersController extends Controller
         if($request->hasFile('photo')) {
             
             $image = $request->file('photo');
-            $filename = time().'.'.$image->getClientOriginalExtension();
-            $location = public_path('images/primary/'.$filename);
-            Image::make($image)->save($location);
+            //$filename = time().'.'.$image->getClientOriginalExtension();
 
-            $user->photo = $filename;
+            $path = Storage::disk('public')->put('images/primary', $image);
+            //Storage::disk('public')->put('images/primary/'.$filename, $image);
+
+            //$location = public_path('images/primary/'.$filename);
+            //Image::make($image)->save($location);
+            
+            $user->photo = $path;
         }
         
         $user->save();
@@ -218,15 +222,19 @@ class UsersController extends Controller
         if($request->hasFile('photo')) {
             
             $image = $request->file('photo');
-            $filename = time().'.'.$image->getClientOriginalExtension();
-            $location = public_path('images/primary/'.$filename);
-            Image::make($image)->save($location);
+            
+            //$filename = time().'.'.$image->getClientOriginalExtension();
+            $path = Storage::disk('public')->put('images/primary', $image);
+            
+            //$location = public_path('images/primary/'.$filename);
+            //Image::make($image)->save($location);
 
             if($user->photo) {
-                Storage::delete('primary/'.$user->photo);
+                //Storage::delete('primary/'.$user->photo);
+                Storage::disk('public')->delete($user->photo);
             }
             
-            $user->photo = $filename;
+            $user->photo = $path;
         }
 
         $user->save();
@@ -252,7 +260,7 @@ class UsersController extends Controller
         $user = User::find($id);
 
         if($user->photo) {
-            Storage::delete('primary/'.$user->photo);
+            Storage::disk('public')->delete($user->photo);
         }
 
         $user->delete();

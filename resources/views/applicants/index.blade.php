@@ -23,6 +23,8 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Status</th>
+                                <th>Next Email Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -32,11 +34,14 @@
                                     <td>{{ $applicant->id }}</td>
                                     <td>{{ $applicant->name }}</td>
                                     <td>{{ $applicant->email }}</td>
+                                    <td>{{ $applicant->status == 'open' ? 'sending' : 'ready' }}</td>
+                                    <td>{{ addMinutesToDateTime($applicant->send_start, 1440) }}</td>
                                     <td>
-                                        <a href="{{ route('applicants.send', ['id' => $applicant->id])}}">
-                                            <i class="fa fa-fw fa-send" data-toggle="tooltip" title="Send email to agencies"></i>
-                                        </a>
-
+                                        @if(($applicant->status == 'close' && new DateTime(addMinutesToDateTime($applicant->send_start, 1440)) < new DateTime(date("Y-m-d H:i:s")))  || (!$applicant->send_start))
+                                            <a href="{{ route('applicants.send', ['id' => $applicant->id])}}" class="show-queuelisten-info">
+                                                <i class="fa fa-fw fa-send" data-toggle="tooltip" title="Send email to agencies"></i>
+                                            </a>
+                                        @endif
                                         <a href="{{ route('applicants.edit', ['id' => $applicant->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
                                         </a>
@@ -82,6 +87,17 @@
                 var $this = $(this);
 
                 $( "#name"+$this.attr('value') ).click();
+
+            }         
+        });
+
+        $(document).on('click', 'a.show-queuelisten-info', function(e) {
+
+            var ask = window.confirm("Make sure you run the queue:listen command in console before proceeding!");
+            
+            if (!ask) {
+                
+                e.preventDefault(); // does not go through with the link.
 
             }         
         });

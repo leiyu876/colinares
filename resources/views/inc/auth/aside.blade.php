@@ -4,7 +4,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="{{ asset('images/primary/'.(Auth::user()->photo ? Auth::user()->photo : 'noimage.png')) }}" class="img-circle" alt="User Image">
+        <img src="{{ asset('storage/'.displayImage(Auth::user()->photo)) }}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
         <p>{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</p>
@@ -46,8 +46,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{ route('agencies.index') }}"><i class="fa fa-circle-o"></i> Agencies</a></li>
           <li><a href="{{ route('applicants.index') }}"><i class="fa fa-circle-o"></i> Applicants</a></li>
+          <li><a href="{{ route('agencies.index') }}"><i class="fa fa-circle-o"></i> Agencies</a></li>
         </ul>
       </li>
     </ul>
