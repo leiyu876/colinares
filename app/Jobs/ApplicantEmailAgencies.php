@@ -41,6 +41,13 @@ class ApplicantEmailAgencies implements ShouldQueue
      */
     public function handle()
     {
+
+        $applicant = $this->data['applicant'];
+        if(!$applicant->last_emailed_agency) {
+            Storage::disk('local')->delete('handle.txt');  
+        }
+        
+
         ini_set('max_execution_time', 3600); // 1 hr
 
         $last_agency_id = 0;
@@ -54,10 +61,18 @@ class ApplicantEmailAgencies implements ShouldQueue
                 Mail::to($v)->send(new PrincessSendAgiences($this->data));
             }
 
+            $time = date("h:i:sa").' via build ';
+            $exists = Storage::disk('local')->exists('handle.txt');
+            if(!$exists) {
+                Storage::disk('local')->put('handle.txt', "\n".$time.' '.$agency->email.' ['.$agency->id.']');
+            } else {
+                $contents = Storage::disk('local')->get('handle.txt');
+                Storage::disk('local')->put('handle.txt', $contents."\n".$time.' '.$agency->email.' ['.$agency->id.']');
+            }
+
             $last_agency_id = $agency->id;
         }
 
-        $applicant = $this->data['applicant'];
         $send_end = date("Y-m-d").' '.date("H:i:s");
         
         $last_agency = Agency::orderBy('id', 'desc')->first();
@@ -67,7 +82,6 @@ class ApplicantEmailAgencies implements ShouldQueue
         $applicant->last_emailed_agency = $last_agency->id == $last_agency_id ? 0 : $last_agency_id;
         $applicant->save();
 
-        //$time = date("h:i:sa").' via build ';
-        //Storage::disk('local')->put('handle.txt', $time.'<br/>');
+        
     }
 }
