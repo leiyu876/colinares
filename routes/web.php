@@ -40,6 +40,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resources([
     'users' => 'UsersController',
+    'movies' => 'MoviesController',
 ]);
 
 

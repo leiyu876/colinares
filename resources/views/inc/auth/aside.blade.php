@@ -50,6 +50,18 @@
           <li><a href="{{ route('agencies.index') }}"><i class="fa fa-circle-o"></i> Agencies</a></li>
         </ul>
       </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-video-camera"></i> <span>Movies</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ route('movies.index') }}"><i class="fa fa-circle-o"></i> Movie List</a></li>
+          <li><a href="{{ url('movies/create') }}"><i class="fa fa-circle-o"></i> Create Movie</a></li>
+        </ul>
+      </li>
     </ul>
   </section>
   <!-- /.sidebar -->
