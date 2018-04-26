@@ -172,7 +172,7 @@ class ApplicantsController extends Controller
 
         $last_emailed_agency = $applicant->last_emailed_agency ? $applicant->last_emailed_agency : 0;
 
-        $data['agencies'] = Agency::where('id', '>', $last_emailed_agency)->paginate(100);
+        $data['agencies'] = Agency::where('id', '>', $last_emailed_agency)->paginate(200);
 
         ApplicantEmailAgencies::dispatch($data);
 

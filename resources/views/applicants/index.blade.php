@@ -93,7 +93,7 @@
 
         $(document).on('click', 'a.show-queuelisten-info', function(e) {
 
-            var ask = window.confirm("Make sure you run the queue:listen command in console before proceeding!");
+            var ask = window.confirm("Make sure you run the 'php artisan queue:listen --timeout=0' command in console before proceeding!");
             
             if (!ask) {
                 
