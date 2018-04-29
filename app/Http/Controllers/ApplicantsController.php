@@ -162,6 +162,17 @@ class ApplicantsController extends Controller
     public function send(Applicant $applicant)
     {
         $applicant->status = 'open';
+        $applicant->save();
+
+        return redirect('/applicants')->with('success', 'Applicant send successfully');
+
+
+
+
+
+        // here all working
+
+        $applicant->status = 'open';
         $applicant->send_start = date("Y-m-d").' '.date("H:i:s");
         $applicant->save();
 
