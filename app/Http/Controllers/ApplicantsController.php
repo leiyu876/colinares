@@ -161,16 +161,13 @@ class ApplicantsController extends Controller
 
     public function send(Applicant $applicant)
     {
+        // use this is you want to use the second  way of sending email, second way is to send email daily or scheduled
+        /*
         $applicant->status = 'open';
         $applicant->save();
 
         return redirect('/applicants')->with('success', 'Applicant send successfully');
-
-
-
-
-
-        // here all working
+        */
 
         $applicant->status = 'open';
         $applicant->send_start = date("Y-m-d").' '.date("H:i:s");
