@@ -41,13 +41,11 @@ class ApplicantEmailAgencies implements ShouldQueue
      */
     public function handle()
     {
-
         $applicant = $this->data['applicant'];
         if(!$applicant->last_emailed_agency) {
             Storage::disk('local')->delete('handle.txt');  
         }
         
-
         ini_set('max_execution_time', 3600); // 1 hr
 
         $last_agency_id = 0;
