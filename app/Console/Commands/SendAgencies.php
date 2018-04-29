@@ -43,13 +43,13 @@ class SendAgencies extends Command
     {
         $applicant = Applicant::where('status', 'open')->get()->first();
         
-        if(!$applicant->last_emailed_agency) {
-            $exists = Storage::disk('local')->exists('sendagencies.txt');
-            if($exists) {
-                $contents = Storage::disk('local')->get('sendagencies.txt');
-                Storage::disk('local')->delete('sendagencies.txt');  
-                Storage::disk('local')->put('sendagencies_done.txt', $contents);
-            }
+        $exists = Storage::disk('local')->exists('sendagencies.txt');
+        
+        if(!$applicant && $exists) {
+            
+            $contents = Storage::disk('local')->get('sendagencies.txt');
+            Storage::disk('local')->delete('sendagencies.txt');  
+            Storage::disk('local')->put('sendagencies_done.txt', $contents);
         }
         
         ini_set('max_execution_time', 3600); // 1 hr
