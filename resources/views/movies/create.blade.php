@@ -25,6 +25,10 @@
             		{{ Form::text('title',null, ['class'=>'form-control', 'id'=>'title']) }}
             	</div>
               <div class="form-group">
+                {{ Form::label('slug', 'Slug') }}
+                {{ Form::text('slug',null, ['class'=>'form-control', 'id'=>'slug']) }}
+              </div>
+              <div class="form-group">
                 {{ Form::label('released_year', 'Released Year') }}
                 {{ Form::text('released_year',null, ['class'=>'form-control', 'id'=>'released_year']) }}
               </div>

@@ -38,6 +38,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('movies/{slug}', 'MoviesController@single')->name('movies.single');
+
 Route::resources([
     'users' => 'UsersController',
     'movies' => 'MoviesController',

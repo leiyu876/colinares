@@ -21,6 +21,7 @@
                         <thead>
                             <tr>
                                 <th>Title</th>
+                                <th>Url</th>
                                 <th>Released Date</th>
                                 <th>Visited</th>
                                 <th>Action</th>
@@ -30,6 +31,7 @@
                             @foreach($movies as $movie)
                                 <tr>
                                     <td>{{ $movie->title }}</td>
+                                    <td><a href="{{ route('movies.single', $movie->slug) }}">{{ route('movies.single', $movie->slug) }}</a></td>
                                     <td>{{ $movie->released_year }}</td>
                                     <td>{{ $movie->visited }}</td>
                                     <td>

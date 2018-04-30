@@ -48,14 +48,16 @@ class MoviesController extends Controller
 
         $request->validate([
             'title' => 'required',
+            'slug' => 'required|alpha_dash|unique:movies',
             'released_year' => 'required|integer',
             'video' => 'required|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
-            'image' => 'sometimes|image'
+            'image' => 'required|image'
         ]);
 
         $movie = new Movie;
 
         $movie->title = $request->input('title');
+        $movie->slug = $request->input('slug');
         $movie->released_year = $request->input('released_year');
         $movie->visited = 0;
 
@@ -120,12 +122,14 @@ class MoviesController extends Controller
 
         $request->validate([
             'title' => 'required',
+            'slug' => 'required|alpha_dash|unique:movies,slug,'.$movie->id,
             'released_year' => 'required|integer',
-            'video' => 'required|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
+            'video' => 'sometimes|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
             'image' => 'sometimes|image'
         ]);
 
         $movie->title = $request->input('title');
+        $movie->slug = $request->input('slug');
         $movie->released_year = $request->input('released_year');
 
         if($request->hasFile('video')) {
@@ -146,8 +150,8 @@ class MoviesController extends Controller
             
             $image = $request->file('image');
             
-            $path = Storage::disk('public')->put('images/primary', $image);
-            
+            $path = Storage::disk('public')->put('movies/images', $image);
+
             if($movie->image) {
                 
                 Storage::disk('public')->delete($movie->image);
@@ -177,5 +181,14 @@ class MoviesController extends Controller
         $movie->delete();
         
         return redirect('/movies')->with('success', 'Movie Removed');
+    }
+
+    public function single($slug)
+    {
+        $data['movie'] = $movie = Movie::where('slug', $slug)->first();
+
+        if(!$movie) return abort(404);
+
+        return view('movies.single', $data);
     }
 }
