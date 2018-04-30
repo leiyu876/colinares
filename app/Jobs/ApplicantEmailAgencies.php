@@ -46,7 +46,7 @@ class ApplicantEmailAgencies implements ShouldQueue
             Storage::disk('local')->delete('handle.txt');  
         }
         
-        ini_set('max_execution_time', 3600); // 1 hr
+        ini_set('max_execution_time', 7200); // 2 hrs
 
         $last_agency_id = 0;
 

@@ -161,28 +161,9 @@ class ApplicantsController extends Controller
 
     public function send(Applicant $applicant)
     {
-        // use this is you want to use the second  way of sending email, second way is to send email daily or scheduled
-        /*
-        $applicant->status = 'open';
-        $applicant->save();
-
-        return redirect('/applicants')->with('success', 'Applicant send successfully');
-        */
-
         $applicant->status = 'open';
         $applicant->send_start = date("Y-m-d").' '.date("H:i:s");
         $applicant->save();
-
-        $data['applicant'] = $applicant;
-
-        //$data['emails'] = array('leiyu876@yahoo.com', 'leiyu876@gmail.com', 'daloygwapo@gmail.com');
-        //$data['emails'] = array('leiyu876@yahoo.com');
-
-        $last_emailed_agency = $applicant->last_emailed_agency ? $applicant->last_emailed_agency : 0;
-
-        $data['agencies'] = Agency::where('id', '>', $last_emailed_agency)->paginate(200);
-
-        ApplicantEmailAgencies::dispatch($data);
 
         return redirect('/applicants')->with('success', 'Applicant send successfully');
     }
