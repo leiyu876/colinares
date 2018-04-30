@@ -12,7 +12,7 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="{{ asset('images/primary/'.($user->photo ? $user->photo : 'noimage.png')) }}" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" src="{{ asset('storage/'.displayImage($user->photo)) }}" alt="User profile picture">
 
               <h3 class="profile-username text-center">{{ $user->first_name.' '.$user->last_name }}</h3>
 
@@ -110,7 +110,7 @@
                             <tbody>
                                 @foreach($user->children() as $child)
                                     <tr>
-                                        <td><img src="{{ asset('images/primary/'.($child->photo ? $child->photo : 'noimage.png')) }}" width="100" height="100"></td>
+                                        <td><img src="{{ asset('storage/'.displayImage($child->photo)) }}" width="100" height="100"></td>
                                         <td>{{ $child->last_name.', '.$child->first_name.' '.substr($child->middle_name, 0,1).'.' }}</td>
                                         <td>{{ $child->age }}</td>
                                         <td>{{ $child->birthday }}</td>
@@ -141,7 +141,7 @@
                         <div class="row">
                             @if($user->partner())
                                 <div class="col-md-6">
-                                    <img id="child_photo" class="img-circle" src="{{ asset('images/primary/'.($user->partner()->photo ? $user->partner()->photo : 'noimage.png')) }}" alt="Child profile picture" width="225" height="225">
+                                    <img id="child_photo" class="img-circle" src="{{ asset('storage/'.(displayImage($user->partner()->photo))) }}" alt="Child profile picture" width="225" height="225">
                                     <h3 id="child_name">{{ $user->partner()->last_name.', '.$user->partner()->first_name.' '.substr($user->partner()->middle_name, 0,1).'.' }}</h3>
                                     <p id="child_occupation">{{ $user->partner()->occupation }}</p>
                                 </div>
@@ -177,7 +177,7 @@
                                         @continue
                                     @endif
                                     <tr>
-                                        <td><img src="{{ asset('images/primary/'.($child->photo ? $child->photo : 'noimage.png')) }}" width="100" height="100"></td>
+                                        <td><img src="{{ asset('storage/'.displayImage($child->photo)) }}" width="100" height="100"></td>
                                         <td>{{ $child->last_name.', '.$child->first_name.' '.substr($child->middle_name, 0,1).'.' }}</td>
                                         <td>{{ $child->age }}</td>
                                         <td>{{ $child->birthday }}</td>
@@ -209,14 +209,14 @@
                             <? $parents = $user->parents(); ?>
                             @if($parents['one'])
                                 <div class="col-md-6">
-                                    <img id="child_photo" class="img-circle" src="{{ asset('images/primary/'.($parents['one']->photo ? $parents['one']->photo : 'noimage.png')) }}" alt="Child profile picture" width="225" height="225">
+                                    <img id="child_photo" class="img-circle" src="{{ asset('storage/'.displayImage($parents['one']->photo)) }}" alt="Child profile picture" width="225" height="225">
                                     <h3 id="child_name">{{ $parents['one']->last_name.', '.$parents['one']->first_name.' '.substr($parents['one']->middle_name, 0,1).'.' }}</h3>
                                     <p id="child_occupation">{{ $parents['one']->occupation }}</p>
                                 </div>
                             @endif
                             @if($parents['two'])
                                 <div class="col-md-6">
-                                    <img id="child_photo" class="img-circle" src="{{ asset('images/primary/'.($parents['two']->photo ? $parents['two']->photo : 'noimage.png')) }}" alt="Child profile picture" width="225" height="225">
+                                    <img id="child_photo" class="img-circle" src="{{ asset('storage/'.displayImage($parents['two']->photo)) }}" alt="Child profile picture" width="225" height="225">
                                     <h3 id="child_name">{{ $parents['two']->last_name.', '.$parents['two']->first_name.' '.substr($parents['two']->middle_name, 0,1).'.' }}</h3>
                                     <p id="child_occupation">{{ $parents['two']->occupation }}</p>
                                 </div>
@@ -252,7 +252,7 @@
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                            <img id="child_photo" class="img-circle" src="{{ asset('images/primary/noimage.png') }}" alt="Child profile picture" width="225" height="225">
+                            <img id="child_modal_photo" class="img-circle" src="{{ asset('storage/images/primary/noimage.png') }}" alt="Child profile picture" width="225" height="225">
                           </div>
                           <div class="col-md-6">
                             <h3 id="child_name">None</h3>
@@ -287,9 +287,9 @@
                       $("#child_name").html(myObj['first_name']+" "+myObj['last_name']);
                       $("#child_occupation").html(myObj['occupation']);
                       if(myObj['photo']) {
-                        $("#child_photo").attr("src", "{{ asset('images/primary') }}"+'/'+myObj['photo']);
+                        $("#child_modal_photo").attr("src", "{{ asset('storage/') }}"+'/'+myObj['photo']);
                       } else {
-                        $("#child_photo").attr("src", "{{ asset('images/primary/noimage.png') }}");
+                        $("#child_modal_photo").attr("src", "{{ asset('storage/images/primary/noimage.png') }}");
                       }
                     }
                });
