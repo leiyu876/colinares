@@ -29,6 +29,8 @@ class ApplicantsController extends Controller
 
         $data['applicants'] = Applicant::all();
 
+        $data['applicant_running'] = Applicant::where('status', 'open')->get()->first();
+
         return view('applicants.index', $data);
     }
 

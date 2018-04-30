@@ -24,7 +24,6 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
-                                <th>Next Email Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -35,27 +34,36 @@
                                     <td>{{ $applicant->name }}</td>
                                     <td>{{ $applicant->email }}</td>
                                     <td>{{ $applicant->status == 'open' ? 'sending' : 'ready' }}</td>
-                                    <td>{{ addMinutesToDateTime($applicant->send_start, 1440) }}</td>
                                     <td>
-                                        @if(($applicant->status == 'close' && new DateTime(addMinutesToDateTime($applicant->send_start, 1440)) < new DateTime(date("Y-m-d H:i:s")))  || (!$applicant->send_start))
+                                        @if(!$applicant_running)
                                             <a href="{{ route('applicants.send', ['id' => $applicant->id])}}" class="show-queuelisten-info">
                                                 <i class="fa fa-fw fa-send" data-toggle="tooltip" title="Send email to agencies"></i>
                                             </a>
                                         @endif
-                                        <a href="{{ route('applicants.edit', ['id' => $applicant->id])}}">
-                                            <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
-                                        </a>
+                                        @if($applicant_running && $applicant_running->id != $applicant->id)
+                                            <a href="{{ route('applicants.edit', ['id' => $applicant->id])}}">
+                                                <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
+                                            </a>
 
-                                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="#" data-method="delete" class="jquery-postback" value="{{ $applicant->id }}">
-                                            <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
-                                        </a>
+                                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                                            <a href="#" data-method="delete" class="jquery-postback" value="{{ $applicant->id }}">
+                                                <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
+                                            </a>
+                                        @elseif(!$applicant_running)
+                                            <a href="{{ route('applicants.edit', ['id' => $applicant->id])}}">
+                                                <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
+                                            </a>
+
+                                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                                            <a href="#" data-method="delete" class="jquery-postback" value="{{ $applicant->id }}">
+                                                <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
+                                            </a>
+                                        @endif
 
                                         {!! Form::open(['action'=> ['ApplicantsController@destroy', $applicant->id], 'method'=>'POST']) !!}
                                             {{ Form::hidden('_method', 'DELETE') }}
                                             {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$applicant->id, 'style'=>'display:none']) }}
                                         {!! Form::close() !!}
-
                                     </td>
                                 </tr>
                             @endforeach
@@ -93,7 +101,7 @@
 
         $(document).on('click', 'a.show-queuelisten-info', function(e) {
 
-            var ask = window.confirm("Make sure you run the 'php artisan queue:listen --timeout=0' command in console before proceeding!");
+            var ask = window.confirm("If local please run the command 'php artisan leo:sendagencies because no cronjob was set'");
             
             if (!ask) {
                 
