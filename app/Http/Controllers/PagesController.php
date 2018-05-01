@@ -23,8 +23,11 @@ class PagesController extends Controller
     public function tree($email = 'espring@yahoo.com') {
 
         $data['root'] = User::whereEmail($email)->first();
-
+        
         if(!$data['root']) {
+
+            if($email == 'espring@yahoo.com') return redirect('/');
+
             return redirect('pages/tree');
         }
 
