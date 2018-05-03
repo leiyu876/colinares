@@ -43,40 +43,42 @@ class ConvertVideo extends Command
      */
     public function handle()
     {
-        if(env('APP_ENV') != 'local') {
-            $this->alert('You can convert only in LOCAL environment, shared hosting dont support ffmpeg.');
-            exit;
-        }
+        if(env('APP_ENV') == 'local') {
             
-        $movie = Movie::where('is_html5', false)->get()->first();
-        
-        if($movie) {
-
-            $pathinfo = pathinfo($movie->video);
+            $movie = Movie::where('is_html5', false)->get()->first();
             
-            $new_path = 'movies/videos/'.$pathinfo['filename'].'.mp4';
+            if($movie) {
 
-            ini_set('max_execution_time', 10800); // 3 hrs
+                $pathinfo = pathinfo($movie->video);
+                
+                $new_path = 'movies/videos/'.$pathinfo['filename'].'.mp4';
 
-            FFMpeg::fromDisk('public')
-                ->open($movie->video)
-                ->export()
-                ->toDisk('public')
-                ->inFormat(new X264('libmp3lame', 'libx264'))
-                ->save($new_path);
+                ini_set('max_execution_time', 10800); // 3 hrs
 
-            Storage::disk('public')->delete($movie->video);
+                FFMpeg::fromDisk('public')
+                    ->open($movie->video)
+                    ->export()
+                    ->toDisk('public')
+                    ->inFormat(new X264('libmp3lame', 'libx264'))
+                    ->save($new_path);
 
-            $movie->video = $new_path;
-            $movie->is_html = true;
+                Storage::disk('public')->delete($movie->video);
 
-            $movie->save();
+                $movie->video = $new_path;
+                $movie->is_html = true;
 
-            $this->info('Done converting');
+                $movie->save();
+
+                $this->info('Done converting');
+
+            } else {
+
+                $this->info('Nothing to Convert');
+            }
 
         } else {
 
-            $this->info('Nothing to Convert');
+            $this->alert('You can convert only in LOCAL environment, shared hosting dont support ffmpeg.');
         }
     }
 }
