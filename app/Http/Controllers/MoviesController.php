@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Movie;
 use Illuminate\Http\Request;
 use Storage;
+use FFMpeg;
 
 class MoviesController extends Controller
 {
@@ -14,7 +15,7 @@ class MoviesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {  
         $data['page_title'] = 'Movie Lists';
 
         $data['movies'] = Movie::all();
@@ -44,13 +45,13 @@ class MoviesController extends Controller
     {
         $video = $request->file('video');
 
-        //dd($video->getMimeType());
+        $video_format = $video->getMimeType();
 
         $request->validate([
             'title' => 'required',
             'slug' => 'required|alpha_dash|unique:movies',
             'released_year' => 'required|integer',
-            'video' => 'required|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
+            'video' => 'required|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm,video/ogg,video/x-flv,video/x-ms-asf',
             'image' => 'required|image'
         ]);
 
@@ -60,6 +61,7 @@ class MoviesController extends Controller
         $movie->slug = $request->input('slug');
         $movie->released_year = $request->input('released_year');
         $movie->visited = 0;
+        $movie->is_html5 = true;
 
         if($request->hasFile('image')) {
             
@@ -69,10 +71,13 @@ class MoviesController extends Controller
         }
 
         if($request->hasFile('video')) {
-            
-            $path = Storage::disk('public')->put('movies/videos', $video);
+
+            $path = Storage::disk('public')->put('movies/videos', $video); 
             $movie->video = $path;
         }
+        
+        // filter html5 valid video format
+        if($video_format != 'video/mp4' && $video_format != 'video/webm' && $video_format != 'video/ogg') $movie->is_html5 = false;
         
         $movie->save();
 
@@ -124,7 +129,7 @@ class MoviesController extends Controller
             'title' => 'required',
             'slug' => 'required|alpha_dash|unique:movies,slug,'.$movie->id,
             'released_year' => 'required|integer',
-            'video' => 'sometimes|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
+            'video' => 'sometimes|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm,video/ogg,video/x-flv,video/x-ms-asf',
             'image' => 'sometimes|image'
         ]);
 
