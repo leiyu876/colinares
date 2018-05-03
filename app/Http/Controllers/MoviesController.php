@@ -45,8 +45,6 @@ class MoviesController extends Controller
     {
         $video = $request->file('video');
 
-        $video_format = $video->getMimeType();
-
         $request->validate([
             'title' => 'required',
             'slug' => 'required|alpha_dash|unique:movies',
@@ -54,6 +52,8 @@ class MoviesController extends Controller
             'video' => 'required|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm,video/ogg,video/x-flv,video/x-ms-asf',
             'image' => 'required|image'
         ]);
+
+        $video_format = $video->getMimeType();
 
         $movie = new Movie;
 
@@ -123,7 +123,7 @@ class MoviesController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        $movie = $movie;
+        $video = $request->file('video');
 
         $request->validate([
             'title' => 'required',
@@ -139,8 +139,11 @@ class MoviesController extends Controller
 
         if($request->hasFile('video')) {
             
-            $video = $request->file('video');
-            
+            $video_format = $video->getMimeType();
+
+            // filter html5 valid video format
+            if($video_format != 'video/mp4' && $video_format != 'video/webm' && $video_format != 'video/ogg') $movie->is_html5 = false;
+
             $path = Storage::disk('public')->put('movies/videos', $video);
             
             if($movie->video) {

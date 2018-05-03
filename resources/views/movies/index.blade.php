@@ -32,7 +32,7 @@
                                 <tr>
                                     <td>{{ $movie->title }}</td>
                                     <td>
-                                        @if($movie->is_html)
+                                        @if($movie->is_html5)
                                             <a href="{{ route('movies.single', $movie->slug) }}">{{ route('movies.single', $movie->slug) }}</a>
                                         @else
                                             <p>Need to convert via local</p>
@@ -41,7 +41,7 @@
                                     <td>{{ $movie->released_year }}</td>
                                     <td>{{ $movie->visited }}</td>
                                     <td>
-                                        @if($movie->is_html)
+                                        @if($movie->is_html5)
                                             <a href="{{ route('movies.show', ['id' => $movie->id])}}">
                                                 <i class="fa fa-fw fa-play" data-toggle="tooltip" title="Play"></i>
                                             </a>   
