@@ -43,54 +43,11 @@ class ConvertVideo extends Command
      */
     public function handle()
     {
-        /*
-        $ffmpeg = FFMpeg\FFMpeg::create();
-$video = $ffmpeg->open('C:/xampp/htdocs/virneza_colinares/storage/app/public/movies/videos/ssample.mpg');
-$video
-    ->filters()
-    ->resize(new FFMpeg\Coordinate\Dimension(320, 240))
-    ->synchronize();
-$video
-    ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(10))
-    ->save('C:/xampp/htdocs/virneza_colinares/storage/app/public/movies/videos/frame.jpg');
-$video
-    ->save(new FFMpeg\Format\Video\X264('libmp3lame', 'libx264'), 'C:/xampp/htdocs/virneza_colinares/storage/app/public/movies/videos/export-x264.mkv');
-
-    dd('done');
-    
-        FFMpeg::fromDisk('public')
-    ->open('movies/videos/mpfor.mp4')
-    ->addFilter(function ($filters) {
-        $filters->resize(new \FFMpeg\Coordinate\Dimension(640, 480));
-    })
-    ->export()
-    ->toDisk('public')
-    ->inFormat(new \FFMpeg\Format\Video\X264('libmp3lame', 'libx264'))
-    ->save('mpforto.mkv');
-
-        dd('done');
-
-        FFMpeg::fromDisk('public')
-    ->open('movies/videos/fjuzaf1xPkGCcOmuyqf2ZKrceOolXnLkAZBjxKBa.mp4')
-    ->getFrameFromSeconds(10)
-    ->export()
-    ->toDisk('public')
-    ->save('FrameAt10sec.png');
-        dd('done');
-
-        $lowBitrateFormat = (new X264)->setKiloBitrate(500);
-
-        FFMpeg::fromDisk('public')
-            ->open('movies/videos/fjuzaf1xPkGCcOmuyqf2ZKrceOolXnLkAZBjxKBa.mp4')
-            ->addFilter(function ($filters) {
-                $filters->resize(new Dimension(960, 540));
-            })
-            ->export()
-            ->toDisk('public')
-            ->inFormat($lowBitrateFormat)
-    ->save('my_movie.mkv');
-        dd('done');
-        */
+        if(env('APP_ENV') != 'local') {
+            $this->alert('You can convert only in LOCAL environment, shared hosting dont support ffmpeg.');
+            exit;
+        }
+            
         $movie = Movie::where('is_html5', false)->get()->first();
         
         if($movie) {
@@ -111,8 +68,15 @@ $video
             Storage::disk('public')->delete($movie->video);
 
             $movie->video = $new_path;
+            $movie->is_html = true;
 
             $movie->save();
+
+            $this->info('Done converting');
+
+        } else {
+
+            $this->info('Nothing to Convert');
         }
     }
 }

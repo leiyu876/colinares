@@ -31,13 +31,21 @@
                             @foreach($movies as $movie)
                                 <tr>
                                     <td>{{ $movie->title }}</td>
-                                    <td><a href="{{ route('movies.single', $movie->slug) }}">{{ route('movies.single', $movie->slug) }}</a></td>
+                                    <td>
+                                        @if($movie->is_html)
+                                            <a href="{{ route('movies.single', $movie->slug) }}">{{ route('movies.single', $movie->slug) }}</a>
+                                        @else
+                                            <p>Need to convert via local</p>
+                                        @endif
+                                    </td>
                                     <td>{{ $movie->released_year }}</td>
                                     <td>{{ $movie->visited }}</td>
                                     <td>
-                                        <a href="{{ route('movies.show', ['id' => $movie->id])}}">
-                                            <i class="fa fa-fw fa-play" data-toggle="tooltip" title="Play"></i>
-                                        </a>   
+                                        @if($movie->is_html)
+                                            <a href="{{ route('movies.show', ['id' => $movie->id])}}">
+                                                <i class="fa fa-fw fa-play" data-toggle="tooltip" title="Play"></i>
+                                            </a>   
+                                        @endif
                                         <a href="{{ route('movies.edit', ['id' => $movie->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
                                         </a>          
