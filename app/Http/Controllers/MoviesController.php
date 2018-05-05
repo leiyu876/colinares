@@ -37,19 +37,29 @@ class MoviesController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * List of video format that can be converted to MP4
+     * - mkv
+     *
+     *
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        setPHPINItoMax();
+
         $video = $request->file('video');
+
+        //$video_format = $video->getMimeType();
+        //dd($video_format);
 
         $request->validate([
             'title' => 'required',
             'slug' => 'required|alpha_dash|unique:movies',
             'released_year' => 'required|integer',
-            'video' => 'required|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm,video/ogg,video/x-flv,video/x-ms-asf',
+            'video' => 'required|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm,video/ogg,video/x-flv,video/x-ms-asf,video/x-matroska',
             'image' => 'required|image'
         ]);
 
@@ -123,13 +133,19 @@ class MoviesController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+        setPHPINItoMax();
+        
         $video = $request->file('video');
+
+        //$video_format = $video->getMimeType();
+
+        //dd($video_format);
 
         $request->validate([
             'title' => 'required',
             'slug' => 'required|alpha_dash|unique:movies,slug,'.$movie->id,
             'released_year' => 'required|integer',
-            'video' => 'sometimes|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm,video/ogg,video/x-flv,video/x-ms-asf',
+            'video' => 'sometimes|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm,video/ogg,video/x-flv,video/x-ms-asf,video/x-matroska',
             'image' => 'sometimes|image'
         ]);
 

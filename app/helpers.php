@@ -37,3 +37,10 @@ function addMinutesToDateTime($datetime_start, $minutes) {
 
     return $time->format('Y-m-d H:i:s');
 }
+
+function setPHPINItoMax() {
+    ini_set('upload_max_filesize', '3000M'); // 3 gb
+    ini_set('post_max_size', '3000M'); // 3 gb
+    ini_set('max_input_time', 10800); // 3 hrs
+    ini_set('max_execution_time', 10800); // 3 hrs
+}

@@ -49,17 +49,22 @@ class ConvertVideo extends Command
             
             if($movie) {
 
+                setPHPINItoMax();
+
                 $pathinfo = pathinfo($movie->video);
                 
                 $new_path = 'movies/videos/'.$pathinfo['filename'].'.mp4';
 
-                ini_set('max_execution_time', 10800); // 3 hrs
+                $format = new X264('libmp3lame', 'libx264');
+                $format->on('progress', function($video, $format, $percentage) {
+                    echo("$percentage % transcoded\n");
+                });
 
                 FFMpeg::fromDisk('public')
                     ->open($movie->video)
                     ->export()
                     ->toDisk('public')
-                    ->inFormat(new X264('libmp3lame', 'libx264'))
+                    ->inFormat($format)
                     ->save($new_path);
 
                 Storage::disk('public')->delete($movie->video);
