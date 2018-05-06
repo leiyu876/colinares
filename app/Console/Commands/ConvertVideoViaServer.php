@@ -58,9 +58,9 @@ class ConvertVideoViaServer extends Command
 
             $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' '.$public.$new_path;
 
-            //Storage::disk('local')->put('testlistenerdeletemeafter.txt', $command);
+            Storage::disk('local')->put('testlistenerdeletemeafter.txt', $command);
             
-            //return '';
+            return '';
 
             $process = new Process($command);
             $process->run();
@@ -74,7 +74,7 @@ class ConvertVideoViaServer extends Command
             $movie->is_html5 = true;
 
             $movie->save();
-            
+
             echo $process->getOutput();
         }
     }
