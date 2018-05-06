@@ -1,0 +1,4 @@
+[06-May-2018 10:34:59 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=3) state=0 in /home4/virnezac/mysoftwares/colinares/ffmpeg/ffmpeg on line 1438
+[06-May-2018 10:34:59 UTC] PHP Parse error:  syntax error, unexpected 'H' (T_STRING), expecting variable (T_VARIABLE) or '{' or '$' in /home4/virnezac/mysoftwares/colinares/ffmpeg/ffmpeg on line 1438
+[06-May-2018 10:35:07 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=3) state=0 in /home4/virnezac/mysoftwares/colinares/ffmpeg/ffmpeg on line 1438
+[06-May-2018 10:35:07 UTC] PHP Parse error:  syntax error, unexpected 'H' (T_STRING), expecting variable (T_VARIABLE) or '{' or '$' in /home4/virnezac/mysoftwares/colinares/ffmpeg/ffmpeg on line 1438
