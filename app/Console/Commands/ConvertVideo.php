@@ -109,6 +109,8 @@ class ConvertVideo extends Command
                     Storage::disk('local')->put('testconvertvideo.txt', $contents."\n".$time);
                 }
                 sleep(120); //in seconds
+                $contents = Storage::disk('local')->get('testconvertvideo.txt');
+                Storage::disk('local')->put('testconvertvideo.txt', $contents."\n".$time.' after 120 seconds');
                 //Storage::disk('local')->put('testlistenerdeletemeafter.txt', $command);
                 
                 return '';
