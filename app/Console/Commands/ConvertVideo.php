@@ -115,10 +115,10 @@ class ConvertVideo extends Command
                     if (!$process->isSuccessful()) {
                         throw new ProcessFailedException($process);
                     }
-
+                    Storage::disk('public')->delete($movie->video);
                     $movie->video = $new_path;
                     $movie->is_html5 = true;
-                    Storage::disk('public')->delete($movie->video);
+                    
                     $movie->save();
                     echo $process->getOutput();
                 }
