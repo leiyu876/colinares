@@ -118,11 +118,12 @@ class ConvertVideo extends Command
 
                     $movie->video = $new_path;
                     $movie->is_html5 = true;
-
+                    Storage::disk('public')->delete($movie->video);
                     $movie->save();
-                    Storage::disk('local')->delete('video_converting.txt');
                     echo $process->getOutput();
                 }
+
+                Storage::disk('local')->delete('video_converting.txt');
             }
         }
     }
