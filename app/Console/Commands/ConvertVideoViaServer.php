@@ -41,7 +41,7 @@ class ConvertVideoViaServer extends Command
     public function handle()
     {
         
-        $process = new Process('/home4/virnezac/mysoftwares/colinares/ffmpeg/ffmpeg -i /home4/virnezac/mysoftwares/colinares/storage/app/public/movies/videos/gqOHXrWG0vPTeWMPVm4n2WcKEIhFV6seqkFAX1qm.flv /home4/virnezac/mysoftwares/colinares/storage/app/public/movies/videos/gqOHXrWG0vPTeWMPVm4n2WcKEIhFV6seqkFAX1qm.web');
+        $process = new Process('/home4/virnezac/mysoftwares/colinares/ffmpeg/ffmpeg -i /home4/virnezac/mysoftwares/colinares/storage/app/public/movies/videos/gqOHXrWG0vPTeWMPVm4n2WcKEIhFV6seqkFAX1qm.flv /home4/virnezac/mysoftwares/colinares/storage/app/public/movies/videos/gqOHXrWG0vPTeWMPVm4n2WcKEIhFV6seqkFAX1qm.webm');
         $process->run();
 
         // executes after the command finishes
