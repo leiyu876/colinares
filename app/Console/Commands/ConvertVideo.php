@@ -85,50 +85,42 @@ class ConvertVideo extends Command
 
         } else {
 
-            $movie = Movie::where('is_html5', false)->get()->first();
-
-            if($movie) {
-
-                setPHPINItoMax();
-
-                $root = '/home4/virnezac/mysoftwares/colinares/';
-                $public = $root.'storage/app/public/';
-
-                $pathinfo = pathinfo($movie->video);
-                    
-                $new_path = 'movies/videos/'.$pathinfo['filename'].'.webm';
-
-                $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' '.$public.$new_path;
-
-                $time = date("h:i:sa").' via build ';
-                $exists = Storage::disk('local')->exists('testconvertvideo.txt');
-                if(!$exists) {
-                    Storage::disk('local')->put('testconvertvideo.txt', "\n".$time);
-                } else {
-                    $contents = Storage::disk('local')->get('testconvertvideo.txt');
-                    Storage::disk('local')->put('testconvertvideo.txt', $contents."\n".$time);
-                }
-                sleep(120); //in seconds
-                $contents = Storage::disk('local')->get('testconvertvideo.txt');
-                Storage::disk('local')->put('testconvertvideo.txt', $contents."\n".$time.' after 120 seconds');
-                //Storage::disk('local')->put('testlistenerdeletemeafter.txt', $command);
+            if(!Storage::disk('local')->exists('converting.txt')) {
                 
-                return '';
+                $movie = Movie::where('is_html5', false)->get()->first();
 
-                $process = new Process($command);
-                $process->run();
+                if($movie) {
 
-                // executes after the command finishes
-                if (!$process->isSuccessful()) {
-                    throw new ProcessFailedException($process);
+                    sleep(120);
+
+                    return '';
+
+                    setPHPINItoMax();
+
+                    $root = '/home4/virnezac/mysoftwares/colinares/';
+                    $public = $root.'storage/app/public/';
+
+                    $pathinfo = pathinfo($movie->video);
+                        
+                    $new_path = 'movies/videos/'.$pathinfo['filename'].'.webm';
+
+                    $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' '.$public.$new_path;
+
+                    $process = new Process($command);
+                    $process->run();
+
+                    // executes after the command finishes
+                    if (!$process->isSuccessful()) {
+                        throw new ProcessFailedException($process);
+                    }
+
+                    $movie->video = $new_path;
+                    $movie->is_html5 = true;
+
+                    $movie->save();
+
+                    echo $process->getOutput();
                 }
-
-                $movie->video = $new_path;
-                $movie->is_html5 = true;
-
-                $movie->save();
-
-                echo $process->getOutput();
             }
         }
     }
