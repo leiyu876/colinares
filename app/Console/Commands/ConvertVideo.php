@@ -85,13 +85,13 @@ class ConvertVideo extends Command
 
         } else {
 
-            if(!Storage::disk('local')->exists('converting.txt')) {
+            if(!Storage::disk('local')->exists('video_converting.txt')) {
                 $time = date("h:i:sa").' via build ';
-                Storage::disk('local')->put('converting.txt', "\n".$time);
+                Storage::disk('local')->put('video_converting.txt', "\n".$time);
 
-                sleep(120);
-                Storage::disk('local')->delete('converting.txt');
-                return '';
+                //sleep(120);
+                //Storage::disk('local')->delete('video_converting.txt');
+                //return '';
 
                 $movie = Movie::where('is_html5', false)->get()->first();
 
@@ -120,7 +120,7 @@ class ConvertVideo extends Command
                     $movie->is_html5 = true;
 
                     $movie->save();
-
+                    Storage::disk('local')->delete('video_converting.txt');
                     echo $process->getOutput();
                 }
             }
