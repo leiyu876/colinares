@@ -7,6 +7,9 @@ use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
+use Storage;
+use App\Movie;
+
 class ConvertVideoViaServer extends Command
 {
     /**
@@ -40,18 +43,39 @@ class ConvertVideoViaServer extends Command
      */
     public function handle()
     {
-        Storage::disk('local')->put('testlistenerdeletemeafter.txt', "from command");
-        
-        exit;
+        // SEVER only!
 
-        $process = new Process('/home4/virnezac/mysoftwares/colinares/ffmpeg/ffmpeg -i /home4/virnezac/mysoftwares/colinares/storage/app/public/movies/videos/gqOHXrWG0vPTeWMPVm4n2WcKEIhFV6seqkFAX1qm.flv /home4/virnezac/mysoftwares/colinares/storage/app/public/movies/videos/gqOHXrWG0vPTeWMPVm4n2WcKEIhFV6seqkFAX1qm.webm');
-        $process->run();
+        $movie = Movie::find($this->argument('movie'));
 
-        // executes after the command finishes
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
+        if($movie) {
+
+            $root = '/home4/virnezac/mysoftwares/colinares/';
+            $public = $root.'storage/app/public/';
+
+            $pathinfo = pathinfo($movie->video);
+                
+            $new_path = 'movies/videos/'.$pathinfo['filename'].'.webm';
+
+            $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' '.$public.$new_path;
+
+            //Storage::disk('local')->put('testlistenerdeletemeafter.txt', $command);
+            
+            //return '';
+
+            $process = new Process($command);
+            $process->run();
+
+            // executes after the command finishes
+            if (!$process->isSuccessful()) {
+                throw new ProcessFailedException($process);
+            }
+
+            $movie->video = $new_path;
+            $movie->is_html5 = true;
+
+            $movie->save();
+            
+            echo $process->getOutput();
         }
-
-        echo $process->getOutput();
     }
 }

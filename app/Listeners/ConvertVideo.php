@@ -28,6 +28,8 @@ class ConvertVideo
      */
     public function handle(MovieCreate $event)
     {
-        '\App\Jobs\ConvertVideo'::dispatch($event->movie);
+        if(!$event->movie->is_html5) {
+            '\App\Jobs\ConvertVideo'::dispatch($event->movie);
+        }
     }
 }

@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 use App\Movie;
 use Storage;
+use Artisan;
 
 class ConvertVideo implements ShouldQueue
 {
@@ -35,7 +36,7 @@ class ConvertVideo implements ShouldQueue
     public function handle()
     {
         $exitCode = Artisan::call('leo:convertvideoviaserver', [
-            'movie' => $this->movie,
+            'movie' => $this->movie->id,
         ]);
     }
 }
