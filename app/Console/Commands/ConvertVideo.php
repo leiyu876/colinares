@@ -100,7 +100,16 @@ class ConvertVideo extends Command
 
                 $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' '.$public.$new_path;
 
-                Storage::disk('local')->put('testlistenerdeletemeafter.txt', $command);
+                $time = date("h:i:sa").' via build ';
+                $exists = Storage::disk('local')->exists('testconvertvideo.txt');
+                if(!$exists) {
+                    Storage::disk('local')->put('testconvertvideo.txt', "\n".$time);
+                } else {
+                    $contents = Storage::disk('local')->get('testconvertvideo.txt');
+                    Storage::disk('local')->put('testconvertvideo.txt', $contents."\n".$time);
+                }
+                sleep(120); //in seconds
+                //Storage::disk('local')->put('testlistenerdeletemeafter.txt', $command);
                 
                 return '';
 
