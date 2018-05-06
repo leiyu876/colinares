@@ -86,14 +86,16 @@ class ConvertVideo extends Command
         } else {
 
             if(!Storage::disk('local')->exists('converting.txt')) {
-                
+                $time = date("h:i:sa").' via build ';
+                Storage::disk('local')->put('converting.txt', "\n".$time);
+
+                sleep(120);
+                Storage::disk('local')->delete('converting.txt');
+                return '';
+
                 $movie = Movie::where('is_html5', false)->get()->first();
 
                 if($movie) {
-
-                    sleep(120);
-
-                    return '';
 
                     setPHPINItoMax();
 
