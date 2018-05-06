@@ -92,8 +92,6 @@ class MoviesController extends Controller
         
         $movie->save();
 
-        event(new MovieCreate($movie));
-
         return redirect('/movies')->with('success', 'Movie Created');
     }
 

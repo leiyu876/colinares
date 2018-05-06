@@ -17,7 +17,7 @@ class ConvertVideoViaServer extends Command
      *
      * @var string
      */
-    protected $signature = 'leo:convertvideoviaserver {movie}';
+    protected $signature = 'leo:convertvideoviaserver';
 
     /**
      * The console command description.

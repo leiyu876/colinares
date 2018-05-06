@@ -9,6 +9,8 @@ use FFMpeg;
 use FFMpeg\Coordinate\Dimension;
 use FFMpeg\Format\Video\X264;
 use Storage;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class ConvertVideo extends Command
 {
@@ -83,7 +85,40 @@ class ConvertVideo extends Command
 
         } else {
 
-            $this->alert('You can convert only in LOCAL environment, shared hosting dont support ffmpeg.');
+            $movie = Movie::where('is_html5', false)->get()->first();
+
+            if($movie) {
+
+                setPHPINItoMax();
+
+                $root = '/home4/virnezac/mysoftwares/colinares/';
+                $public = $root.'storage/app/public/';
+
+                $pathinfo = pathinfo($movie->video);
+                    
+                $new_path = 'movies/videos/'.$pathinfo['filename'].'.webm';
+
+                $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' '.$public.$new_path;
+
+                Storage::disk('local')->put('testlistenerdeletemeafter.txt', $command);
+                
+                return '';
+
+                $process = new Process($command);
+                $process->run();
+
+                // executes after the command finishes
+                if (!$process->isSuccessful()) {
+                    throw new ProcessFailedException($process);
+                }
+
+                $movie->video = $new_path;
+                $movie->is_html5 = true;
+
+                $movie->save();
+
+                echo $process->getOutput();
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         '\App\Console\Commands\SendAgencies',
-        '\App\Console\Commands\QueueWork',
+        '\App\Console\Commands\ConvertVideo',
     ];
 
     /**
@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         $schedule->command('leo:sendagencies')->everyFiveMinutes();
+        $schedule->command('leo:convertvideo')->everyMinute();
     }
 
     /**
