@@ -14,7 +14,7 @@ class ConvertVideoViaServer extends Command
      *
      * @var string
      */
-    protected $signature = 'leo:convertvideoviaserver';
+    protected $signature = 'leo:convertvideoviaserver {movie}';
 
     /**
      * The console command description.
@@ -40,7 +40,10 @@ class ConvertVideoViaServer extends Command
      */
     public function handle()
     {
+        Storage::disk('local')->put('testlistenerdeletemeafter.txt', "from command");
         
+        exit;
+
         $process = new Process('/home4/virnezac/mysoftwares/colinares/ffmpeg/ffmpeg -i /home4/virnezac/mysoftwares/colinares/storage/app/public/movies/videos/gqOHXrWG0vPTeWMPVm4n2WcKEIhFV6seqkFAX1qm.flv /home4/virnezac/mysoftwares/colinares/storage/app/public/movies/videos/gqOHXrWG0vPTeWMPVm4n2WcKEIhFV6seqkFAX1qm.webm');
         $process->run();
 

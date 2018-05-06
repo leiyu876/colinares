@@ -6,6 +6,7 @@ use App\Movie;
 use Illuminate\Http\Request;
 use Storage;
 use FFMpeg;
+use App\Events\MovieCreate;
 
 class MoviesController extends Controller
 {
@@ -90,6 +91,8 @@ class MoviesController extends Controller
         if($video_format != 'video/mp4' && $video_format != 'video/webm' && $video_format != 'video/ogg') $movie->is_html5 = false;
         
         $movie->save();
+
+        event(new MovieCreate($movie));
 
         return redirect('/movies')->with('success', 'Movie Created');
     }
