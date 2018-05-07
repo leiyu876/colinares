@@ -119,10 +119,14 @@ class ConvertVideo extends Command
                         if (Process::ERR === $type) {
                             echo 'leo_error > '.$buffer;
                             if(!Storage::disk('local')->exists('video_converting.txt')) {
-                                Storage::disk('local')->put('video_converting.txt', "\n leo says: ".$buffer);
+                                if (strpos($buffer, 'Duration') !== false) {
+                                    Storage::disk('local')->put('video_converting.txt', "\n cmd says: ".$buffer);
+                                }
                             } else {
-                                $contents = Storage::disk('local')->get('video_converting.txt');
-                                Storage::disk('local')->put('video_converting.txt', $contents."\n leo says: ".$buffer);
+                                if (strpos($buffer, 'time=') !== false) {
+                                    $contents = Storage::disk('local')->get('video_converting.txt');
+                                    Storage::disk('local')->put('video_converting.txt', $contents."\n cmd says: ".$buffer);
+                                }                                
                             }
                         } else {
                             echo 'leo_out > '.$buffer;
