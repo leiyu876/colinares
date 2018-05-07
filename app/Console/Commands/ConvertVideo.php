@@ -122,14 +122,18 @@ class ConvertVideo extends Command
                                 $findme   = 'Duration';
                                 if (strpos($buffer, $findme) !== false) {
                                     $pos = strpos($buffer, $findme);
-                                    Storage::disk('local')->put('video_converting.txt', "\n cmd says: ".substr($buffer, $pos, 21));
+                                    $duration = ['duration' => str_replace($findme, '', substr($buffer, $pos, 21))];
+                                    Storage::disk('local')->put('video_converting.txt', "\n cmd says: ".json_encode($duration));
                                 }
                             } else {
                                 $findme   = 'time=';
                                 if (strpos($buffer, $findme) !== false) {
                                     $pos = strpos($buffer, $findme);
+                                    $time = str_replace($findme, '', substr($buffer, $pos, 16));
                                     $contents = Storage::disk('local')->get('video_converting.txt');
-                                    Storage::disk('local')->put('video_converting.txt', $contents."\n cmd says: ".substr($buffer, $pos, 16));
+                                    $contents = json_decode($contents);
+                                    $contents['time'] = $time;
+                                    Storage::disk('local')->put('video_converting.txt', $contents."\n cmd says: ".json_encode($contents));
                                 }                                
                             }
                         } else {
