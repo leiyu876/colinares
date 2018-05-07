@@ -17,6 +17,8 @@ class MoviesController extends Controller
      */
     public function index()
     {  
+        $this->convert_percentage();
+
         $data['page_title'] = 'Movie Lists';
 
         $data['movies'] = Movie::all();
@@ -219,6 +221,37 @@ class MoviesController extends Controller
 
     public function convert_percentage() {
 
+        $str = (array) json_decode('{"duration":": 00:00:11.00","time":"00:00:10.99"}');
+        
+        $string = $str['duration'];
+        $time   = explode(":", $string);
+        dd($time);
+        $hour   = $time[0] * 60 * 60 * 100;
+        $minute = $time[1] * 60 * 100;
+
+        $second = explode(".", $time[2]);
+        $sec    = $second[0] * 100;
+        $milisec= $second[1];
+
+        $result = $hour + $minute + $sec + $milisec;
+
+        echo $result;
+
+        $string = $str['time'];
+        $time   = explode(":", $string);
+
+        $hour   = $time[0] * 60 * 60 * 100;
+        $minute = $time[1] * 60 * 100;
+
+        $second = explode(".", $time[2]);
+        $sec    = $second[0] * 100;
+        $milisec= $second[1];
+
+        $result = $hour + $minute + $sec + $milisec;
+
+        echo $result;
+
+        exit;
         if(Storage::disk('local')->exists('video_converting.txt')) {
             return Storage::disk('local')->get('video_converting.txt');
         }

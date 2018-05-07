@@ -119,7 +119,7 @@ class ConvertVideo extends Command
                         if (Process::ERR === $type) {
                             //echo 'leo_error > '.$buffer;
                             if(!Storage::disk('local')->exists('video_converting.txt')) {
-                                $findme   = 'Duration';
+                                $findme   = 'Duration: ';
                                 if (strpos($buffer, $findme) !== false) {
                                     $pos = strpos($buffer, $findme);
                                     $duration = ['duration' => str_replace($findme, '', substr($buffer, $pos, 21))];
@@ -132,7 +132,11 @@ class ConvertVideo extends Command
                                     $time = str_replace($findme, '', substr($buffer, $pos, 16));
                                     $contents = Storage::disk('local')->get('video_converting.txt');
                                     $contents = (array) json_decode($contents);
-                                    $contents['time'] = $time;
+                                    if (strpos($buffer, 'headers') !== false) {
+                                        $contents['time'] = $contents['duration'];
+                                    } else {
+                                        $contents['time'] = $time;
+                                    }
                                     Storage::disk('local')->put('video_converting.txt', json_encode($contents));
                                 }                                
                             }
