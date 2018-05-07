@@ -117,7 +117,7 @@ class ConvertVideo extends Command
                     $process->setTimeout(0);
                     $process->run(function ($type, $buffer) {
                         if (Process::ERR === $type) {
-                            echo 'leo_error > '.$buffer;
+                            //echo 'leo_error > '.$buffer;
                             if(!Storage::disk('local')->exists('video_converting.txt')) {
                                 $findme   = 'Duration';
                                 if (strpos($buffer, $findme) !== false) {
@@ -139,7 +139,7 @@ class ConvertVideo extends Command
                                 }                                
                             }
                         } else {
-                            echo 'leo_out > '.$buffer;
+                            //echo 'leo_out > '.$buffer;
                         }
                     });
 
@@ -153,7 +153,7 @@ class ConvertVideo extends Command
                     
                     //$movie->save();
                     //Storage::disk('local')->delete('video_converting.txt');
-                    echo $process->getOutput();
+                    //echo $process->getOutput();
                 }
             }
         }
