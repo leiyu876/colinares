@@ -92,9 +92,7 @@ class ConvertVideo extends Command
         } else {
 
             if(!Storage::disk('local')->exists('video_converting.txt')) {
-                $time = date("h:i:sa").' via build ';
-                Storage::disk('local')->put('video_converting.txt', "\n".$time);
-
+                
                 //sleep(120);
                 //Storage::disk('local')->delete('video_converting.txt');
                 //return '';
@@ -102,6 +100,9 @@ class ConvertVideo extends Command
                 $movie = Movie::where('is_html5', false)->get()->first();
 
                 if($movie) {
+
+                    $time = date("h:i:sa").' via build ';
+                    Storage::disk('local')->put('video_converting.txt', "\n".$time);
 
                     setPHPINItoMax();
 
@@ -115,7 +116,14 @@ class ConvertVideo extends Command
                     $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' '.$public.$new_path;
 
                     $process = new Process($command);
-                    $process->run();
+                    //$process->run();
+                    $process->run(function ($type, $buffer) {
+                        if (Process::ERR === $type) {
+                            echo 'ERR > '.$buffer;
+                        } else {
+                            echo 'OUT > '.$buffer;
+                        }
+                    });
 
                     // executes after the command finishes
                     if (!$process->isSuccessful()) {
@@ -126,10 +134,9 @@ class ConvertVideo extends Command
                     $movie->is_html5 = true;
                     
                     $movie->save();
+                    Storage::disk('local')->delete('video_converting.txt');
                     echo $process->getOutput();
                 }
-
-                Storage::disk('local')->delete('video_converting.txt');
             }
         }
     }
