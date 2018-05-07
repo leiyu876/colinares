@@ -132,6 +132,7 @@ class ConvertVideo extends Command
                                     $time = str_replace($findme, '', substr($buffer, $pos, 16));
                                     $contents = Storage::disk('local')->get('video_converting.txt');
                                     $contents = json_decode($contents);
+                                    dd($contents);
                                     $contents['time'] = $time;
                                     Storage::disk('local')->put('video_converting.txt', json_encode($contents));
                                 }                                
