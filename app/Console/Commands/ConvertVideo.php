@@ -119,10 +119,10 @@ class ConvertVideo extends Command
                         if (Process::ERR === $type) {
                             echo 'leo_error > '.$buffer;
                             if(!Storage::disk('local')->exists('video_converting.txt')) {
-                                Storage::disk('local')->put('video_converting.txt', "\n".$buffer);
+                                Storage::disk('local')->put('video_converting.txt', "\n leo says: ".$buffer);
                             } else {
                                 $contents = Storage::disk('local')->get('video_converting.txt');
-                                Storage::disk('local')->put('video_converting.txt', $contents."\n".$buffer);
+                                Storage::disk('local')->put('video_converting.txt', $contents."\n leo says: ".$buffer);
                             }
                         } else {
                             echo 'leo_out > '.$buffer;
@@ -133,7 +133,7 @@ class ConvertVideo extends Command
                     if (!$process->isSuccessful()) {
                         throw new ProcessFailedException($process);
                     }
-                    Storage::disk('public')->delete($movie->video);
+                    //Storage::disk('public')->delete($movie->video);
                     $movie->video = $new_path;
                     $movie->is_html5 = true;
                     
