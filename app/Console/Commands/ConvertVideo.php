@@ -47,40 +47,46 @@ class ConvertVideo extends Command
     {
         if(env('APP_ENV') == 'local') {
             
-            $movie = Movie::where('is_html5', false)->get()->first();
-            
-            if($movie) {
-
-                setPHPINItoMax();
-
-                $pathinfo = pathinfo($movie->video);
+            if(!Storage::disk('local')->exists('video_converting.txt')) {
                 
-                $new_path = 'movies/videos/'.$pathinfo['filename'].'.mp4';
+                $movie = Movie::where('is_html5', false)->get()->first();
+            
+                if($movie) {
 
-                $format = new X264('libmp3lame', 'libx264');
-                $format->on('progress', function($video, $format, $percentage) {
-                    echo("$percentage % transcoded\n");
-                });
+                    setPHPINItoMax();
 
-                FFMpeg::fromDisk('public')
-                    ->open($movie->video)
-                    ->export()
-                    ->toDisk('public')
-                    ->inFormat($format)
-                    ->save($new_path);
+                    $pathinfo = pathinfo($movie->video);
+                    
+                    $new_path = 'movies/videos/'.$pathinfo['filename'].'.mp4';
 
-                Storage::disk('public')->delete($movie->video);
+                    $format = new X264('libmp3lame', 'libx264');
+                    $format->on('progress', function($video, $format, $percentage) {
+                        echo("$percentage % transcoded\n");
+                        Storage::disk('local')->put('video_converting.txt', "\n".$percentage);
+                    });
+                    
+                    FFMpeg::fromDisk('public')
+                        ->open($movie->video)
+                        ->export()
+                        ->toDisk('public')
+                        ->inFormat($format)
+                        ->save($new_path);
+                    
+                    Storage::disk('public')->delete($movie->video);
 
-                $movie->video = $new_path;
-                $movie->is_html5 = true;
+                    $movie->video = $new_path;
+                    $movie->is_html5 = true;
 
-                $movie->save();
+                    $movie->save();
+                    
+                    $this->info('Done converting');
 
-                $this->info('Done converting');
+                } else {
 
-            } else {
+                    $this->info('Nothing to Convert');
+                }
 
-                $this->info('Nothing to Convert');
+                Storage::disk('local')->delete('video_converting.txt');
             }
 
         } else {

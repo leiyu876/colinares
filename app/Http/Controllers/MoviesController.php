@@ -216,4 +216,13 @@ class MoviesController extends Controller
 
         return view('movies.single', $data);
     }
+
+    public function convert_percentage() {
+
+        if(Storage::disk('local')->exists('video_converting.txt')) {
+            return Storage::disk('local')->get('video_converting.txt');
+        }
+
+        return 0;
+    }
 }

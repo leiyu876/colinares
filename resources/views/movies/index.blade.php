@@ -41,11 +41,11 @@
                                     <td>{{ $movie->released_year }}</td>
                                     <td>{{ $movie->visited }}</td>
                                     <td>
-                                        @if($movie->is_html5)
-                                            <a href="{{ route('movies.show', ['id' => $movie->id])}}">
-                                                <i class="fa fa-fw fa-play" data-toggle="tooltip" title="Play"></i>
-                                            </a>   
-                                        @endif
+                                        
+                                        <a href="{{ route('movies.show', ['id' => $movie->id])}}">
+                                            <i class="fa fa-fw fa-eye" data-toggle="tooltip" title="View"></i>
+                                        </a>   
+                                        
                                         <a href="{{ route('movies.edit', ['id' => $movie->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
                                         </a>          
