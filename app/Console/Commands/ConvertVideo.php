@@ -101,9 +101,6 @@ class ConvertVideo extends Command
 
                 if($movie) {
 
-                    $time = date("h:i:sa").' via build ';
-                    Storage::disk('local')->put('video_converting.txt', "\n".$time);
-
                     setPHPINItoMax();
 
                     $root = '/home4/virnezac/mysoftwares/colinares/';
@@ -121,6 +118,12 @@ class ConvertVideo extends Command
                     $process->run(function ($type, $buffer) {
                         if (Process::ERR === $type) {
                             echo 'leo_error > '.$buffer;
+                            if(!Storage::disk('local')->exists('video_converting.txt')) {
+                                Storage::disk('local')->put('video_converting.txt', "\n".$buffer);
+                            } else {
+                                $contents = Storage::disk('local')->get('video_converting.txt');
+                                Storage::disk('local')->put('video_converting.txt', $contents."\n".$buffer);
+                            }
                         } else {
                             echo 'leo_out > '.$buffer;
                         }
