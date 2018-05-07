@@ -113,10 +113,11 @@ class ConvertVideo extends Command
                         
                     $new_path = 'movies/videos/'.$pathinfo['filename'].'.webm';
 
-                    $command = $root.'ffmpeg/ffmpeg -timeout 0 -i '.$public.$movie->video.' '.$public.$new_path;
+                    $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' '.$public.$new_path;
 
                     $process = new Process($command);
                     //$process->run();
+                    $process->setTimeout(0);
                     $process->run(function ($type, $buffer) {
                         if (Process::ERR === $type) {
                             echo 'leo_error > '.$buffer;
