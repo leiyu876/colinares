@@ -258,8 +258,18 @@ class MoviesController extends Controller
                 return $str['percentage']; 
             }
             
-        }
+        } else {
 
-        return 0;
+            $movie = Movie::where('is_html5', false)->get()->first();
+
+            if($movie) {
+
+                return 0;
+
+            } else {
+
+                return 100;
+            }
+        }
     }
 }
