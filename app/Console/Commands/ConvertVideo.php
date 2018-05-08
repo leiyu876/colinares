@@ -62,7 +62,7 @@ class ConvertVideo extends Command
                     $format = new X264('libmp3lame', 'libx264');
                     $format->on('progress', function($video, $format, $percentage) {
                         echo("$percentage % transcoded\n");
-                        Storage::disk('local')->put('video_converting.txt', "\n".$percentage);
+                        Storage::disk('local')->put('video_converting.txt', "\n".json_encode(['percentage'=>$percentage]));
                     });
                     
                     FFMpeg::fromDisk('public')
