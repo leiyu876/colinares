@@ -42,12 +42,13 @@
     <script src="{{ asset('auth/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
     <script type="text/javascript">
         $(function () {
-            setInterval(function() {
+            if($('.progress-bar-primary').length) {
+              setInterval(function() {
                 $.ajax({
                     url: "{{ url('movies/convert_percentage').'/' }}",
                     type: "GET",
                     success: function(response) {
-                      if(response == '100' && $('.progress-bar-primary').length) {
+                      if(response == '100') {
                         location.reload();
                       }
                       console.log(response);
@@ -55,7 +56,8 @@
                       $("#progress_label").html('Converting... '+response+'%');
                     }
                });
-            }, 5000);
+              }, 5000);
+            }
         })
     </script>
 @endsection
