@@ -117,7 +117,7 @@ class ConvertVideo extends Command
                     $process->setTimeout(0);
                     $process->run(function ($type, $buffer) {
                         if (Process::ERR === $type) {
-                            //echo 'leo_error > '.$buffer;
+                            echo 'leo_error > '.$buffer;
                             if(!Storage::disk('local')->exists('video_converting.txt')) {
                                 $findme   = 'Duration: ';
                                 if (strpos($buffer, $findme) !== false) {
@@ -141,7 +141,7 @@ class ConvertVideo extends Command
                                 }                                
                             }
                         } else {
-                            //echo 'leo_out > '.$buffer;
+                            echo 'leo_out > '.$buffer;
                         }
                     });
 
@@ -149,13 +149,13 @@ class ConvertVideo extends Command
                     if (!$process->isSuccessful()) {
                         throw new ProcessFailedException($process);
                     }
-                    //Storage::disk('public')->delete($movie->video);
+                    Storage::disk('public')->delete($movie->video);
                     $movie->video = $new_path;
                     $movie->is_html5 = true;
                     
-                    //$movie->save();
-                    //Storage::disk('local')->delete('video_converting.txt');
-                    //echo $process->getOutput();
+                    $movie->save();
+                    Storage::disk('local')->delete('video_converting.txt');
+                    echo $process->getOutput();
                 }
             }
         }
