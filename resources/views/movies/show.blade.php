@@ -47,6 +47,9 @@
                     url: "{{ url('movies/convert_percentage').'/' }}",
                     type: "GET",
                     success: function(response) {
+                      if(response == '100') {
+                        location.reload();
+                      }
                       console.log(response);
                       $('.progress-bar-primary').css('width', response+'%');
                       $("#progress_label").html('Converting... '+response+'%');
