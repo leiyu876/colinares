@@ -110,7 +110,7 @@ class ConvertVideo extends Command
                         
                     $new_path = 'movies/videos/'.$pathinfo['filename'].'.webm';
 
-                    $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' '.$public.$new_path;
+                    $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' -f webm -c:v libvpx -b:v 1M -acodec libvorbis '.$public.$new_path;
 
                     $process = new Process($command);
                     //$process->run();
