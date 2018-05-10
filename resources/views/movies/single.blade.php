@@ -9,13 +9,16 @@
 	<div class="container">
 		
 		<div class="row" >
-			<div class="col-md-3 col-md-offset-1" style="margin-bottom: 20px">
-				<video width="960" height="720" controls controlsList="nodownload" style="margin-top: -90px;">
+			<div class="col-md-12">
+				<video controls controlsList="nodownload" style=" width: 100%    !important; height: auto   !important;">
 	              <source src="{{ asset('storage/'.$movie->video) }}" type="video/mp4">
 	              <source src="{{ asset('storage/'.$movie->video) }}" type="video/ogg">
 	            Your browser does not support the video tag.
 	            </video>
 			</div>	
+		</div>
+		<div class="row" style="text-align: center;">
+			<div class="fb-comments" data-href="{{ route('movies.single', ['slug' => $movie->slug]) }}" data-numposts="10"></div>
 		</div>
 	</div>
 		
