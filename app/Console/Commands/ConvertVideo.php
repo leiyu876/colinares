@@ -70,7 +70,7 @@ class ConvertVideo extends Command
                         ->export()
                         ->toDisk('public')
                         ->inFormat($format)
-                        ->save($new_path);
+                        ->save($new_path, ['-pix_fmt', 'yuv420p']);
                     
                     Storage::disk('public')->delete($movie->video);
 
@@ -110,7 +110,7 @@ class ConvertVideo extends Command
                         
                     $new_path = 'movies/videos/'.$pathinfo['filename'].'.webm';
 
-                    $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' -f webm -c:v libvpx -b:v 1M -acodec libvorbis '.$public.$new_path;
+                    $command = $root.'ffmpeg/ffmpeg -i '.$public.$movie->video.' -f webm -c:v libvpx -b:v 1M -pix_fmt yuv420p -acodec libvorbis '.$public.$new_path;
 
                     $process = new Process($command);
                     //$process->run();
