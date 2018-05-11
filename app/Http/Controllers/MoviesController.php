@@ -208,6 +208,13 @@ class MoviesController extends Controller
         return redirect('/movies')->with('success', 'Movie Removed');
     }
 
+    public function category($category)
+    {
+        $data['movies'] = Movie::paginate(6);
+
+        return view('movies.category', $data);
+    }
+
     public function single($slug)
     {
         $data['movie'] = $movie = Movie::where('slug', $slug)->first();

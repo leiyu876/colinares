@@ -62,7 +62,8 @@
 						<li role="presentation" class="{{ Request::is('gallery') ? 'active' : ''}}"><a href="{{ url('gallery') }}">Gallery</a></li>
 						<li role="presentation" class="{{ Request::is('contact') ? 'active' : ''}}"><a href="{{ url('contact') }}">Contact</a></li>	
 						<li role="presentation" class="{{ Request::is('tree') ? 'active' : ''}}"><a href="{{ url('tree') }}">Tree</a></li>						
-						<li role="presentation" class="{{ Request::is('login') ? 'active' : ''}}"><a href="{{ route('login') }}">Login</a></li>						
+						<li role="presentation" class="{{ Request::is('movies/category/*') ? 'active' : ''}}"><a href="{{ route('movies.category', ['category'=> 'latest']) }}">Movies</a></li>						
+						<li style="display:none" role="presentation" class="{{ Request::is('login') ? 'active' : ''}}"><a href="{{ route('login') }}">Login</a></li>						
 					</ul>
 				</div>
 			</div>			

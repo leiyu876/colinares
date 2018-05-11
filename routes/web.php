@@ -38,6 +38,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('movies/category/{category}', 'MoviesController@category')->name('movies.category');
 Route::get('movies/single/{slug}', 'MoviesController@single')->name('movies.single');
 Route::get('movies/convert_percentage', 'MoviesController@convert_percentage');
 
