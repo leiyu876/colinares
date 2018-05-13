@@ -20,6 +20,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th>Image</th>
                                 <th>Title</th>
                                 <th>Url</th>
                                 <th>Released Date</th>
@@ -30,6 +31,7 @@
                         <tbody>
                             @foreach($movies as $movie)
                                 <tr>
+                                    <td><img src="{{ asset('storage/'.displayImage($movie->image)) }}" width="100" height="100"></td>
                                     <td>{{ $movie->title }}</td>
                                     <td>
                                         @if($movie->is_html5)
