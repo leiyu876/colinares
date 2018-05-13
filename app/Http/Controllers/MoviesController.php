@@ -221,6 +221,11 @@ class MoviesController extends Controller
 
         if(!$movie) return abort(404);
 
+        if(env('APP_ENV') != 'local') {
+            $movie->visited += 1;
+            $movie->save();
+        }
+
         return view('movies.single', $data);
     }
 
