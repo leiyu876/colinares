@@ -15,6 +15,7 @@
 							<div class="col-sm-4" style="padding: 15px">
 								<img src="{{ asset('storage/'.displayImage($movie->image)) }}" width="260" height="200">
 								<h4>{{ $movie->title }}</h4>
+								<h6 style="color: gray">{{ $movie->visited }} views - {{ $movie->created_at->diffForHumans() }}</h6> 
 							</div>							
 						</a>
 					@endforeach
