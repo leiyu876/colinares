@@ -10,10 +10,12 @@
 		
 		<div class="row" >
 			@foreach($movies as $movie)
-				<div class="col-md-4" style="padding: 15px">
-					<img src="{{ asset('storage/'.displayImage($movie->image)) }}" width="360" height="309.23">
-					<h3>{{ $movie->title }}</h3>
-				</div>	
+				<a href="{{ route('movies.single', $movie->slug) }}">
+					<div class="col-md-4" style="padding: 15px">
+						<img src="{{ asset('storage/'.displayImage($movie->image)) }}" width="360" height="309.23">
+						<h3>{{ $movie->title }}</h3>
+					</div>	
+				</a>
 			@endforeach
 		</div>
 		<div class="row" style="text-align: center;">{{ $movies->links() }}</div>
