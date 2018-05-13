@@ -14,7 +14,7 @@
 					<div class="form-group row">
 					    <label for="movies_sort_by" class="col-sm-2 col-form-label" style="margin-top: 5px">Sort by</label>
 					    <div class="col-sm-3">
-					      	<select name="category" class="form-control" id="movies_sort_by">
+					      	<select name="category" class="form-control" id="movies_sort_by" onchange="this.form.submit()">
 						    	<option {{ $category == 'upload' ? 'selected' : ''}} value="upload">Recent Uploads</option>
 						    	<option {{ $category == 'view' ? 'selected' : ''}} value="view">Most Viewed</option>				      
 						      	<option {{ $category == 'release' ? 'selected' : ''}} value="release">Date Released</option>
@@ -48,12 +48,4 @@
 		<div class="row" style="text-align: center;">{{ $movies->links() }}</div>
 	</div>
 		
-@endsection
-
-@section('js')
-    <script type="text/javascript">
-        $(function () {
-            
-        })
-    </script>
 @endsection
