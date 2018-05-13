@@ -215,6 +215,11 @@ class MoviesController extends Controller
         return view('movies.category', $data);
     }
 
+    public function category_filter(Request $request)
+    {
+        dd($request->category);
+    }
+
     public function single($slug)
     {
         $data['movie'] = $movie = Movie::where('slug', $slug)->first();
