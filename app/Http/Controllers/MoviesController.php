@@ -208,16 +208,24 @@ class MoviesController extends Controller
         return redirect('/movies')->with('success', 'Movie Removed');
     }
 
-    public function category($category)
+    public function category(Request $request)
     {
-        $data['movies'] = Movie::paginate(6);
-
+        switch ($request->category) {
+            case 'upload':
+                $data['movies'] = Movie::where('title', 'like', '%'.$request->search_string.'%')->orderBy('created_at', 'desc')->paginate(6);
+                break;
+            case 'view':
+                $data['movies'] = Movie::where('title', 'like', '%'.$request->search_string.'%')->orderBy('visited', 'desc')->paginate(6);
+                break;
+            default:
+                $data['movies'] = Movie::where('title', 'like', '%'.$request->search_string.'%')->orderBy('released_year', 'desc')->paginate(6);
+                break;
+        }
+        
+        $data['category'] = $request->category;
+        $data['search_string'] = $request->search_string;
+        
         return view('movies.category', $data);
-    }
-
-    public function category_filter(Request $request)
-    {
-        dd($request->category);
     }
 
     public function single($slug)
@@ -226,10 +234,8 @@ class MoviesController extends Controller
 
         if(!$movie) return abort(404);
 
-        if(env('APP_ENV') != 'local') {
-            $movie->visited += 1;
-            $movie->save();
-        }
+        $movie->visited += 1;
+        $movie->save();
 
         return view('movies.single', $data);
     }
