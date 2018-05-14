@@ -30,10 +30,10 @@
 				</form>
 				<div class="row" >
 					@foreach($movies as $movie)				
-						<a href="{{ route('movies.single', $movie->slug) }}">						
+						<a href="{{ route('movies.single', $movie->slug) }}" title="{{ $movie->title }}">						
 							<div class="col-sm-4" style="padding: 15px">
 								<img src="{{ asset('storage/'.displayImage($movie->image)) }}" width="260" height="200">
-								<h4>{{ $movie->title }}</h4>
+								<h4>{{ strlen($movie->title) > 25 ? substr($movie->title, 0, 25).'...' : $movie->title }}</h4>
 								<h6 style="color: gray">{{ $movie->visited }} views - {{ $movie->created_at->diffForHumans() }}</h6> 
 							</div>							
 						</a>
