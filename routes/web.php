@@ -23,7 +23,7 @@ Route::get('ourstory', 'PagesController@ourstory');
 Route::get('events', 'PagesController@events');
 Route::get('gallery', 'PagesController@gallery');
 Route::get('contact', 'PagesController@contact');
-Route::get('tree', 'PagesController@tree');
+Route::get('tree/{email?}', 'PagesController@tree')->name('pages.tree');
 
 Route::get('users/change_pass/{id}', 'UsersController@change_pass');
 Route::put('users/change_pass_save/{id}', 'UsersController@change_pass_save')->name('users.change_pass_save');
@@ -32,16 +32,11 @@ Route::post('users/store_child', 'UsersController@store_child')->name('users.sto
 //id = parent_id, child_id = child id to be remove, selected_id for the view in profile optional
 Route::get('users/remove_child/{id}/{child_id}/{selected_id?}', 'UsersController@remove_child')->name('users.remove_child');
 
-Route::get('pages/tree/{email?}', 'PagesController@tree')->name('pages.tree');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('movies/category', function () {
-	return view('welcome', ['movie_copied_link' => true]);
-});
-Route::post('movies/category', 'MoviesController@category')->name('movies.category');
+Route::get('movies/{category}/{search_string?}', 'MoviesController@category')->name('movies.category');
 Route::get('movies/single/{slug}', 'MoviesController@single')->name('movies.single');
 Route::get('movies/convert_percentage', 'MoviesController@convert_percentage');
 

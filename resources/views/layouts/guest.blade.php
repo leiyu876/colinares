@@ -61,17 +61,12 @@
 						<li role="presentation" class="{{ Request::is('events') ? 'active' : ''}}"><a href="{{ url('events') }}">Events</a></li>
 						<li role="presentation" class="{{ Request::is('gallery') ? 'active' : ''}}"><a href="{{ url('gallery') }}">Gallery</a></li>
 						<li role="presentation" class="{{ Request::is('contact') ? 'active' : ''}}"><a href="{{ url('contact') }}">Contact</a></li>	
-						<li role="presentation" class="{{ Request::is('tree') ? 'active' : ''}}"><a href="{{ url('tree') }}">Tree</a></li>						
-						<li role="presentation" class="{{ Request::is('movies/category') ? 'active' : ''}}"><a href="#" id="movie_link">Movies</a></li>						
+						<li role="presentation" class="{{ Request::is('tree') ? 'active' : ''}}"><a href="{{ route('pages.tree') }}">Tree</a></li>						
+						<li role="presentation" class="{{ Request::is('movies/category') ? 'active' : ''}}"><a href="{{ route('movies.category', ['category' => 'created_at']) }}">Movies</a></li>						
 						<li style="display:none" role="presentation" class="{{ Request::is('login') ? 'active' : ''}}"><a href="{{ route('login') }}">Login</a></li>						
 					</ul>
 				</div>
-			</div>	
-			<form id="movie_link_form" action="{{ route('movies.category') }}" method="POST" style="display: none;">
-              	{{ csrf_field() }}
-              	<input type="text" name="search_string" value="">
-              	<input type="text" name="category" value="upload">
-          	</form>		
+			</div>		
 		</div>
 	</nav>
 	
@@ -145,16 +140,6 @@
 	<script src="{{ asset('guest/js/jquery.isotope.min.js') }}"></script>
 	<script src="{{ asset('guest/js/fancybox/jquery.fancybox.pack.js') }}"></script>
 	<script src="{{ asset('guest/js/functions.js') }}"></script>
-	<script>
-	wow = new WOW({}).init();
- 	$(document).on('click', 'a#movie_link', function(e) {
-		e.preventDefault(); // does not go through with the link.
-   		$('#movie_link_form').submit();
-	});
-	<? if(isset($movie_copied_link)) { ?>
-		$('#movie_link_form').submit();
-	<? } ?>
-	</script>
 	@yield('js')
   </body>
 </html>

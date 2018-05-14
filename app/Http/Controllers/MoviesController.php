@@ -208,22 +208,12 @@ class MoviesController extends Controller
         return redirect('/movies')->with('success', 'Movie Removed');
     }
 
-    public function category(Request $request)
+    public function category($category, $search_string = '')
     {
-        switch ($request->category) {
-            case 'upload':
-                $data['movies'] = Movie::where('title', 'like', '%'.$request->search_string.'%')->orderBy('created_at', 'desc')->paginate(6);
-                break;
-            case 'view':
-                $data['movies'] = Movie::where('title', 'like', '%'.$request->search_string.'%')->orderBy('visited', 'desc')->paginate(6);
-                break;
-            default:
-                $data['movies'] = Movie::where('title', 'like', '%'.$request->search_string.'%')->orderBy('released_year', 'desc')->paginate(6);
-                break;
-        }
+        $data['movies'] = Movie::where('title', 'like', '%'.$search_string.'%')->orderBy($category, 'desc')->paginate(6);
         
-        $data['category'] = $request->category;
-        $data['search_string'] = $request->search_string;
+        $data['category'] = $category;
+        $data['search_string'] = $search_string;
         
         return view('movies.category', $data);
     }
