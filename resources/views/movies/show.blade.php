@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-sm-10">
             @if($movie->is_html5)
-              <video width="960" height="720" controls controlsList="nodownload" style="margin-top: -90px;">
+              <video width="960" height="720" controls controlsList="nodownload" style=" width: 100%    !important; height: auto   !important;">
                 <source src="{{ asset('storage/'.$movie->video) }}" type="video/mp4">
                 <source src="{{ asset('storage/'.$movie->video) }}" type="video/ogg">
               Your browser does not support the video tag.
