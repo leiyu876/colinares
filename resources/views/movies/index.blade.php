@@ -20,6 +20,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Image</th>
                                 <th>Title</th>
                                 <th>Url</th>
@@ -31,6 +32,7 @@
                         <tbody>
                             @foreach($movies as $movie)
                                 <tr>
+                                    <td>{{ $loop->index + 1}}</td>
                                     <td><img src="{{ asset('storage/'.displayImage($movie->image)) }}" width="100" height="100"></td>
                                     <td>{{ $movie->title }}</td>
                                     <td>

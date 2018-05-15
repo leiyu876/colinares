@@ -24,6 +24,7 @@ use \App\Http\Controllers\AgenciesController;
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Address</th>
@@ -37,6 +38,7 @@ use \App\Http\Controllers\AgenciesController;
                         <tbody>
                             @foreach($agencies as $agency)
                                 <tr>
+                                    <td>{{ $loop->index + 1}}</td>
                                     <td>{{ $agency->id }}</td>
                                     <td>{{ $agency->name }}</td>
                                     <td>{{ $agency->address }}</td>

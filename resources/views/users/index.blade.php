@@ -20,6 +20,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Photo</th>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -29,6 +30,7 @@
                         <tbody>
                             @foreach($users as $user)
                                 <tr>
+                                    <td>{{ $loop->index + 1}}</td>
                                     <td><img src="{{ asset('storage/'.displayImage($user->photo)) }}" width="100" height="100"></td>
                                     <td>{{ $user->last_name.', '.$user->first_name.' '.substr($user->middle_name, 0,1).'.' }}</td>
                                     <td>{{ $user->email }}</td>

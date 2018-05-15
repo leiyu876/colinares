@@ -20,6 +20,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -30,6 +31,7 @@
                         <tbody>
                             @foreach($applicants as $applicant)
                                 <tr>
+                                    <td>{{ $loop->index + 1}}</td>
                                     <td>{{ $applicant->id }}</td>
                                     <td>{{ $applicant->name }}</td>
                                     <td>{{ $applicant->email }}</td>
