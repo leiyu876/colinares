@@ -17,6 +17,7 @@
 	            </video>
 			</div>	
 		</div>
+		<div class="fb-like" data-href="{{ route('movies.single', ['slug' => $movie->slug]) }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 		<div class="row" style="text-align: center;">
 			<div class="fb-comments" data-href="{{ route('movies.single', ['slug' => $movie->slug]) }}" data-numposts="10"></div>
 		</div>
