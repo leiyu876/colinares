@@ -3,7 +3,7 @@
 @section('content')
 	
 	<div class="breadcrumb">
-		<h2>{{ $movie->title }}</h2>
+		<h2>{{ $movie->title }}</h2> Best view in mobile.
 	</div>
 
 	<div class="container">

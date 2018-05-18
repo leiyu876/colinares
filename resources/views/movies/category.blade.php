@@ -3,7 +3,7 @@
 @section('content')
 	
 	<div class="breadcrumb">
-		<h2>Movies</h2>
+		<h2>Movies</h2> Best view in mobile.
 	</div>
 
 	<div class="container">
