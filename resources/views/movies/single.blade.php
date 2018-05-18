@@ -15,6 +15,7 @@
 	              <source src="{{ asset('storage/'.$movie->video) }}" type="video/ogg">
 	            Your browser does not support the video tag.
 	            </video>
+	            <h6 style="color: gray" class="pull-right">{{ $movie->visited }} views - {{ $movie->created_at->diffForHumans() }}</h6>
 			</div>	
 		</div>
 		<div class="fb-like" data-href="{{ route('movies.single', ['slug' => $movie->slug]) }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
