@@ -210,7 +210,7 @@ class MoviesController extends Controller
 
     public function category($category, $search_string = '')
     {
-        $data['movies'] = Movie::where('title', 'like', '%'.$search_string.'%')->orderBy($category, 'desc')->paginate(6);
+        $data['movies'] = Movie::where('title', 'like', '%'.$search_string.'%')->where('is_html5', 1)->orderBy($category, 'desc')->paginate(6);
         
         $data['category'] = $category;
         $data['search_string'] = $search_string;
