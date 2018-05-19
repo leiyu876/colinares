@@ -60,3 +60,9 @@ Route::get('leoondemandnotifications', 'LeoemailwaysController@leo_do_ondemandno
 
 //show only the view of the mailable
 Route::get('/viewmailable', 'ApplicantsController@viewmailable');
+
+Route::get('user_details',function(){
+    $ip= \Request::ip();
+    $location = \Location::get($ip);
+    dd($location);
+});
