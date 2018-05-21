@@ -158,7 +158,7 @@ class ApplicantsController extends Controller
 
         $applicant->delete();
         
-        return redirect('/applicants')->with('success', 'Applicant Removed');
+        return back()->with('success', 'Applicant Removed');
     }
 
     public function send(Applicant $applicant)

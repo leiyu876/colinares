@@ -205,7 +205,7 @@ class MoviesController extends Controller
 
         $movie->delete();
         
-        return redirect('/movies')->with('success', 'Movie Removed');
+        return back()->with('success', 'Movie Removed');
     }
 
     public function category($category, $search_string = '')

@@ -265,7 +265,7 @@ class UsersController extends Controller
 
         $user->delete();
         
-        return redirect('/users')->with('success', 'User Removed');
+        return back()->with('success', 'User Removed');
     }
 
     public function change_pass($id)
