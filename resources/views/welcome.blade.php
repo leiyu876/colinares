@@ -33,10 +33,12 @@
 			<div class="row">				
 				<div class="col-md-4">
 					<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.4s">
-						<div class="services">											
-							<div class="icons">
-								<i class="fas fa-birthday-cake fa-3x"></i>
-							</div>
+						<div class="services">		
+							<a href="{{ route('pages.birthday') }}">									
+								<div class="icons">
+									<i class="fas fa-birthday-cake fa-3x"></i>
+								</div>
+							</a>
 							<h4>Birthdays</h4>	
 							<p>
 							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 

@@ -24,6 +24,7 @@
                                 <th>Photo</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Birthday</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -34,6 +35,7 @@
                                     <td><img src="{{ asset('storage/'.displayImage($user->photo)) }}" width="100" height="100"></td>
                                     <td>{{ $user->last_name.', '.$user->first_name.' '.substr($user->middle_name, 0,1).'.' }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>{{ $user->birthday }}</td>
                                     <td>
                                         <a href="{{ route('users.show', ['id' => $user->id])}}">
                                             <i class="fa fa-fw fa-eye" data-toggle="tooltip" title="Profile"></i>

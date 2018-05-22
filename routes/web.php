@@ -23,6 +23,7 @@ Route::get('ourstory', 'PagesController@ourstory');
 Route::get('events', 'PagesController@events');
 Route::get('gallery', 'PagesController@gallery');
 Route::get('contact', 'PagesController@contact');
+Route::get('birthday', 'PagesController@birthday')->name('pages.birthday');
 Route::get('tree/{email?}', 'PagesController@tree')->name('pages.tree');
 
 Route::get('users/change_pass/{id}', 'UsersController@change_pass');
