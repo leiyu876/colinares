@@ -1,5 +1,18 @@
 @extends('layouts.guest')
 
+@section('css')
+	<style type="text/css">
+		.bday_hover span { position:relative; }
+		.bday_hover span { position:absolute; display:none;  }
+		.bday_hover:hover span { 
+			display:block; 
+		}
+		.bday_hover:hover { 
+			color: green;
+		}
+	</style>
+@endsection
+
 @section('content')
 	<div class="slider">
 		<div class="img-responsive">
@@ -38,12 +51,23 @@
 								<div class="icons">
 									<i class="fas fa-birthday-cake fa-3x"></i>
 								</div>
-							</a>
-							<h4>Birthdays</h4>	
-							<p>
-							praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
-							excepturi sint occaecati cupiditate non provident
-							</p>
+								<h4>Birthdays</h4>	
+							</a>							
+							@foreach($celebrants as $celebrant)
+
+								@if($loop->index),@endif
+
+								<span class="bday_hover">{{ $celebrant->first_name }} 
+									@if($celebrant->nick_name)
+										({{ $celebrant->nick_name }})
+									@endif
+									<span>
+										{{ date('M-d' , strtotime($celebrant->birthday)) }}
+										<img src="{{ asset('storage/'.displayImage($celebrant->photo)) }}" alt="image" width="100" height="100" />
+									</span>
+								</span>
+								
+							@endforeach
 						</div>
 					</div>
 					<hr>

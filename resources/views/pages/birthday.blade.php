@@ -7,7 +7,7 @@
 
 @section('content')
 	<div class="breadcrumb">
-		<h2>Our Story</h2>
+		<h2>Birthday's</h2>
 	</div>
 	<div class="container">
 		<div class="col-md-12" >

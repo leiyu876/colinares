@@ -11,14 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
-
 Route::resources([
     'agencies' => 'AgenciesController',
 ]);
 
+Route::get('/', 'PagesController@welcome');
 Route::get('ourstory', 'PagesController@ourstory');
 Route::get('events', 'PagesController@events');
 Route::get('gallery', 'PagesController@gallery');
