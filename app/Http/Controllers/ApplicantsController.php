@@ -163,6 +163,7 @@ class ApplicantsController extends Controller
 
     public function send(Applicant $applicant)
     {
+        dd('leo disable this feature');
         $applicant->status = 'open';
         $applicant->send_start = date("Y-m-d").' '.date("H:i:s");
         $applicant->save();

@@ -7,6 +7,9 @@ use Illuminate\Console\Command;
 use Storage;
 use App\Applicant;
 use App\Agency;
+use Mail;
+use App\Mail\PrincessSendAgiences;
+
 
 class SendAgencies extends Command
 {
@@ -35,7 +38,10 @@ class SendAgencies extends Command
     }
 
     /**
-     * Execute the console command.
+     * To run this command make sure you have.
+     * - in applicant table must have 1 status open, the target applicant
+     * - in storage/app/sendagencies.txt not exist
+     * - in cmd run php artisan leo:sendagencies
      *
      * @return mixed
      */
@@ -52,7 +58,7 @@ class SendAgencies extends Command
             Storage::disk('local')->put('sendagencies_done.txt', $contents);
         }
         
-        ini_set('max_execution_time', 10800); // 3 hrs
+        setPHPINItoMax();
 
         if($applicant) {
 
@@ -62,11 +68,13 @@ class SendAgencies extends Command
                 $last_emailed_agency = 0;
             }
 
-            $agencies       = Agency::where('id', '>', $last_emailed_agency)->paginate(300);
+            $agencies       = Agency::where('id', '>', $last_emailed_agency)->paginate(100);
             
             $last_agency    = Agency::orderBy('id', 'desc')->first();
 
             $last_agency_id = 0;
+
+            $data['applicant'] = $applicant;
 
             foreach ($agencies as $agency) {
 
@@ -74,7 +82,7 @@ class SendAgencies extends Command
             
                 foreach ($emails as $v) {
 
-                    //Mail::to($v)->send(new PrincessSendAgiences($this->data));
+                    Mail::to($v)->send(new PrincessSendAgiences($data));
                 }
 
                 $time = date("h:i:sa").' via build ';
