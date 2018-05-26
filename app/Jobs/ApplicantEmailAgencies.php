@@ -59,7 +59,7 @@ class ApplicantEmailAgencies implements ShouldQueue
                 Mail::to($v)->send(new PrincessSendAgiences($this->data));
             }
 
-            $time = date("h:i:sa").' via build ';
+            $time = date("h:i:sa").' ';
             $exists = Storage::disk('local')->exists('handle.txt');
             if(!$exists) {
                 Storage::disk('local')->put('handle.txt', "\n".$time.' '.$agency->email.' ['.$agency->id.']');
@@ -67,7 +67,7 @@ class ApplicantEmailAgencies implements ShouldQueue
                 $contents = Storage::disk('local')->get('handle.txt');
                 Storage::disk('local')->put('handle.txt', $contents."\n".$time.' '.$agency->email.' ['.$agency->id.']');
             }
-
+            $this->info($time.' '.$agency->email.' ['.$agency->id.']');
             $last_agency_id = $agency->id;
         }
 

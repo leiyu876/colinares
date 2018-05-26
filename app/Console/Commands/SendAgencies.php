@@ -62,13 +62,15 @@ class SendAgencies extends Command
 
         if($applicant) {
 
+            $agencies_limit = 100;
+
             $last_emailed_agency = $applicant->last_emailed_agency;
 
             if(!$last_emailed_agency) {
                 $last_emailed_agency = 0;
             }
 
-            $agencies       = Agency::where('id', '>', $last_emailed_agency)->paginate(100);
+            $agencies       = Agency::where('id', '>', $last_emailed_agency)->paginate($agencies_limit);
             
             $last_agency    = Agency::orderBy('id', 'desc')->first();
 
@@ -76,7 +78,7 @@ class SendAgencies extends Command
 
             $data['applicant'] = $applicant;
 
-            foreach ($agencies as $agency) {
+            foreach ($agencies as $key => $agency) {
 
                 $emails = json_decode($agency->email);
             
@@ -85,7 +87,7 @@ class SendAgencies extends Command
                     Mail::to($v)->send(new PrincessSendAgiences($data));
                 }
 
-                $time = date("h:i:sa").' via build ';
+                $time = date("h:i:sa").' ';
                 $exists = Storage::disk('local')->exists('sendagencies.txt');
                 if(!$exists) {
                     Storage::disk('local')->put('sendagencies.txt', "\n".$time.' '.$agency->email.' ['.$agency->id.']');
@@ -93,6 +95,10 @@ class SendAgencies extends Command
                     $contents = Storage::disk('local')->get('sendagencies.txt');
                     Storage::disk('local')->put('sendagencies.txt', $contents."\n".$time.' '.$agency->email.' ['.$agency->id.']');
                 }
+
+                $percent = (($key+1)/$agencies->count()) * $agencies_limit;
+
+                $this->info($percent.'% '.$time.' ['.$agency->id.'] '.$agency->email);
 
                 $last_agency_id = $agency->id;
 
