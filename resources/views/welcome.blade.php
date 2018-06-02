@@ -52,22 +52,23 @@
 									<i class="fas fa-birthday-cake fa-3x"></i>
 								</div>
 								<h4>Birthdays</h4>	
-							</a>							
-							@foreach($celebrants as $celebrant)
+							</a>	
+							<p>						
+								@foreach($celebrants as $celebrant)
 
-								@if($loop->index),@endif
+									@if($loop->index),@endif
 
-								<span class="bday_hover">{{ $celebrant->first_name }} 
-									@if($celebrant->nick_name)
-										({{ $celebrant->nick_name }})
-									@endif
-									<span>
-										{{ date('M-d' , strtotime($celebrant->birthday)) }}
-										<img src="{{ asset('storage/'.displayImage($celebrant->photo)) }}" alt="image" width="100" height="100" />
+									<span class="bday_hover">{{ $celebrant->first_name }} 
+										@if($celebrant->nick_name)
+											({{ $celebrant->nick_name }})
+										@endif
+										<span>
+											{{ date('M-d' , strtotime($celebrant->birthday)) }}
+											<img src="{{ asset('storage/'.displayImage($celebrant->photo)) }}" alt="image" width="100" height="100" />
+										</span>
 									</span>
-								</span>
-								
-							@endforeach
+								@endforeach
+							</p>
 						</div>
 					</div>
 					<hr>
