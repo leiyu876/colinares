@@ -1,5 +1,21 @@
 @extends('layouts.guest')
 
+@section('css')
+	<style type="text/css">
+		.container_img {
+		    position: relative;
+		    text-align: center;
+		    color: white;
+		}
+		.top-right {
+		    position: absolute;
+		    top: 8px;
+		    right: 16px;
+		    color:yellow;
+		}	
+	</style>
+@endsection
+
 @section('content')
 	
 	<div class="breadcrumb">
@@ -40,7 +56,10 @@
 				</div>	
 				<div class="col-md-3" style="margin-bottom: 20px">
 					@foreach($root->children() as $child)
-						<img src="{{ asset('storage/'.displayImage($child->photo)) }}" style="width: 100%; height: 262.5px; margin-bottom: 19.2px" class="{{ $child->lastday ? 'died' : '' }}">
+						<div class="container_img">
+							<img src="{{ asset('storage/'.displayImage($child->photo)) }}" style="width: 100%; height: 262.5px; margin-bottom: 19.2px" class="{{ $child->lastday ? 'died' : '' }}">
+							<div class="top-right">{{ $loop->iteration }}</div>
+						</div>		
 						<span> Name : <strong>{{ $child->first_name.' '.$child->last_name }}</strong> </span>
 						<a href="{{ route('pages.tree', ['id' => $child->id])}}" class="btn  btn-default">
                         	About Me
@@ -53,6 +72,7 @@
 							<p> Work : <strong>{{ $child->occupation }}</strong></p>
 						@endif
 					@endforeach
+					
 				</div>	
 			</div>
 		</div>
