@@ -34,15 +34,15 @@ class PagesController extends Controller
         return view('pages.birthday', compact('users'));
     }
 
-    public function tree($email = 'espring@yahoo.com') {
+    public function tree($id = 2) {
 
-        $data['root'] = User::whereEmail($email)->first();
+        $data['root'] = User::find($id);
         
         if(!$data['root']) {
 
-            if($email == 'espring@yahoo.com') return redirect('/');
+            $data['root'] = $root = User::find(2);
 
-            return redirect('pages/tree');
+            if(!$root) return 'No user with id of 2.';
         }
 
         $data['breadcrumbs'] = $data['root']->tree_breadcrumbs();

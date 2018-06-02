@@ -9,7 +9,7 @@
 		<div class="container">
 			<div class="row">
 				@foreach($breadcrumbs as $breadcrumb)
-					<a href="{{ route('pages.tree', ['email' => $breadcrumb->email])}}">
+					<a href="{{ route('pages.tree', ['id' => $breadcrumb->id])}}">
 						<img src="{{ asset('storage/'.displayImage($breadcrumb->photo)) }}" style="width: 50px; height: 50px; margin-bottom: 19.2px" class="img-rounded" data-toggle="tooltip" title="{{ $breadcrumb->first_name.' '.$breadcrumb->last_name }}">
 					</a>
 				@endforeach
@@ -42,7 +42,7 @@
 					@foreach($root->children() as $child)
 						<img src="{{ asset('storage/'.displayImage($child->photo)) }}" style="width: 100%; height: 262.5px; margin-bottom: 19.2px" class="{{ $child->lastday ? 'died' : '' }}">
 						<span> Name : <strong>{{ $child->first_name.' '.$child->last_name }}</strong> </span>
-						<a href="{{ route('pages.tree', ['email' => $child->email])}}" class="btn  btn-default">
+						<a href="{{ route('pages.tree', ['id' => $child->id])}}" class="btn  btn-default">
                         	About Me
                     	</a>
 						<p> Age : <strong>{{ $child->age }}</strong></p>
