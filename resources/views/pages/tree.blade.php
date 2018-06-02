@@ -58,7 +58,13 @@
 					@foreach($root->children() as $child)
 						<div class="container_img">
 							<img src="{{ asset('storage/'.displayImage($child->photo)) }}" style="width: 100%; height: 262.5px; margin-bottom: 19.2px" class="{{ $child->lastday ? 'died' : '' }}">
-							<div class="top-right">{{ $loop->iteration }}</div>
+							<div class="top-right">
+								@if(count($root->children()) == 1)
+									only child
+								@else
+									{{ str_ordinal($loop->iteration) }} child
+								@endif
+							</div>
 						</div>		
 						<span> Name : <strong>{{ $child->first_name.' '.$child->last_name }}</strong> </span>
 						<a href="{{ route('pages.tree', ['id' => $child->id])}}" class="btn  btn-default">
