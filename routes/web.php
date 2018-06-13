@@ -14,7 +14,9 @@
 Route::resources([
     'agencies' => 'AgenciesController',
 ]);
-
+Route::get('/testpage', function() {
+	return view('pages.testpage');
+});
 Route::get('/', 'PagesController@welcome');
 Route::get('ourstory', 'PagesController@ourstory');
 Route::get('events', 'PagesController@events');
