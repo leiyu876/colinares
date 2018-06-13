@@ -14,9 +14,7 @@
 Route::resources([
     'agencies' => 'AgenciesController',
 ]);
-Route::get('/testpage', function() {
-	return view('pages.testpage');
-});
+
 Route::get('/', 'PagesController@welcome');
 Route::get('ourstory', 'PagesController@ourstory');
 Route::get('events', 'PagesController@events');
@@ -39,6 +37,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('movies/category/{category}/{search_string?}', 'MoviesController@category')->name('movies.category');
 Route::get('movies/single/{slug}', 'MoviesController@single')->name('movies.single');
 Route::get('movies/convert_percentage', 'MoviesController@convert_percentage');
+
+Route::get('/mona', function() {
+	return view('movies.mona.list');
+});
+Route::get('/mona/sarah', function() {
+	return view('movies.mona.sarah');
+});
+Route::get('/mona/pulubi', function() {
+	return view('movies.mona.pulubi');
+});
 
 Route::resources([
     'users' => 'UsersController',
