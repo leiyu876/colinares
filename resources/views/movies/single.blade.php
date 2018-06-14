@@ -10,11 +10,15 @@
 		
 		<div class="row" >
 			<div class="col-md-12">
-				<video controls controlsList="nodownload" style=" width: 100%    !important; height: auto   !important;">
-	              <source src="{{ asset('storage/'.$movie->video) }}" type="video/mp4">
-	              <source src="{{ asset('storage/'.$movie->video) }}" type="video/ogg">
-	            Your browser does not support the video tag.
-	            </video>
+				@if($movie->is_embedded)
+					<iframe style=" width: 100%    !important; height: 100%   !important;" src="{{ $movie->embedded_link }}" frameborder="0" allowfullscreen></iframe>
+				@else
+					<video controls controlsList="nodownload" style=" width: 100%    !important; height: auto   !important;">
+		              <source src="{{ asset('storage/'.$movie->video) }}" type="video/mp4">
+		              <source src="{{ asset('storage/'.$movie->video) }}" type="video/ogg">
+		            Your browser does not support the video tag.
+		            </video>
+	            @endif
 	            <h6 style="color: gray" class="pull-right">{{ $movie->visited }} views - {{ $movie->created_at->diffForHumans() }}</h6>
 			</div>	
 		</div>

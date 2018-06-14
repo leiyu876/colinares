@@ -35,8 +35,19 @@
                 {{ Form::text('released_year', $movie->released_year, ['class'=>'form-control', 'id'=>'released_year']) }}
             </div>
             <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="is_embedded" id="is_embedded"> Is embedded from other website?
+                </label>
+              </div>
+            </div>
+            <div class="form-group" id="embedded_link">
+              {{ Form::label('embedded_link', 'Copy the website embedded link here.') }}
+              {{ Form::text('embedded_link', null, ['class'=>'form-control']) }}
+            </div>
+            <div class="form-group" id="video">
                   {{ Form::label('video', 'Video') }}
-                  {{ Form::file('video', ['class'=>'form-control', 'id'=>'video']) }}
+                  {{ Form::file('video', ['class'=>'form-control']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('image', 'Image') }}
@@ -56,3 +67,27 @@
   </div>
 
   @endsection()
+
+  @section('js')
+  <script src="{{ asset('auth/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('.select2').select2()
+        $("#embedded_link").hide();
+        $('#is_embedded').click(function () {
+            if ($(this).is(":checked")) {
+                $("#video").hide();
+                $("#embedded_link").show();
+                console.log('check');  
+            } else {
+                $("#video").show();
+                $("#embedded_link").hide();
+              console.log('not check');
+            }
+         });
+    });
+    
+      
+  </script>
+  
+@endsection

@@ -54,25 +54,28 @@ class MoviesController extends Controller
         $video = $request->file('video');
 
         //$video_format = $video->getMimeType();
-        //dd($video_format);
-
+        
         $request->validate([
             'title' => 'required',
             'slug' => 'required|alpha_dash|unique:movies',
             'released_year' => 'required|integer',
-            'video' => 'required|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm,video/ogg,video/x-flv,video/x-ms-asf,video/x-matroska',
+            'is_embedded' => 'sometimes',
+            'embedded_link'       => 'required_if:is_embedded,on',
+            'video' => 'required_without:is_embedded|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm,video/ogg,video/x-flv,video/x-ms-asf,video/x-matroska',
             'image' => 'required|image'
         ]);
 
-        $video_format = $video->getMimeType();
+        if($video) $video_format = $video->getMimeType();
 
         $movie = new Movie;
 
         $movie->title = $request->input('title');
         $movie->slug = $request->input('slug');
+        $movie->embedded_link = $request->input('embedded_link'); 
         $movie->released_year = $request->input('released_year');
         $movie->visited = 0;
         $movie->is_html5 = true;
+        $movie->is_embedded = $request->input('is_embedded') ? true : false;
 
         if($request->hasFile('image')) {
             
@@ -88,7 +91,9 @@ class MoviesController extends Controller
         }
         
         // filter html5 valid video format
-        if($video_format != 'video/mp4' && $video_format != 'video/webm' && $video_format != 'video/ogg') $movie->is_html5 = false;
+        if($video) {
+            if($video_format != 'video/mp4' && $video_format != 'video/webm' && $video_format != 'video/ogg') $movie->is_html5 = false;       
+        }
         
         $movie->save();
 
@@ -146,13 +151,17 @@ class MoviesController extends Controller
             'title' => 'required',
             'slug' => 'required|alpha_dash|unique:movies,slug,'.$movie->id,
             'released_year' => 'required|integer',
+            'is_embedded' => 'sometimes',
+            'embedded_link'       => 'required_if:is_embedded,on',
             'video' => 'sometimes|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm,video/ogg,video/x-flv,video/x-ms-asf,video/x-matroska',
             'image' => 'sometimes|image'
         ]);
 
         $movie->title = $request->input('title');
+        $movie->embedded_link = $request->input('embedded_link'); 
         $movie->slug = $request->input('slug');
         $movie->released_year = $request->input('released_year');
+        $movie->is_embedded = $request->input('is_embedded') ? true : false;
 
         if($request->hasFile('video')) {
             
