@@ -8,16 +8,19 @@ class WorkabroadController extends Controller
 {
     public function princess()
     {
-        ini_set('max_execution_time', 300);
+        ini_set('max_execution_time', 0);
 
         $result = array();
 
         // this string are not applied for princess application
         $unwanted_strings = array('saudi arabia', 'kuwait', 'nigeria', 'domestic helper', 'engineer', 'nurse', 'beautician', 'architect', 'nail',
                                   'electrical', 'mechanic', 'driver', 'repairman', 'technician', 'heavy', 'advisor', 'programmer', 'accountant', 'teacher',
-                                   'business');
+                                   'business', 'accounting', 'graphic', 'material', 'recruitment', 'bangladesh', 'carpenters', 'videographer', 
+                                   'photographer', 'welding', 'design', 'designer', 'gynecology', 'dermatologist', 'aesthetician', 'butler', 'salesman',
+                                   'foreman', 'gender: male', 'physiotherapist', 'marketing', 'clinical', 'butcher', 'welder', 'steel', 'fabricator',
+                                   'backhoe', 'painters', 'aluminum', 'ceiling');
 
-        for($page = 1; $page<=10; $page++) {
+        for($page = 1; $page<=50; $page++) {
 
             $html  = file_get_contents('https://www.workabroad.ph/list_specific_jobs.php?by_what=date&id=1&page='.$page);
         
