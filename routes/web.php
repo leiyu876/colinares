@@ -38,6 +38,8 @@ Route::get('movies/category/{category}/{search_string?}', 'MoviesController@cate
 Route::get('movies/single/{slug}', 'MoviesController@single')->name('movies.single');
 Route::get('movies/convert_percentage', 'MoviesController@convert_percentage');
 
+Route::get('/workabroad/princess', 'WorkabroadController@princess')->name('princess');
+
 Route::get('/mona', function() {
 	return view('movies.mona.list');
 });

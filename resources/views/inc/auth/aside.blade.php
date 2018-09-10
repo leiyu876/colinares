@@ -48,6 +48,7 @@
         <ul class="treeview-menu" style="{{ Request::is('applicants') || Request::is('agencies') ? 'display:block' : '' }}">
           <li  class="{{ Request::is('applicants') ? 'active' : '' }}"><a href="{{ route('applicants.index') }}"><i class="fa fa-circle-o"></i> Applicants</a></li>
           <li  class="{{ Request::is('agencies') ? 'active' : '' }}"><a href="{{ route('agencies.index') }}"><i class="fa fa-circle-o"></i> Agencies</a></li>
+          <li  class="{{ Request::is('workabroad') ? 'active' : '' }}"><a href="{{ url('workabroad/princess') }}"><i class="fa fa-circle-o"></i> Princess Jobs</a></li>
         </ul>
       </li>
       <li class="treeview {{ Request::is('movies*') ? 'menu-open' : '' }}">
