@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class WorkabroadController extends Controller
 {
-    public function princess()
+    public function princess($page = 1)
     {
         ini_set('max_execution_time', 0);
 
@@ -17,57 +17,73 @@ class WorkabroadController extends Controller
                                   'electrical', 'mechanic', 'driver', 'repairman', 'technician', 'heavy', 'advisor', 'programmer', 'accountant', 'teacher',
                                    'business', 'accounting', 'graphic', 'material', 'recruitment', 'bangladesh', 'carpenters', 'videographer', 
                                    'photographer', 'welding', 'design', 'designer', 'gynecology', 'dermatologist', 'aesthetician', 'butler', 'salesman',
-                                   'foreman', 'gender: male', 'physiotherapist', 'marketing', 'clinical', 'butcher', 'welder', 'steel', 'fabricator',
-                                   'backhoe', 'painters', 'aluminum', 'ceiling');
+                                   'foreman', 'gender: male', 'marketing', 'clinical', 'butcher', 'welder', 'steel', 'fabricator',
+                                   'backhoe', 'painter', 'aluminum', 'ceiling', 'therapist', 'duct man', 'building', 'autocad', 'sewing', 'plumber',
+                                   'electrician', 'manicure', 'biology', 'draftswoman');
 
-        for($page = 1; $page<=50; $page++) {
-
-            $html  = file_get_contents('https://www.workabroad.ph/list_specific_jobs.php?by_what=date&id=1&page='.$page);
+        $html  = file_get_contents('https://www.workabroad.ph/list_specific_jobs.php?by_what=date&id=1&page='.$page);
         
-            $myArray = explode('<!-- Job Results for looping -->', $html);
+        if (strpos($html, '<!-- Job Results for looping -->') === FALSE) {
+               
+            return redirect('/workabroad/princess');
+        }
+
+        $myArray = explode('<!-- Job Results for looping -->', $html);
+        
+        array_shift($myArray);
+
+        foreach ($myArray as $key => $value) {
             
+            $has_unwanted_string = false;
 
-            array_shift($myArray);
+            $value = strtolower($value);
+            
+            $value = strip_tags($value);
 
-            foreach ($myArray as $key => $value) {
+            foreach ($unwanted_strings as $unwanted_string) {
                 
-                $has_unwanted_string = false;
-
-                $value = strtolower($value);
-                
-                foreach ($unwanted_strings as $unwanted_string) {
+                if (strpos($value, $unwanted_string) !== FALSE) {
                     
-                    if (strpos($value, $unwanted_string) !== FALSE) {
-                        
-                        $has_unwanted_string = true;
-                    }
+                    $has_unwanted_string = true;
                 }
+            }
 
+            if(!$has_unwanted_string) {
 
-                if(!$has_unwanted_string) {
+                $value = preg_split('/\r\n|\r|\n/', $value);
+                
+                $final = "";
 
-                    $value = strip_tags($value);
+                foreach ($value as $kkk => $k_final) {
+                   
+                    $k_final = trim($k_final);
 
-                    $value = preg_split('/\r\n|\r|\n/', $value);
-                    
-                    $final = "";
+                    if(trim($k_final) != '') {
 
-                    foreach ($value as $k_final) {
-                       
-                        $k_final = trim($k_final);
+                        if($kkk == 7) {
 
-                        if(trim($k_final) != '') {
+                            $final .= '<h1>'.$k_final.'</h1>';
 
-                            $final .= "\n".$k_final;
+                        } else {
+
+                            $final .= "<br/>".$k_final;
                         }
                     }
-
-                    $result[] = $final;
                 }
+
+                //$final = substr($final, 5);
+
+                $result[] = $final;
             }
         }
 
-        dd($result);
+        $data['page_title'] = 'Jobs List for Princess';
+
+        $data['details'] = $result;
+
+        $data['page'] = $page;
+
+        return view('workabroad.princess', $data);
     }
 
     /**
