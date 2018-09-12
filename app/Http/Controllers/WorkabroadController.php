@@ -20,7 +20,7 @@ class WorkabroadController extends Controller
                                    'foreman', 'gender: male', 'marketing', 'clinical', 'butcher', 'welder', 'steel', 'fabricator',
                                    'backhoe', 'painter', 'aluminum', 'ceiling', 'therapist', 'duct man', 'building', 'autocad', 'sewing', 'plumber',
                                    'electrician', 'manicure', 'biology', 'draftswoman', 'tailor', 'caregiver', 'caretaker',
-                                   'ignore', 'household', 'domestic', 'test by', 'seamstresses');
+                                   'ignore', 'household', 'domestic', 'test by', 'seamstresses', 'sri lanka');
 
         $html  = file_get_contents('https://www.workabroad.ph/list_specific_jobs.php?by_what=date&id=1&page='.$page);
         
