@@ -15,7 +15,7 @@ class WorkabroadController extends Controller
         // this string are not applied for princess application
         $unwanted_strings = array('saudi arabia', 'kuwait', 'nigeria', 'domestic helper', 'engineer', 'nurse', 'beautician', 'architect', 'nail',
                                   'electrical', 'mechanic', 'driver', 'repairman', 'technician', 'heavy', 'advisor', 'programmer', 'accountant', 'teacher',
-                                   'business', 'accounting', 'graphic', 'material', 'recruitment', 'bangladesh', 'carpenters', 'videographer', 
+                                   'business', 'accounting', 'graphic', 'material', 'bangladesh', 'carpenters', 'videographer', 
                                    'photographer', 'welding', 'design', 'designer', 'gynecology', 'dermatologist', 'aesthetician', 'butler', 'salesman',
                                    'foreman', 'gender: male', 'marketing', 'clinical', 'butcher', 'welder', 'steel', 'fabricator',
                                    'backhoe', 'painter', 'aluminum', 'ceiling', 'therapist', 'duct man', 'building', 'autocad', 'sewing', 'plumber',
