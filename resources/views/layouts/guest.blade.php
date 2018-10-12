@@ -102,8 +102,8 @@
 					</div>
 					<div class="col-md-4 f-contact">
 						<h3 class="widgetheading">Stay in touch</h3>
-						<a href="#"><p><i class="fa fa-envelope"></i> support@virneza.com</p></a>
-						<p><i class="fa fa-phone"></i>  +966593326104</p>
+						<a href="#"><p><i class="fa fa-envelope"></i> leiyu876@gmail.com</p></a>
+						<p><i class="fa fa-phone"></i>  +966572408302</p>
 						<p><i class="fa fa-home"></i> Sacred Heart Village, <br>
 							Corazon Catmon <br>
 							Cebu Philippines</p>
@@ -116,7 +116,7 @@
 			<div class="container">
 				<div class="row">					
 					<div class="copyright">
-						© 2018 Martin & Ignacia Family | <a href="http://virneza.com">VirNeza</a>
+						© 2018 Martin & Ignacia Family | <a href="http://virneza.com">Virneza</a>
 					</div>	
                     <!-- 
                         All links in the footer should remain intact. 
@@ -126,9 +126,9 @@
 				
 		
 					<ul class="social-network">
-						<li><a href="#" data-placement="top" title="Facebook"><i class="fab fa-facebook-f fa-1x"></i></a></li>
-						<li><a href="#" data-placement="top" title="Twitter"><i class="fab fa-twitter fa-1x"></i></a></li>
-						<li><a href="#" data-placement="top" title="Linkedin"><i class="fab fa-linkedin-in fa-1x"></i></a></li>
+						<li><a href="https://www.facebook.com/leiyu876" data-placement="top" title="Facebook"><i class="fab fa-facebook-f fa-1x"></i></a></li>
+						<li><a href="https://twitter.com/leiyu876" data-placement="top" title="Twitter"><i class="fab fa-twitter fa-1x"></i></a></li>
+						<li><a href="https://www.linkedin.com/in/leo-nuneza-27024a94/" data-placement="top" title="Linkedin"><i class="fab fa-linkedin-in fa-1x"></i></a></li>
 						<li><a href="#" data-placement="top" title="Pinterest"><i class="fab fa-pinterest-p fa-1x"></i></a></li>
 						<li><a href="#" data-placement="top" title="Google plus"><i class="fab fa-google-plus-g fa-1x"></i></a></li>
 					</ul>
