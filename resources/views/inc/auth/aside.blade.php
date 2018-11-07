@@ -38,17 +38,18 @@
           <li  class="{{ Request::is('users/create') ? 'active' : '' }}"><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
         </ul>
       </li>
-      <li class="treeview {{ Request::is('applicants') || Request::is('agencies') ? 'menu-open' : '' }}">
+      <li class="treeview {{ Request::is('applicants') || Request::is('agencies') || Request::is('workabroad*') ? 'menu-open' : '' }}">
         <a href="#">
           <i class="fa fa-users"></i> <span>OFW</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
-        <ul class="treeview-menu" style="{{ Request::is('applicants') || Request::is('agencies') ? 'display:block' : '' }}">
+        <ul class="treeview-menu" style="{{ Request::is('applicants') || Request::is('agencies') || Request::is('workabroad*') ? 'display:block' : '' }}">
           <li  class="{{ Request::is('applicants') ? 'active' : '' }}"><a href="{{ route('applicants.index') }}"><i class="fa fa-circle-o"></i> Applicants</a></li>
           <li  class="{{ Request::is('agencies') ? 'active' : '' }}"><a href="{{ route('agencies.index') }}"><i class="fa fa-circle-o"></i> Agencies</a></li>
-          <li  class="{{ Request::is('workabroad') ? 'active' : '' }}"><a href="{{ url('workabroad/princess') }}"><i class="fa fa-circle-o"></i> Princess Jobs</a></li>
+          <li  class="{{ Request::is('workabroad/princess') ? 'active' : '' }}"><a href="{{ url('workabroad/princess') }}"><i class="fa fa-circle-o"></i> Princess Jobs</a></li>
+          <li  class="{{ Request::is('workabroad/leo') ? 'active' : '' }}"><a href="{{ url('workabroad/leo') }}"><i class="fa fa-circle-o"></i> Leo Jobs</a></li>
         </ul>
       </li>
       <li class="treeview {{ Request::is('movies*') ? 'menu-open' : '' }}">

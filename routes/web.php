@@ -39,6 +39,7 @@ Route::get('movies/single/{slug}', 'MoviesController@single')->name('movies.sing
 Route::get('movies/convert_percentage', 'MoviesController@convert_percentage');
 
 Route::get('/workabroad/princess/{page?}', 'WorkabroadController@princess')->name('princess');
+Route::get('/workabroad/leo/{page?}', 'WorkabroadController@leo')->name('leo');
 //Route::get('/workabroad/princess', 'WorkabroadController@princess')->name('princess');
 
 Route::get('/mona', function() {

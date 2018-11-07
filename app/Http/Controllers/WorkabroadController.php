@@ -87,6 +87,80 @@ class WorkabroadController extends Controller
         return view('workabroad.princess', $data);
     }
 
+    public function leo($page = 1)
+    {
+        ini_set('max_execution_time', 0);
+
+        $result = array();
+
+        // this string are not applied for leo application
+        $unwanted_strings = array('saudi arabia', 'kuwait', 'qatar', 'bahrain', 'united arab emirates');
+
+        $html  = file_get_contents('https://www.workabroad.ph/list_specific_jobs.php?by_what=date&id=1&page='.$page);
+        
+        if (strpos($html, '<!-- Job Results for looping -->') === FALSE) {
+               
+            return redirect('/workabroad/leo');
+        }
+
+        $myArray = explode('<!-- Job Results for looping -->', $html);
+        
+        array_shift($myArray);
+
+        foreach ($myArray as $key => $value) {
+            
+            $has_unwanted_string = false;
+
+            $value = strtolower($value);
+            
+            $value = strip_tags($value);
+
+            foreach ($unwanted_strings as $unwanted_string) {
+                
+                if (strpos($value, $unwanted_string) !== FALSE) {
+                    
+                    $has_unwanted_string = true;
+                }
+            }
+
+            if(!$has_unwanted_string) {
+
+                $value = preg_split('/\r\n|\r|\n/', $value);
+                
+                $final = "";
+
+                foreach ($value as $kkk => $k_final) {
+                   
+                    $k_final = trim($k_final);
+
+                    if(trim($k_final) != '') {
+
+                        if($kkk == 7) {
+
+                            $final .= '<h1>'.$k_final.'</h1>';
+
+                        } else {
+
+                            $final .= "<br/>".$k_final;
+                        }
+                    }
+                }
+
+                //$final = substr($final, 5);
+
+                $result[] = $final;
+            }
+        }
+
+        $data['page_title'] = 'Jobs List for Leo';
+
+        $data['details'] = $result;
+
+        $data['page'] = $page;
+
+        return view('workabroad.leo', $data);
+    }
+
     /**
      * Display a listing of the resource.
      *
