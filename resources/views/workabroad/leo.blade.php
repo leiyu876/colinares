@@ -29,7 +29,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Details</th>
+                                <th>Detailss</th>
                             </tr>
                         </thead>
                         <tbody>
