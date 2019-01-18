@@ -94,7 +94,7 @@ class WorkabroadController extends Controller
         $result = array();
 
         // this string are not applied for leo application
-        $unwanted_strings = array('saudi arabia', 'kuwait', 'qatar', 'bahrain', 'united arab emirates', 'nigeria');
+        $unwanted_strings = array('saudi arabia', 'kuwait', 'qatar', 'bahrain', 'united arab emirates', 'nigeria', 'nurse', 'sudan', 'philippines');
 
         $html  = file_get_contents('https://www.workabroad.ph/list_specific_jobs.php?by_what=date&id=1&page='.$page);
         
