@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/vue_example1', function() {
+    
+    return request()->input();
+    
+})->name('vue_example1');;

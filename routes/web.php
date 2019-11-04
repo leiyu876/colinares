@@ -78,3 +78,12 @@ Route::get('user_details',function(){
     $location = \Location::get($ip);
     dd($location);
 });
+
+// all here are just an example
+
+Route::get('/vue_example1', function() {
+    
+    $data['page_title'] = 'Vue example 1';
+    
+    return view('pages.vue_example1', $data);
+});

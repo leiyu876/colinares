@@ -64,6 +64,7 @@
           <li class="{{ Request::is('movies/create') ? 'active' : '' }}"><a href="{{ url('movies/create') }}"><i class="fa fa-circle-o"></i> Create Movie</a></li>
         </ul>
       </li>
+      <li class="{{ Request::is('vue_example1') ? 'menu-open' : '' }}"><a href="{{ url('vue_example1') }}"><i class="fa fa-dashboard"></i> <span>Vue Example 1</span></a></li>
     </ul>
   </section>
   <!-- /.sidebar -->
