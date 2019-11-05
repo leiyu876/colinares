@@ -81,7 +81,7 @@ Route::get('user_details',function(){
 
 // all here are just an example
 
-Route::get('/vue_example1', function() {
+Route::middleware('auth')->get('/vue_example1', function() {
     
     $data['page_title'] = 'Vue example 1';
     

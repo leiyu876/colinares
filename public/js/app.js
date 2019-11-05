@@ -44829,13 +44829,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        this.myarray_string = JSON.stringify(this.myarray);
-    },
+    mounted: function mounted() {},
 
     props: {
         formpost: ''
@@ -44852,7 +44848,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             itemsobj: [{ name: 'leo' }, { name: 'taudhid' }],
 
             inputanything: '',
-            myarray_string: '',
             myarray: ['leo', 'taudhid']
         };
     },
@@ -44875,8 +44870,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         submitfinal: function submitfinal() {
+            var _this = this;
+
             axios.post(this.formpost, this.myarray).then(function (res) {
-                console.log(res);
+                //console.log(res.data)
+                _this.myarray = res.data;
             }).catch(function (err) {
                 console.log(err);
             });
@@ -44973,7 +44971,7 @@ var render = function() {
               _c("hr"),
               _vm._v(" "),
               _c("br"),
-              _vm._v("\n                        Input Anything : "),
+              _vm._v("\n                    Input Anything : "),
               _c("input", {
                 directives: [
                   {
@@ -44996,53 +44994,12 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("button", { on: { click: _vm.submitpartial } }, [
-                _vm._v("Add Partial")
+                _vm._v("Add to List")
               ]),
               _vm._v(" "),
-              _c(
-                "form",
-                {
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.submitfinal($event)
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "                    \n                        List : "
-                  ),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.myarray_string,
-                        expression: "myarray_string"
-                      }
-                    ],
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.myarray_string },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.myarray_string = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: {
-                      type: "submit",
-                      name: "Submit",
-                      value: "Final Submit"
-                    }
-                  })
-                ]
-              ),
+              _c("button", { on: { click: _vm.submitfinal } }, [
+                _vm._v("Submit all to backend PHP")
+              ]),
               _vm._v(" "),
               _c(
                 "ul",

@@ -19,6 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/vue_example1', function() {
     
-    return request()->input();
+    //return request()->input();
+
+    $request = request()->input();
+
+    $request[] = "baby shark <--- this was retrieved in backend PHP";
+
+    return $request;
     
 })->name('vue_example1');;

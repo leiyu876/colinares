@@ -28,16 +28,14 @@
                         </ul>
                         <hr>
                         
-                            <br/>
-                            Input Anything : <input type="text" v-model="inputanything">
-                            <button @click="submitpartial">Add Partial</button>
-                        <form @submit.prevent="submitfinal">                    
-                            List : <input type="text" v-model="myarray_string">    
-                            <input type="submit" name="Submit" value="Final Submit">                         
-                        </form>
+                        <br/>
+                        Input Anything : <input type="text" v-model="inputanything">                        
+                        <button @click="submitpartial">Add to List</button>
+                        <button @click="submitfinal">Submit all to backend PHP</button>
                         <ul>
                             <li v-for="item in myarray">{{ item }}</li>
                         </ul>
+
                     </div>                    
                 </div>
             </div>
@@ -48,7 +46,7 @@
 <script>
     export default {
         mounted() {
-            this.myarray_string = JSON.stringify(this.myarray)
+            
         },
         props: {
             formpost: ''
@@ -70,8 +68,7 @@
                     {name:'taudhid'}
                 ],
 
-                inputanything:'',
-                myarray_string: '',
+                inputanything:'',                
                 myarray: [
                     'leo',
                     'taudhid'
@@ -98,7 +95,8 @@
             submitfinal : function () {
                 axios.post(this.formpost, this.myarray)
                 .then(res => {
-                    console.log(res)
+                    //console.log(res.data)
+                    this.myarray = res.data
                 }).catch(err => {
                     console.log(err)
                 })
